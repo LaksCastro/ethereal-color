@@ -1,7 +1,7 @@
 {
   "name": "color-manager",
   "version": "0.0.0",
-  "description": "",
+  "description": "A fast, stable and clean library to work with colors: generate single colors, palettes, array of colors, random colors, amoung others.",
   "keywords": [],
   "main": "dist/color-manager.umd.js",
   "module": "dist/color-manager.es5.js",
@@ -12,7 +12,7 @@
   "author": "LaksCastro <lakhsmycastro336@gmail.com>",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/LaksCastro/color-manager.js"
   },
   "license": "MIT",
   "engines": {
