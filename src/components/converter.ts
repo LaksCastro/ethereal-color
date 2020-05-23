@@ -1,18 +1,6 @@
 import { Rgb, Hex, Hsl } from './color'
 
 // ====================================================================================
-// All available color types
-// ====================================================================================
-export enum ValidTypes {
-  rgb = 'rgb',
-  hex = 'hex',
-  hsl = 'hsl',
-  xyz = 'xyz',
-  lab = 'lab',
-  lchab = 'lchab'
-}
-
-// ====================================================================================
 // All converter methods
 // ====================================================================================
 export type RgbToHslMethod = (color: Rgb) => Hsl
@@ -137,6 +125,7 @@ const Converter: Converter = () => {
       const hex = component.toString(16)
       return hex.length === 1 ? '0' + hex : hex
     }
+
     return {
       r: componentToHex(r),
       g: componentToHex(g),

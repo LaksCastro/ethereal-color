@@ -1,13 +1,13 @@
-import { Rgb, Hex, Hsl, ValidColorsFormat } from '../../src/components/color'
+import { Rgb, Hex, Hsl } from '../../src/components/color'
 import Converter from '../../src/components/converter'
 import data, { SampleColor } from '../shared/color-swatch'
-import { isContext } from 'vm'
 
 describe('Tests the "Converter" factory', () => {
   test('works if "Converter" factory is defined and return a no-undefined value', () => {
     expect(Converter()).toBeDefined()
   })
 })
+
 describe('Tests the "Converter" methods, using sample colors data', () => {
   test('works if you can convert "rgb", "hexadecimal" and "hsl"', () => {
     const converter = Converter()

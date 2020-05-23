@@ -12,7 +12,7 @@ describe('Test of Utils factory > "AverageBetween" method', () => {
   it('works if the "AverageBetween" method delivers the expected number', () => {
     const utils = Utils()
 
-    const averageBetween50and100 = utils.averageBetween({ interval: [50, 100] })
+    const averageBetween50and100 = utils.averageBetween(50, 100)
 
     expect(averageBetween50and100).toEqual(75)
   })
@@ -23,7 +23,7 @@ describe('Test of Utils factory > "Random" method', () => {
     const utils = Utils()
 
     const randomNumbersBetween10And30 = Array.from({ length: 50 }).map(() =>
-      utils.randomInt({ max: 10, min: 30 })
+      utils.randomInt(10, 30)
     )
 
     const invalidNumbers = randomNumbersBetween10And30.filter(num => num > 30 || num < 10)
@@ -36,16 +36,13 @@ describe('Test of Utils factory > "Interpolate" method', () => {
   it('works if the "Interpolate" method delivers the expected value, using simple intervals', () => {
     const utils = Utils()
 
-    const interpolation = utils.interpolate({
-      xInterval: [0, 10],
-      yInterval: [0, 200]
-    })
+    const interpolation = utils.interpolate([0, 10], [0, 200])
 
-    const yToXEqualTo5 = interpolation({ xA: 5 })
-    const yToXEqualTo0 = interpolation({ xA: 0 })
-    const yToXEqualTo10 = interpolation({ xA: 10 })
-    const yToXEqualTo2 = interpolation({ xA: 2 })
-    const yToXEqualTo8 = interpolation({ xA: 8 })
+    const yToXEqualTo5 = interpolation(5)
+    const yToXEqualTo0 = interpolation(0)
+    const yToXEqualTo10 = interpolation(10)
+    const yToXEqualTo2 = interpolation(2)
+    const yToXEqualTo8 = interpolation(8)
 
     const result = [yToXEqualTo5, yToXEqualTo0, yToXEqualTo10, yToXEqualTo2, yToXEqualTo8]
 
@@ -54,16 +51,11 @@ describe('Test of Utils factory > "Interpolate" method', () => {
   it('works if the "Interpolate" method delivers the expected value, using complex intervals', () => {
     const utils = Utils()
 
-    const interpolation = utils.interpolate({
-      xInterval: [261, 854],
-      yInterval: [12, 169]
-    })
+    const interpolation = utils.interpolate([261, 854], [12, 169])
 
-    const yToXEqualTo261 = interpolation({ xA: 261 })
-    const yToXEqualTo854 = interpolation({ xA: 854 })
-    const yToXEqualTheAverageValueBetween261and854 = interpolation({
-      xA: utils.averageBetween({ interval: [261, 854] })
-    })
+    const yToXEqualTo261 = interpolation(261)
+    const yToXEqualTo854 = interpolation(854)
+    const yToXEqualTheAverageValueBetween261and854 = interpolation(utils.averageBetween(261, 854))
 
     const result = [
       yToXEqualTo261,
@@ -77,15 +69,11 @@ describe('Test of Utils factory > "Interpolate" method', () => {
     for (let i = 0; i < 50; i++) {
       const utils = Utils()
 
-      const intervalXN = utils.randomInt({
-        max: 10000,
-        min: 0
-      })
+      const intervalXN = utils.randomInt(0, 10000)
+      const intervalXM = utils.randomInt(0, 10000)
 
-      const intervalXM = utils.randomInt({ min: 0, max: 10000 })
-
-      const intervalYN = utils.randomInt({ min: 0, max: 10000 })
-      const intervalYM = utils.randomInt({ min: 0, max: 10000 })
+      const intervalYN = utils.randomInt(0, 10000)
+      const intervalYM = utils.randomInt(0, 10000)
 
       const x0 = Math.min(intervalXN, intervalXM)
       const x1 = Math.max(intervalXN, intervalXM)
@@ -93,18 +81,11 @@ describe('Test of Utils factory > "Interpolate" method', () => {
       const y0 = Math.min(intervalYN, intervalYM)
       const y1 = Math.max(intervalYN, intervalYM)
 
-      const interpolation = utils.interpolate({
-        xInterval: [x0, x1],
-        yInterval: [y0, y1]
-      })
+      const interpolation = utils.interpolate([x0, x1], [y0, y1])
 
-      const yToXEqualToX0 = interpolation({ xA: x0 })
-      const yToXEqualToX1 = interpolation({ xA: x1 })
-      const yForXEqualToTheAverageValueBetweenX0andX1 = interpolation({
-        xA: utils.averageBetween({
-          interval: [x0, x1]
-        })
-      })
+      const yToXEqualToX0 = interpolation(x0)
+      const yToXEqualToX1 = interpolation(x1)
+      const yForXEqualToTheAverageValueBetweenX0andX1 = interpolation(utils.averageBetween(x0, x1))
 
       const result = [
         yToXEqualToX0,
@@ -112,11 +93,7 @@ describe('Test of Utils factory > "Interpolate" method', () => {
         normalizeFloatNumber(yForXEqualToTheAverageValueBetweenX0andX1)
       ]
 
-      expect(result).toEqual([
-        y0,
-        y1,
-        normalizeFloatNumber(utils.averageBetween({ interval: [y0, y1] }))
-      ])
+      expect(result).toEqual([y0, y1, normalizeFloatNumber(utils.averageBetween(y0, y1))])
     }
   })
 })
