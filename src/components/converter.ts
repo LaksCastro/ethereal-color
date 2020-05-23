@@ -1,4 +1,4 @@
-import { Rgb, Hex, Hsl, Xyz, Lab, Lchab } from './color'
+import { Rgb, Hex, Hsl } from './color'
 
 // ====================================================================================
 // All available color types
@@ -19,12 +19,6 @@ export type RgbToHslMethod = (color: Rgb) => Hsl
 export type HslToRgbMethod = (color: Hsl) => Rgb
 export type RgbToHexMethod = (color: Rgb) => Hex
 export type HexToRgbMethod = (color: Hex) => Rgb
-export type RgbToXyzMethod = (color: Rgb) => Xyz
-export type XyzToRgbMethod = (color: Xyz) => Rgb
-export type XyzToLabMethod = (color: Xyz) => Lab
-export type LabToXyzMethod = (color: Lab) => Xyz
-export type LabToLchabMethod = (color: Lab) => Lchab
-export type LchabToLabMethod = (color: Lchab) => Lab
 
 // ====================================================================================
 // "Converter" Factory Types
@@ -34,12 +28,6 @@ export type ConverterMethods = {
   hslToRgb: HslToRgbMethod
   rgbToHex: RgbToHexMethod
   hexToRgb: HexToRgbMethod
-  rgbToXyz: RgbToXyzMethod
-  xyzToRgb: XyzToRgbMethod
-  xyzToLab: XyzToLabMethod
-  labToXyz: LabToXyzMethod
-  labToLchab: LabToLchabMethod
-  lchabToLab: LchabToLabMethod
 }
 
 export type Converter = () => Readonly<ConverterMethods>
@@ -174,144 +162,11 @@ const Converter: Converter = () => {
     return result
   }
 
-  const rgbToXyz: RgbToXyzMethod = ({ r, g, b }) => {
-    const cR = r / 255
-    const cG = g / 255
-    const cB = b / 255
-
-    const invCompand = (compand: number): number =>
-      compand <= 0.04045 ? compand / 12.92 : Math.pow((compand + 0.055) / 1.055, 2.4)
-
-    const invR = invCompand(cR)
-    const invG = invCompand(cG)
-    const invB = invCompand(cB)
-
-    const x = 0.4124 * invR + 0.3576 * invG + 0.1805 * invB
-    const y = 0.2126 * invR + 0.7152 * invG + 0.0722 * invB
-    const z = 0.0193 * invR + 0.1192 * invG + 0.9505 * invB
-
-    const result: Xyz = {
-      x: x * 100,
-      y: y * 100,
-      z: z * 100
-    }
-
-    return result
-  }
-
-  const xyzToRgb: XyzToRgbMethod = ({ x, y, z }) => {
-    x = x / 100
-    y = y / 100
-    z = z / 100
-
-    const invR = 3.2406254773200533 * x - 1.5372079722103187 * y - 0.4986285986982479 * z
-    const invG = -0.9689307147293197 * x + 1.8757560608852415 * y + 0.041517523842953964 * z
-    const invB = 0.055710120445510616 * x + -0.2040210505984867 * y + 1.0569959422543882 * z
-
-    const compand = (c: number): number =>
-      c <= 0.0031308 ? 12.92 * c : 1.055 * Math.pow(c, 1 / 2.4) - 0.055
-
-    const cR = compand(invR)
-    const cG = compand(invG)
-    const cB = compand(invB)
-
-    const result = {
-      r: Math.round(cR * 255),
-      g: Math.round(cG * 255),
-      b: Math.round(cB * 255)
-    }
-
-    return result
-  }
-
-  const xyzToLab: XyzToLabMethod = ({ x, y, z }) => {
-    const d65White = [95.05, 100, 108.9]
-    const xR = x / d65White[0]
-    const yR = y / d65White[1]
-    const zR = z / d65White[2]
-    const eps = 216 / 24389
-    const kap = 24389 / 27
-
-    const fwdTrans = (c: number): number => (c > eps ? Math.pow(c, 1 / 3) : (kap * c + 16) / 116)
-
-    const fX = fwdTrans(xR)
-    const fY = fwdTrans(yR)
-    const fZ = fwdTrans(zR)
-
-    const l = 116 * fY - 16
-    const a = 500 * (fX - fY)
-    const b = 200 * (fY - fZ)
-
-    const result: Lab = {
-      l,
-      a,
-      b
-    }
-
-    return result
-  }
-
-  const labToXyz: LabToXyzMethod = ({ l, a, b }) => {
-    const d65White = [95.05, 100, 108.9]
-    const eps = 216 / 24389
-    const kap = 24389 / 27
-
-    const fY = (l + 16) / 116
-    const fZ = fY - b / 200
-    const fX = a / 500 + fY
-
-    const xR = Math.pow(fX, 3) > eps ? Math.pow(fX, 3) : (116 * fX - 16) / kap
-    const yR = l > kap * eps ? Math.pow((l + 16) / 116, 3) : l / kap
-    const zR = Math.pow(fZ, 3) > eps ? Math.pow(fZ, 3) : (116 * fZ - 16) / kap
-
-    const result: Xyz = {
-      x: xR * d65White[0],
-      y: yR * d65White[1],
-      z: zR * d65White[2]
-    }
-
-    return result
-  }
-
-  const labToLchab: LabToLchabMethod = ({ l, a, b }) => {
-    const c = Math.sqrt(a * a + b * b)
-    const h =
-      Math.atan2(b, a) >= 0
-        ? (Math.atan2(b, a) / Math.PI) * 180
-        : (Math.atan2(b, a) / Math.PI) * 180 + 360
-
-    const result: Lchab = {
-      l,
-      c,
-      h
-    }
-
-    return result
-  }
-
-  const lchabToLab: LchabToLabMethod = ({ l, c, h }) => {
-    const a = c * Math.cos((h / 180) * Math.PI)
-    const b = c * Math.sin((h / 180) * Math.PI)
-
-    const result: Lab = {
-      l,
-      a,
-      b
-    }
-    return result
-  }
-
   const self = {
     rgbToHsl,
     hslToRgb,
     rgbToHex,
-    hexToRgb,
-    rgbToXyz,
-    xyzToRgb,
-    xyzToLab,
-    labToXyz,
-    labToLchab,
-    lchabToLab
+    hexToRgb
   }
 
   return Object.freeze(self)
