@@ -1,6 +1,7 @@
-import { Rgb, Hex, Hsl } from '../../src/components/color'
+import { Rgb, Hex, Hsl, ValidColorsFormat } from '../../src/components/color'
 import Converter from '../../src/components/converter'
 import data, { SampleColor } from '../shared/color-swatch'
+import { isContext } from 'vm'
 
 describe('Tests the "Converter" factory', () => {
   test('works if "Converter" factory is defined and return a no-undefined value', () => {
@@ -8,35 +9,65 @@ describe('Tests the "Converter" factory', () => {
   })
 })
 describe('Tests the "Converter" methods, using sample colors data', () => {
-  test('works if you can convert rgb to hexadecimal', () => {
+  test('works if you can convert "rgb", "hexadecimal" and "hsl"', () => {
     const converter = Converter()
 
     for (const item of data) {
-      const color: SampleColor = { ...item, hexString: item.hexString.toLocaleLowerCase() }
+      const color: SampleColor = { ...item, hexString: item.hexString.toLowerCase() }
 
-      const rgb: Rgb = {
-        r: color.rgb.r,
-        g: color.rgb.g,
-        b: color.rgb.b
+      type TrueFont = {
+        rgb: Rgb
+        hex: Hex
+        hsl: Hsl
       }
 
-      const hex: Hex = {
-        r: color.hexString[1] + color.hexString[2],
-        g: color.hexString[3] + color.hexString[4],
-        b: color.hexString[5] + color.hexString[6]
+      const trueFont: TrueFont = {
+        rgb: {
+          r: color.rgb.r,
+          g: color.rgb.g,
+          b: color.rgb.b
+        },
+        hex: {
+          r: color.hexString[1] + color.hexString[2],
+          g: color.hexString[3] + color.hexString[4],
+          b: color.hexString[5] + color.hexString[6]
+        },
+        hsl: {
+          h: color.hsl.h,
+          s: color.hsl.s,
+          l: color.hsl.l
+        }
       }
 
-      const colorInHexadecimal = converter.rgbToHex(rgb)
-      const colorInRgb = converter.hexToRgb(hex)
+      let colorHexfromRgb = converter.rgbToHex(trueFont.rgb)
+      let colorRgbFromHex = converter.hexToRgb(trueFont.hex)
+      let colorRgbFromHsl = converter.hslToRgb(trueFont.hsl)
+      let colorHslFromRgb = converter.rgbToHsl(trueFont.rgb)
 
-      const { r: hexR, g: hexG, b: hexB } = colorInHexadecimal
-      const { r, g, b } = colorInRgb
+      // to round large decimal places, for example: 21.098989956 turns 21.1
+      colorRgbFromHex = {
+        ...colorRgbFromHex,
+        r: Math.abs(Number(colorRgbFromHex.r.toFixed(2))),
+        g: Math.abs(Number(colorRgbFromHex.g.toFixed(2))),
+        b: Math.abs(Number(colorRgbFromHex.b.toFixed(2)))
+      }
+      colorRgbFromHsl = {
+        ...colorRgbFromHsl,
+        r: Math.abs(Number(colorRgbFromHsl.r.toFixed(2))),
+        g: Math.abs(Number(colorRgbFromHsl.g.toFixed(2))),
+        b: Math.abs(Number(colorRgbFromHsl.b.toFixed(2)))
+      }
+      colorHslFromRgb = {
+        ...colorHslFromRgb,
+        h: Math.abs(Number(colorHslFromRgb.h.toFixed(2))),
+        s: Math.abs(Number(colorHslFromRgb.s.toFixed(2))),
+        l: Math.abs(Number(colorHslFromRgb.l.toFixed(2)))
+      }
 
-      const colorInHexadecimalAreValid = hexR === hex.r && hexG === hex.g && hexB === hexB
-      const colorInRgbAreValid = r === rgb.r && g === rgb.g && b === rgb.b
-
-      expect(colorInHexadecimalAreValid).toBeTruthy()
-      expect(colorInRgbAreValid).toBeTruthy()
+      expect(colorHexfromRgb).toEqual(trueFont.hex)
+      expect(colorRgbFromHex).toEqual(trueFont.rgb)
+      expect(colorRgbFromHsl).toEqual(trueFont.rgb)
+      expect(colorHslFromRgb).toEqual(trueFont.hsl)
     }
   })
 })
