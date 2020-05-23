@@ -1,31 +1,60 @@
-export type InterpolateMethod = (
-  xInterval: [number, number],
+import { Config } from '../../@types'
+
+// ====================================================================================
+// "Interpolate" Method Types
+// ====================================================================================
+export type InterpolateConfig = Config & {
+  xInterval: [number, number]
   yInterval: [number, number]
-) => (xA: number) => number
+}
+export type InterpolationConfig = Config & {
+  xA: number
+}
+export type InterpolateMethod = (
+  userConfig: InterpolateConfig
+) => (userConfig: InterpolationConfig) => number
 
-export type RandomIntMethod = (min: number, max: number) => number
+// ====================================================================================
+// "RandomInt" Method Types
+// ====================================================================================
+export type RandomIntConfig = Config & {
+  min: number
+  max: number
+}
+export type RandomIntMethod = (userConfig: RandomIntConfig) => number
 
-export type AverageBetweenMethod = (num1: number, num2: number) => number
+// ====================================================================================
+// "AverageBetween" Method Types
+// ====================================================================================
+export type AverageBetweenConfig = Config & {
+  interval: [number, number]
+}
+export type AverageBetweenMethod = (userConfig: AverageBetweenConfig) => number
 
+// ====================================================================================
+// "Util" Factory Types
+// ====================================================================================
 export type UtilsMethods = {
   interpolate: InterpolateMethod
   randomInt: RandomIntMethod
   averageBetween: AverageBetweenMethod
 }
-
 export type Utils = () => Readonly<UtilsMethods>
 
+// ====================================================================================
+// Implementation
+// ====================================================================================
 const Utils: Utils = () => {
   // ====================================================================================
   // Creates a function that receives two ranges: xInterval and yInterval,
   // and then returns a function that receives an xA value within the xInterval range,
   // and returns the corresponding yA value in yInterval
   // ====================================================================================
-  const interpolate: InterpolateMethod = (xInterval, yInterval) => {
+  const interpolate: InterpolateMethod = ({ xInterval, yInterval }) => {
     const [x0, x1] = xInterval
     const [y0, y1] = yInterval
 
-    return (xA: number): number => {
+    return ({ xA }: InterpolationConfig): number => {
       if (xA > x1) xA = x1
       else if (xA < x0) xA = x0
 
@@ -36,15 +65,18 @@ const Utils: Utils = () => {
   }
 
   // ====================================================================================
-  // Retorn a integer between min and max
+  // Retorn a random integer between min and max
   // ====================================================================================
-  const randomInt: RandomIntMethod = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
+  const randomInt: RandomIntMethod = ({ min, max }) =>
+    Math.floor(Math.random() * (max - min + 1) + min)
 
   // ====================================================================================
   // Deliver the average value between two values, example: the average
-  // between 200 and 400 is 300, so if we do: averageBetween (200, 400), we receive 300
+  // between 200 and 400 is 300, so if we do:
+  // averageBetween({ interval: [200, 400] }), we receive 300
   // ====================================================================================
-  const averageBetween: AverageBetweenMethod = (num1, num2) => (num2 - num1) / 2 + num1
+  const averageBetween: AverageBetweenMethod = ({ interval: [smaller, bigger] }) =>
+    (bigger - smaller) / 2 + smaller
 
   const self = {
     interpolate,
