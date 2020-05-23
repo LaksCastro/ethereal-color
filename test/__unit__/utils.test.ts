@@ -8,8 +8,8 @@ describe('Tests the "Utils" factory', () => {
   })
 })
 
-describe('Test of Utils factory "AverageBetween" method', () => {
-  it('works if the "AverageBetween" method delivers o número esperado', () => {
+describe('Test of Utils factory > "AverageBetween" method', () => {
+  it('works if the "AverageBetween" method delivers the expected number', () => {
     const utils = Utils()
 
     const averageBetween50and100 = utils.averageBetween({ interval: [50, 100] })
@@ -18,7 +18,7 @@ describe('Test of Utils factory "AverageBetween" method', () => {
   })
 })
 
-describe('Test of Utils factory "Random" method', () => {
+describe('Test of Utils factory > "Random" method', () => {
   it('works if the "Random" method delivers random numbers within the specified range', () => {
     const utils = Utils()
 
@@ -32,7 +32,7 @@ describe('Test of Utils factory "Random" method', () => {
   })
 })
 
-describe('Test of Utils factory "Interpolate" method', () => {
+describe('Test of Utils factory > "Interpolate" method', () => {
   it('works if the "Interpolate" method delivers the expected value, using simple intervals', () => {
     const utils = Utils()
 
