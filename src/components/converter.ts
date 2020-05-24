@@ -51,11 +51,13 @@ const Converter: Converter = () => {
 
     if (H < 0) H += 360
 
-    return {
-      h: H,
-      l: L,
-      s: S
+    const result = {
+      h: Math.abs(Number(H.toFixed(2))),
+      l: Math.abs(Number(L.toFixed(2))),
+      s: Math.abs(Number(S.toFixed(2)))
     }
+
+    return result
   }
 
   const hslToRgb: HslToRgbMethod = ({ h, s, l }) => {
@@ -113,11 +115,12 @@ const Converter: Converter = () => {
     g = Math.round((g + m) * 255)
     b = Math.round((b + m) * 255)
 
-    return {
-      r,
-      g,
-      b
+    const result: Rgb = {
+      r: Math.abs(r),
+      g: Math.abs(g),
+      b: Math.abs(b)
     }
+    return result
   }
 
   const rgbToHex: RgbToHexMethod = ({ r, g, b }) => {
@@ -143,9 +146,9 @@ const Converter: Converter = () => {
     if (!format) throw new Error('Impossible to convert: ' + r + b + b + ' to Hexadecimal')
 
     const result: Rgb = {
-      r: parseInt(format[1], 16),
-      g: parseInt(format[2], 16),
-      b: parseInt(format[3], 16)
+      r: Math.abs(parseInt(format[1], 16)),
+      g: Math.abs(parseInt(format[2], 16)),
+      b: Math.abs(parseInt(format[3], 16))
     }
 
     return result

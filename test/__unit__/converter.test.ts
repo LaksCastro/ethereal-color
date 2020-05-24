@@ -39,30 +39,10 @@ describe('Tests the "Converter" methods, using sample colors data', () => {
         }
       }
 
-      let colorHexfromRgb = converter.rgbToHex(trueFont.rgb)
-      let colorRgbFromHex = converter.hexToRgb(trueFont.hex)
-      let colorRgbFromHsl = converter.hslToRgb(trueFont.hsl)
-      let colorHslFromRgb = converter.rgbToHsl(trueFont.rgb)
-
-      // to round large decimal places, for example: 21.098989956 turns 21.1
-      colorRgbFromHex = {
-        ...colorRgbFromHex,
-        r: Math.abs(Number(colorRgbFromHex.r.toFixed(2))),
-        g: Math.abs(Number(colorRgbFromHex.g.toFixed(2))),
-        b: Math.abs(Number(colorRgbFromHex.b.toFixed(2)))
-      }
-      colorRgbFromHsl = {
-        ...colorRgbFromHsl,
-        r: Math.abs(Number(colorRgbFromHsl.r.toFixed(2))),
-        g: Math.abs(Number(colorRgbFromHsl.g.toFixed(2))),
-        b: Math.abs(Number(colorRgbFromHsl.b.toFixed(2)))
-      }
-      colorHslFromRgb = {
-        ...colorHslFromRgb,
-        h: Math.abs(Number(colorHslFromRgb.h.toFixed(2))),
-        s: Math.abs(Number(colorHslFromRgb.s.toFixed(2))),
-        l: Math.abs(Number(colorHslFromRgb.l.toFixed(2)))
-      }
+      const colorHexfromRgb = converter.rgbToHex(trueFont.rgb)
+      const colorRgbFromHex = converter.hexToRgb(trueFont.hex)
+      const colorRgbFromHsl = converter.hslToRgb(trueFont.hsl)
+      const colorHslFromRgb = converter.rgbToHsl(trueFont.rgb)
 
       expect(colorHexfromRgb).toEqual(trueFont.hex)
       expect(colorRgbFromHex).toEqual(trueFont.rgb)

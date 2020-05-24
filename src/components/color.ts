@@ -161,20 +161,11 @@ const Color: Color = (userConfig = '#FFFFFF') => {
           .replace(/(\()|(\))|(hsl)/g, '')
           .split(',')
 
-        const percentOccurrences = userConfig.match(/%/g)
-
-        if (percentOccurrences && percentOccurrences.length < 3)
-          throw new Error('You must use only percentage or only numbers in the color configuration')
-
-        const usePercent = Boolean(percentOccurrences)
+        const usePercent = Boolean(hueValue.match(/%/g))
 
         const h = usePercent ? percentToHsl(Number(hueValue.replace(/%/g, ''))) : Number(hueValue)
-        const s = usePercent
-          ? percentToHsl(Number(saturationValue.replace(/%/g, '')))
-          : Number(saturationValue)
-        const l = usePercent
-          ? percentToHsl(Number(brightnessValue.replace(/%/g, '')))
-          : Number(brightnessValue)
+        const s = Number(saturationValue)
+        const l = Number(brightnessValue)
 
         hsl = {
           h,
@@ -187,22 +178,14 @@ const Color: Color = (userConfig = '#FFFFFF') => {
         throw new Error('Only theses formats are valid: RGB, Hexadecimal and HSL')
       }
     } else {
-      try {
-        const config = userConfig as Hex
-        isHex = typeof config.r === 'string'
-      } catch (error) {
-        try {
-          const config = userConfig as Rgb
-          isRgb = typeof config.r === 'number'
-        } catch (error) {
-          try {
-            const config = userConfig as Hsl
-            isHsl = typeof config.h === 'number'
-          } catch (error) {
-            throw new Error('The input must be a valid color string or a valid color object')
-          }
-        }
-      }
+      isHex = typeof (userConfig as Hex).r === 'string'
+
+      isRgb = typeof (userConfig as Rgb).r === 'number'
+      isHsl = typeof (userConfig as Hsl).h === 'number'
+
+      if (!isHex && !isRgb && !isHsl)
+        throw new Error('The input must be a valid color string or a valid color object')
+
       if (isRgb) {
         rgb = userConfig as Rgb
         hex = converter.rgbToHex(rgb)
@@ -220,7 +203,7 @@ const Color: Color = (userConfig = '#FFFFFF') => {
 
     const hexString = `#${hex.r}${hex.g}${hex.b}`
     const rgbString = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`
-    const hslString = `hsl(${hsl.h}, ${hsl.s}, ${hsl.l})`
+    const hslString = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`
 
     setState(() => ({
       colorString: {
