@@ -17,12 +17,23 @@ export type RandomIntMethod = (min: number, max: number) => number
 export type AverageBetweenMethod = (smaller: number, bigger: number) => number
 
 // ====================================================================================
+// "GetValueInRangeMethod" Method Types
+// ====================================================================================
+export type GetValueInRangeMethodConfig = {
+  increment: number
+  range: [number, number]
+  value: number
+}
+export type GetValueInRangeMethod = (config: GetValueInRangeMethodConfig) => number
+
+// ====================================================================================
 // "Util" Factory Types
 // ====================================================================================
 export type UtilsMethods = {
   interpolate: InterpolateMethod
   randomInt: RandomIntMethod
   averageBetween: AverageBetweenMethod
+  getValueInRange: GetValueInRangeMethod
 }
 export type Utils = () => Readonly<UtilsMethods>
 
@@ -62,10 +73,25 @@ const Utils: Utils = () => {
   const averageBetween: AverageBetweenMethod = (smaller: number, bigger: number) =>
     (bigger - smaller) / 2 + smaller
 
+  // ====================================================================================
+  // Uses the base value ("value" property), and returns a new value within the defined
+  // range ("range" array property) added with the "increment" property
+  // Example usage:
+  // getValueInRange({ increment: 40, range: [0, 255], value: 230 }) // '255'
+  // getValueInRange({ increment: 40, range: [0, 270], value: 230 }) // '270'
+  // getValueInRange({ increment: 40, range: [0, 240], value: 150 }) // '190'
+  // ====================================================================================
+  const getValueInRange: GetValueInRangeMethod = ({ increment, range: [min, max], value }) => {
+    const newValue = value + increment
+
+    return newValue < min ? min : newValue > max ? max : newValue
+  }
+
   const self = {
     interpolate,
     randomInt,
-    averageBetween
+    averageBetween,
+    getValueInRange
   }
 
   return Object.freeze(self)

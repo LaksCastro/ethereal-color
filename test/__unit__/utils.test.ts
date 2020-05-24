@@ -96,4 +96,17 @@ describe('Test of Utils factory > "Interpolate" method', () => {
       expect(result).toEqual([y0, y1, normalizeFloatNumber(utils.averageBetween(y0, y1))])
     }
   })
+  it('works if the "GetValueInRange" method delivers the expected value', () => {
+    for (let i = 0; i < 50; i++) {
+      const utils = Utils()
+
+      const test1 = utils.getValueInRange({ increment: 40, range: [0, 255], value: 230 })
+      const test2 = utils.getValueInRange({ increment: 40, range: [0, 270], value: 230 })
+      const test3 = utils.getValueInRange({ increment: 40, range: [0, 240], value: 150 })
+
+      const result = [test1, test2, test3]
+
+      expect(result).toEqual([255, 270, 190])
+    }
+  })
 })
