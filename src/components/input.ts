@@ -116,12 +116,11 @@ const Input: Input = color => {
       }
     } else {
       isHex = typeof (colorInAnyFormat as Hex).r === 'string'
-
       isRgb = typeof (colorInAnyFormat as Rgb).r === 'number'
       isHsl = typeof (colorInAnyFormat as Hsl).h === 'number'
 
       if (!isHex && !isRgb && !isHsl)
-        throw new Error('The input must be a valid color string or a valid colorInAnyFormat object')
+        throw new Error('The input must be a valid color string or a valid "Color" object')
 
       if (isRgb) {
         rgb = colorInAnyFormat as Rgb
