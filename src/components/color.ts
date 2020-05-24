@@ -94,12 +94,10 @@ const Color: Color = (userConfig = '#FFFFFF') => {
   // const change = () =>
 
   const get: GetMethod = type => {
-    const result: GetColorObject = {
+    return {
       object: getState().colorObject[type],
       string: getState().colorString[type]
     }
-
-    return result
   }
 
   // const random: Color = userConfig => Color(`rgb(${utils.random})`)
