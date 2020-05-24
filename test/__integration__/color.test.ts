@@ -43,7 +43,7 @@ describe('Basic "Color" factory operations', () => {
 })
 
 describe('Brute test for "Color" Factory converter operations', () => {
-  test('works if you can convert "rgb", "hexadecimal" and "hsl" using "Color" component factory', () => {
+  test('works if you can convert "rgb", "hexadecimal" and "hsl" using "Color" factory', () => {
     for (const item of data) {
       const color: SampleColor = { ...item, hexString: item.hexString.toLowerCase() }
 
