@@ -1,39 +1,16 @@
-import { AnyColorFormat, ColorState, Rgb, Hex, Hsl } from './color'
-import Converter from './converter'
-import Utils from '../shared/utils'
+import * as Types from './types'
 
-// ====================================================================================
-// All Method Types
-// ====================================================================================
-export type GetMethod = () => ColorState
+import { Hsl, Rgb, Hex } from '../../shared/@types'
 
-export type SetMethod = (color: AnyColorFormat) => ColorState
+import Utils from '../../shared/utils'
 
-// ====================================================================================
-// "Input" Factory Public Types
-// ====================================================================================
-export type InputMethods = {
-  get: GetMethod
-  set: SetMethod
-}
-export type Input = (color: AnyColorFormat) => Readonly<InputMethods>
+import Converter from '../converter'
 
-// ====================================================================================
-// "Input" Factory Private Types
-// ====================================================================================
-type AnyFormatToStateMethod = (colorInAnyFormat: AnyColorFormat) => ColorState
+const percentToHsl = Utils.interpolate([0, 100], [0, 360])
+const percentToRgb = Utils.interpolate([0, 100], [0, 255])
 
-// ====================================================================================
-// Implementation
-// ====================================================================================
-const Input: Input = color => {
-  const utils = Utils()
-  const converter = Converter()
-
-  const percentToHsl = utils.interpolate([0, 100], [0, 360])
-  const percentToRgb = utils.interpolate([0, 100], [0, 255])
-
-  const anyFormatToState: AnyFormatToStateMethod = colorInAnyFormat => {
+class Input {
+  public static normalize: Types.PublicStaticMethodNormalize = function(colorInAnyFormat) {
     let isHex: boolean = false
     let isRgb: boolean = false
     let isHsl: boolean = false
@@ -72,8 +49,8 @@ const Input: Input = color => {
         }
 
         hex = { r: r as string, g: g as string, b: b as string }
-        rgb = converter.hexToRgb(hex)
-        hsl = converter.rgbToHsl(rgb)
+        rgb = Converter.hexToRgb(hex)
+        hsl = Converter.rgbToHsl(rgb)
       } else if (isRgb) {
         const [redValue, greenValue, blueValue] = colorInAnyFormat
           .replace(/(\()|(\))|(rgb)/g, '')
@@ -90,9 +67,9 @@ const Input: Input = color => {
         g = usePercent ? percentToRgb(Number(greenValue.replace(/%/g, ''))) : Number(greenValue)
         b = usePercent ? percentToRgb(Number(blueValue.replace(/%/g, ''))) : Number(blueValue)
 
-        rgb = { r, g, b }
-        hex = converter.rgbToHex(rgb)
-        hsl = converter.rgbToHsl(rgb)
+        rgb = { r: r as number, g: g as number, b: b as number }
+        hex = Converter.rgbToHex(rgb)
+        hsl = Converter.rgbToHsl(rgb)
       } else if (isHsl) {
         const [hueValue, saturationValue, brightnessValue] = colorInAnyFormat
           .replace(/(\()|(\))|(hsl)/g, '')
@@ -109,8 +86,8 @@ const Input: Input = color => {
           s,
           l
         }
-        rgb = converter.hslToRgb(hsl)
-        hex = converter.rgbToHex(rgb)
+        rgb = Converter.hslToRgb(hsl)
+        hex = Converter.rgbToHex(rgb)
       } else {
         throw new Error('Only theses formats are valid: RGB, Hexadecimal and HSL')
       }
@@ -124,16 +101,16 @@ const Input: Input = color => {
 
       if (isRgb) {
         rgb = colorInAnyFormat as Rgb
-        hex = converter.rgbToHex(rgb)
-        hsl = converter.rgbToHsl(rgb)
+        hex = Converter.rgbToHex(rgb)
+        hsl = Converter.rgbToHsl(rgb)
       } else if (isHex) {
         hex = colorInAnyFormat as Hex
-        rgb = converter.hexToRgb(hex)
-        hsl = converter.rgbToHsl(rgb)
+        rgb = Converter.hexToRgb(hex)
+        hsl = Converter.rgbToHsl(rgb)
       } else {
         hsl = colorInAnyFormat as Hsl
-        rgb = converter.hslToRgb(hsl)
-        hex = converter.rgbToHex(rgb)
+        rgb = Converter.hslToRgb(hsl)
+        hex = Converter.rgbToHex(rgb)
       }
     }
 
@@ -141,30 +118,15 @@ const Input: Input = color => {
     const rgbString = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`
     const hslString = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`
 
-    const result: ColorState = {
-      colorString: {
+    return {
+      string: {
         hex: hexString,
         rgb: rgbString,
         hsl: hslString
       },
-      colorObject: { rgb, hex, hsl }
+      object: { rgb, hex, hsl }
     }
-
-    return result
   }
-
-  let state: ColorState = anyFormatToState(color)
-
-  const get: GetMethod = () => state
-
-  const set: SetMethod = color => (state = anyFormatToState(color))
-
-  const self = {
-    get,
-    set
-  }
-
-  return Object.freeze(self)
 }
 
 export default Input

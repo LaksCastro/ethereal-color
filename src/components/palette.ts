@@ -1,11 +1,11 @@
 import { AnyColorFormat, Rgb, ColorState } from './color'
-import Input from './input'
+import Input from './Input'
 import Utils from '../shared/utils'
 
 // ====================================================================================
 // Palette Types
 // ====================================================================================
-export type PaletteOfColors = [ColorState, ColorState]
+export type PaletteState = [ColorState, ColorState]
 
 export type CustomConfig = {
   r: [number, number]
@@ -17,6 +17,8 @@ export type CustomConfig = {
 // All Method Types
 // ====================================================================================
 export type RandomMethod = (userConfig?: PaletteConfig) => void
+export type GetMethod = () => PaletteState
+export type ChangeMethod = (userConfig: PaletteConfig) => void
 
 // ====================================================================================
 // "Input" Factory Public Types
@@ -33,6 +35,8 @@ export type PaletteDefaultConfig = {
 
 export type PaletteMethods = {
   random: RandomMethod
+  get: GetMethod
+  change: ChangeMethod
 }
 
 export type PaletteConfig = PaletteUserConfig & PaletteDefaultConfig
@@ -42,13 +46,14 @@ export type Palette = (userConfig?: PaletteUserConfig) => Readonly<PaletteMethod
 // ====================================================================================
 // "Input" Factory Private Types
 // ====================================================================================
-export type DefinePalettePrivateMethod = (config: PaletteConfig) => PaletteOfColors
+type DefinePalettePrivateMethod = (config: PaletteConfig) => PaletteState
+type SetPrivateMethod = (newState: PaletteState) => PaletteState
 
 // ====================================================================================
 // Implementation
 // ====================================================================================
 const Palette: Palette = (userConfig = {}) => {
-  const { getValueInRange } = Utils()
+  const { getValueInRange } = Utils
 
   const definePalette: DefinePalettePrivateMethod = ({ from, range }) => {
     const useCustom = Array.isArray((from as CustomConfig).r)
@@ -63,27 +68,27 @@ const Palette: Palette = (userConfig = {}) => {
 
       const colorBase = Input(colorString).get().colorObject.rgb
 
-      colorOne = Input({
+      colorOne = Input.normalize({
         r: getValueInRange({ increment: -range, range: [0, 255], value: colorBase.r }),
         g: getValueInRange({ increment: -range, range: [0, 255], value: colorBase.g }),
         b: getValueInRange({ increment: -range, range: [0, 255], value: colorBase.b })
-      }).get()
+      })
 
-      colorTwo = Input({
+      colorTwo = Input.normalize({
         r: getValueInRange({ increment: range, range: [0, 255], value: colorBase.r }),
         g: getValueInRange({ increment: range, range: [0, 255], value: colorBase.g }),
         b: getValueInRange({ increment: range, range: [0, 255], value: colorBase.b })
-      }).get()
+      })
     } else {
       const color = from as CustomConfig
 
       colorString = `rgb(${color.r[0]}, ${color.g[0]}, ${color.b[0]})`
 
-      colorOne = Input(colorString).get()
+      colorOne = Input.normalize(colorString)
 
       colorString = `rgb(${color.r[1]}, ${color.g[1]}, ${color.b[1]})`
 
-      colorTwo = Input(colorString).get()
+      colorTwo = Input.normalize(colorString)
     }
     return [colorOne, colorTwo]
   }
@@ -92,12 +97,22 @@ const Palette: Palette = (userConfig = {}) => {
 
   let config = Object.assign({}, defaultConfig, userConfig)
 
-  let state: PaletteOfColors = definePalette(config)
+  let state: PaletteState = definePalette(config)
+
+  const setState: SetPrivateMethod = (newState: PaletteState) => (state = newState)
+
+  const get: GetMethod = () => state
+
+  const change: ChangeMethod = userConfig => {
+    setState(definePalette(userConfig))
+  }
 
   const random: RandomMethod = () => {}
 
   const self = {
-    random
+    random,
+    get,
+    change
   }
 
   return Object.freeze(self)

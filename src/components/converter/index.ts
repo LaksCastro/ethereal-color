@@ -1,30 +1,7 @@
-import { Rgb, Hex, Hsl } from './color'
+import * as Types from './types'
 
-// ====================================================================================
-// All converter methods
-// ====================================================================================
-export type RgbToHslMethod = (color: Rgb) => Hsl
-export type HslToRgbMethod = (color: Hsl) => Rgb
-export type RgbToHexMethod = (color: Rgb) => Hex
-export type HexToRgbMethod = (color: Hex) => Rgb
-
-// ====================================================================================
-// "Converter" Factory Types
-// ====================================================================================
-export type ConverterMethods = {
-  rgbToHsl: RgbToHslMethod
-  hslToRgb: HslToRgbMethod
-  rgbToHex: RgbToHexMethod
-  hexToRgb: HexToRgbMethod
-}
-
-export type Converter = () => Readonly<ConverterMethods>
-
-// ====================================================================================
-// Implementation
-// ====================================================================================
-const Converter: Converter = () => {
-  const rgbToHsl: RgbToHslMethod = ({ r, g, b }) => {
+class Converter {
+  public static rgbToHsl: Types.PublicMethodRgbToHsl = function({ r, g, b }) {
     const r1 = r / 255
     const g1 = g / 255
     const b1 = b / 255
@@ -60,7 +37,7 @@ const Converter: Converter = () => {
     return result
   }
 
-  const hslToRgb: HslToRgbMethod = ({ h, s, l }) => {
+  public static hslToRgb: Types.PublicMethodHslToRgb = function({ h, s, l }) {
     let r: number
     let g: number
     let b: number
@@ -115,15 +92,14 @@ const Converter: Converter = () => {
     g = Math.round((g + m) * 255)
     b = Math.round((b + m) * 255)
 
-    const result: Rgb = {
+    return {
       r: Math.abs(r),
       g: Math.abs(g),
       b: Math.abs(b)
     }
-    return result
   }
 
-  const rgbToHex: RgbToHexMethod = ({ r, g, b }) => {
+  public static rgbToHex: Types.PublicMethodRgbToHex = function({ r, g, b }) {
     const componentToHex = (component: number): string => {
       const hex = component.toString(16)
       return hex.length === 1 ? '0' + hex : hex
@@ -136,32 +112,21 @@ const Converter: Converter = () => {
     }
   }
 
-  const hexToRgb: HexToRgbMethod = ({ r, g, b }) => {
+  public static hexToRgb: Types.PublicMethodHexToRgb = function({ r, g, b }) {
     let shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i
 
     const hex = `#${r}${g}${b}`.replace(shorthandRegex, (_, r, g, b) => r + r + g + g + b + b)
 
     const format = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex) || '#FFFFFF'
 
-    if (!format) throw new Error('Impossible to convert: ' + r + b + b + ' to Hexadecimal')
+    if (!format) throw new Error(`Impossible to convert: 'rgb(${r}, ${g}, ${b})' to Hexadecimal`)
 
-    const result: Rgb = {
+    return {
       r: Math.abs(parseInt(format[1], 16)),
       g: Math.abs(parseInt(format[2], 16)),
       b: Math.abs(parseInt(format[3], 16))
     }
-
-    return result
   }
-
-  const self = {
-    rgbToHsl,
-    hslToRgb,
-    rgbToHex,
-    hexToRgb
-  }
-
-  return Object.freeze(self)
 }
 
 export default Converter
