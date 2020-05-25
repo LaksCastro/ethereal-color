@@ -4,6 +4,6 @@ import {
   LibraryInputAnyColorFormat
 } from '../../shared/@types'
 
-export type PublicMethodGet = (type: PublicPropertyColorFormat) => PublicPropertyColorState
+export type PublicMethodGet = (format: PublicPropertyColorFormat) => PublicPropertyColorState
 
 export type PublicMethodSet = (userInput: LibraryInputAnyColorFormat) => PublicPropertyColorState

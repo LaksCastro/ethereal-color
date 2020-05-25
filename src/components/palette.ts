@@ -66,7 +66,7 @@ const Palette: Palette = (userConfig = {}) => {
     if (!useCustom) {
       colorString = from as AnyColorFormat
 
-      const colorBase = Input(colorString).get().colorObject.rgb
+      const colorBase = Input.normalize(colorString).object.rgb
 
       colorOne = Input.normalize({
         r: getValueInRange({ increment: -range, range: [0, 255], value: colorBase.r }),

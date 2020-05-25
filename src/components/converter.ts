@@ -1,7 +1,16 @@
-import * as Types from './types'
+import { Hsl, Rgb, Hex } from '../shared/@types'
 
-class Converter {
-  public static rgbToHsl: Types.PublicMethodRgbToHsl = function({ r, g, b }) {
+type ConverterFunction<I, O> = (color: I) => O
+
+export type Converter = {
+  rgbToHsl: ConverterFunction<Rgb, Hsl>
+  hslToRgb: ConverterFunction<Hsl, Rgb>
+  rgbToHex: ConverterFunction<Rgb, Hex>
+  hexToRgb: ConverterFunction<Hex, Rgb>
+}
+
+export function Converter(): Converter {
+  function rgbToHsl({ r, g, b }: Rgb): Hsl {
     const r1 = r / 255
     const g1 = g / 255
     const b1 = b / 255
@@ -37,7 +46,7 @@ class Converter {
     return result
   }
 
-  public static hslToRgb: Types.PublicMethodHslToRgb = function({ h, s, l }) {
+  function hslToRgb({ h, s, l }: Hsl): Rgb {
     let r: number
     let g: number
     let b: number
@@ -99,7 +108,7 @@ class Converter {
     }
   }
 
-  public static rgbToHex: Types.PublicMethodRgbToHex = function({ r, g, b }) {
+  function rgbToHex({ r, g, b }: Rgb): Hex {
     const componentToHex = (component: number): string => {
       const hex = component.toString(16)
       return hex.length === 1 ? '0' + hex : hex
@@ -112,7 +121,7 @@ class Converter {
     }
   }
 
-  public static hexToRgb: Types.PublicMethodHexToRgb = function({ r, g, b }) {
+  function hexToRgb({ r, g, b }: Hex): Rgb {
     let shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i
 
     const hex = `#${r}${g}${b}`.replace(shorthandRegex, (_, r, g, b) => r + r + g + g + b + b)
@@ -127,6 +136,15 @@ class Converter {
       b: Math.abs(parseInt(format[3], 16))
     }
   }
+
+  const self: Converter = {
+    rgbToHsl,
+    hslToRgb,
+    rgbToHex,
+    hexToRgb
+  }
+
+  return Object.freeze(self)
 }
 
 export default Converter

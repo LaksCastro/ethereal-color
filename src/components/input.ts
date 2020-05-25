@@ -1,16 +1,26 @@
-import * as Types from './types'
+import {
+  Hsl,
+  Rgb,
+  Hex,
+  LibraryInputAnyColorFormat,
+  PrivatePropertyColorState
+} from '../shared/@types'
 
-import { Hsl, Rgb, Hex } from '../../shared/@types'
+import { Utils } from '../shared/utils'
+import { Converter } from './converter'
 
-import Utils from '../../shared/utils'
+export type Input = {
+  normalize: (colorInAnyFormat: LibraryInputAnyColorFormat) => PrivatePropertyColorState
+}
 
-import Converter from '../converter'
+export function Input(): Input {
+  const utils = Utils()
+  const converter = Converter()
 
-const percentToHsl = Utils.interpolate([0, 100], [0, 360])
-const percentToRgb = Utils.interpolate([0, 100], [0, 255])
+  const percentToHsl = utils.interpolate([0, 100], [0, 360])
+  const percentToRgb = utils.interpolate([0, 100], [0, 255])
 
-class Input {
-  public static normalize: Types.PublicStaticMethodNormalize = function(colorInAnyFormat) {
+  function normalize(colorInAnyFormat: LibraryInputAnyColorFormat): PrivatePropertyColorState {
     let isHex: boolean = false
     let isRgb: boolean = false
     let isHsl: boolean = false
@@ -49,8 +59,8 @@ class Input {
         }
 
         hex = { r: r as string, g: g as string, b: b as string }
-        rgb = Converter.hexToRgb(hex)
-        hsl = Converter.rgbToHsl(rgb)
+        rgb = converter.hexToRgb(hex)
+        hsl = converter.rgbToHsl(rgb)
       } else if (isRgb) {
         const [redValue, greenValue, blueValue] = colorInAnyFormat
           .replace(/(\()|(\))|(rgb)/g, '')
@@ -68,8 +78,8 @@ class Input {
         b = usePercent ? percentToRgb(Number(blueValue.replace(/%/g, ''))) : Number(blueValue)
 
         rgb = { r: r as number, g: g as number, b: b as number }
-        hex = Converter.rgbToHex(rgb)
-        hsl = Converter.rgbToHsl(rgb)
+        hex = converter.rgbToHex(rgb)
+        hsl = converter.rgbToHsl(rgb)
       } else if (isHsl) {
         const [hueValue, saturationValue, brightnessValue] = colorInAnyFormat
           .replace(/(\()|(\))|(hsl)/g, '')
@@ -86,8 +96,8 @@ class Input {
           s,
           l
         }
-        rgb = Converter.hslToRgb(hsl)
-        hex = Converter.rgbToHex(rgb)
+        rgb = converter.hslToRgb(hsl)
+        hex = converter.rgbToHex(rgb)
       } else {
         throw new Error('Only theses formats are valid: RGB, Hexadecimal and HSL')
       }
@@ -101,16 +111,16 @@ class Input {
 
       if (isRgb) {
         rgb = colorInAnyFormat as Rgb
-        hex = Converter.rgbToHex(rgb)
-        hsl = Converter.rgbToHsl(rgb)
+        hex = converter.rgbToHex(rgb)
+        hsl = converter.rgbToHsl(rgb)
       } else if (isHex) {
         hex = colorInAnyFormat as Hex
-        rgb = Converter.hexToRgb(hex)
-        hsl = Converter.rgbToHsl(rgb)
+        rgb = converter.hexToRgb(hex)
+        hsl = converter.rgbToHsl(rgb)
       } else {
         hsl = colorInAnyFormat as Hsl
-        rgb = Converter.hslToRgb(hsl)
-        hex = Converter.rgbToHex(rgb)
+        rgb = converter.hslToRgb(hsl)
+        hex = converter.rgbToHex(rgb)
       }
     }
 
@@ -127,6 +137,10 @@ class Input {
       object: { rgb, hex, hsl }
     }
   }
-}
 
-export default Input
+  const self: Input = {
+    normalize
+  }
+
+  return Object.freeze(self)
+}
