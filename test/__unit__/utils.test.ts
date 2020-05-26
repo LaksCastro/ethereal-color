@@ -1,4 +1,4 @@
-import Utils from '../../src/shared/utils'
+import { Utils } from '../../src/shared/utils'
 
 const normalizeFloatNumber = (num: number): number => Number(num.toFixed(1))
 

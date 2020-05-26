@@ -1,5 +1,5 @@
-import { Rgb, Hex, Hsl } from '../../src/components/color'
-import Converter from '../../src/components/converter'
+import { Rgb, Hex, Hsl } from '../../src/shared/@types'
+import { Converter } from '../../src/components/converter'
 import data, { SampleColor } from '../shared/color-swatch'
 
 describe('Tests the "Converter" factory', () => {
