@@ -1,11 +1,13 @@
 import {
-  LibraryInputForPalette,
   PublicPropertyPaletteState,
-  PublicPropertyPaletteOptions
+  PublicPropertyPaletteOptions,
+  LibraryInputForPalette
 } from '../shared/@types'
 
 import { Input } from './input'
 import { Color } from './color'
+
+const defaultOptions: PublicPropertyPaletteOptions = { range: 40 }
 
 export type Palette = {
   get: () => PublicPropertyPaletteState
@@ -13,11 +15,12 @@ export type Palette = {
     userInput: LibraryInputForPalette,
     options?: PublicPropertyPaletteOptions
   ) => PublicPropertyPaletteState
+  random: () => PublicPropertyPaletteState
 }
 
 export function Palette(
   colorInput: LibraryInputForPalette = Color(),
-  options: PublicPropertyPaletteOptions = { range: 40 }
+  options: PublicPropertyPaletteOptions = defaultOptions
 ): Palette {
   const input = Input()
 
@@ -29,7 +32,7 @@ export function Palette(
 
   function set(
     colorInput: LibraryInputForPalette,
-    options?: PublicPropertyPaletteOptions
+    options: PublicPropertyPaletteOptions = defaultOptions
   ): PublicPropertyPaletteState {
     return (state = input.normalizePalette({ from: colorInput, options: options || { range: 40 } }))
   }
@@ -44,7 +47,7 @@ export function Palette(
     return get()
   }
 
-  const self = {
+  const self: Palette = {
     get,
     set,
     random

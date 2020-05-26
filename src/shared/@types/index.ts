@@ -2,13 +2,12 @@
 // No context Types
 
 import { Color } from '../../components/color'
+import { Palette } from '../../components/palette'
 
+// ====================================================================================
+// No context Types
 // ====================================================================================
 export type Range = [number, number]
-
-// ====================================================================================
-// Library Types
-// ====================================================================================
 
 // ====================================================================================
 // "Color" Component
@@ -58,18 +57,23 @@ export type PublicPropertyColorState = {
 // "Palette" Component
 // ====================================================================================
 
-export type LibraryInputCustomPalette = {
-  r: [number, number]
-  g: [number, number]
-  b: [number, number]
-}
+export type PublicPropertyPaletteState = [Color, Color]
+
+export type LibraryInputForPalette = Color | PublicPropertyPaletteState
 
 export type PublicPropertyPaletteOptions = {
   range: number
 }
 
-export type LibraryInputForPalette = Color
+// ====================================================================================
+// "Gradient" Component
+// ====================================================================================
 
-export type LibraryInputForPaletteOptions = { range: number }
+export type PublicPropertyGradientOptions = {
+  count: number
+  use: 'linear' | 'exponential' | 'square'
+}
 
-export type PublicPropertyPaletteState = [Color, Color]
+export type LibraryInputForGradient = Palette
+
+export type PrivatePropertyGradientState = Color[]

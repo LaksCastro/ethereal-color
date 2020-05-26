@@ -4,18 +4,28 @@ import {
   Hex,
   LibraryInputForColor,
   PrivatePropertyColorState,
-  PublicPropertyPaletteState
+  PublicPropertyPaletteState,
+  PublicPropertyGradientOptions,
+  PublicPropertyPaletteOptions,
+  PrivatePropertyGradientState,
+  LibraryInputForPalette
 } from '../shared/@types'
 
 import { Utils } from '../shared/utils'
 import { Converter } from './converter'
 import { Color } from './color'
+import { Palette } from './palette'
 
-type PaletteInput = { from: Color; options: { range: number } }
+type ColorInput = { from: LibraryInputForColor }
+
+type PaletteInput = { from: LibraryInputForPalette; options: PublicPropertyPaletteOptions }
+
+type GradientInput = { from: Palette; options: PublicPropertyGradientOptions }
 
 export type Input = {
-  normalizeColor: (colorInAnyFormat: LibraryInputForColor) => PrivatePropertyColorState
-  normalizePalette: (paletteInAnyFormat: PaletteInput) => PublicPropertyPaletteState
+  normalizeColor: (colorInAnyFormat: ColorInput) => PrivatePropertyColorState
+  normalizePalette: (baseColor: PaletteInput) => PublicPropertyPaletteState
+  normalizeGradient: (basePalette: GradientInput) => PrivatePropertyGradientState
 }
 
 export function Input(): Input {
@@ -26,7 +36,7 @@ export function Input(): Input {
 
   const { getValueInRange } = utils
 
-  function normalizeColor(colorInAnyFormat: LibraryInputForColor): PrivatePropertyColorState {
+  function normalizeColor({ from: colorInAnyFormat }: ColorInput): PrivatePropertyColorState {
     let isHex: boolean = false
     let isRgb: boolean = false
     let isHsl: boolean = false
@@ -143,29 +153,69 @@ export function Input(): Input {
   }
 
   function normalizePalette({
-    from,
+    from: paletteInAnyFormat,
     options: { range }
   }: PaletteInput): PublicPropertyPaletteState {
-    const colorBase = from.get('rgb').object as Rgb
+    const useRange = typeof (paletteInAnyFormat as Color).random === 'function'
+    const useCustomRange =
+      typeof (paletteInAnyFormat as PublicPropertyPaletteState).map === 'function'
+
+    let baseColor: Color
+
+    if (useRange) baseColor = paletteInAnyFormat as Color
+    else if (useCustomRange) return paletteInAnyFormat as PublicPropertyPaletteState
+    else throw new Error('The Palette param must be a Color or Array of Colors')
+
+    const colorRef = baseColor.get('rgb').object as Rgb
 
     const colorOne = {
-      r: getValueInRange({ increment: -range, range: [0, 255], value: colorBase.r }),
-      g: getValueInRange({ increment: -range, range: [0, 255], value: colorBase.g }),
-      b: getValueInRange({ increment: -range, range: [0, 255], value: colorBase.b })
+      r: getValueInRange({ increment: -range, range: [0, 255], value: colorRef.r }),
+      g: getValueInRange({ increment: -range, range: [0, 255], value: colorRef.g }),
+      b: getValueInRange({ increment: -range, range: [0, 255], value: colorRef.b })
     }
 
     const colorTwo = {
-      r: getValueInRange({ increment: range, range: [0, 255], value: colorBase.r }),
-      g: getValueInRange({ increment: range, range: [0, 255], value: colorBase.g }),
-      b: getValueInRange({ increment: range, range: [0, 255], value: colorBase.b })
+      r: getValueInRange({ increment: range, range: [0, 255], value: colorRef.r }),
+      g: getValueInRange({ increment: range, range: [0, 255], value: colorRef.g }),
+      b: getValueInRange({ increment: range, range: [0, 255], value: colorRef.b })
     }
 
     return [Color(colorOne), Color(colorTwo)]
   }
 
+  function normalizeGradient({
+    from: basePalette,
+    options: { count, use }
+  }: GradientInput): PrivatePropertyGradientState {
+    const initialColor = basePalette.get()[0].get('rgb').object as Rgb
+    const finalColor = basePalette.get()[1].get('rgb').object as Rgb
+
+    const difR = finalColor.r - initialColor.r
+    const difG = finalColor.g - initialColor.g
+    const difB = finalColor.b - initialColor.b
+
+    const incrementR = difR / count
+    const incrementG = difG / count
+    const incrementB = difB / count
+
+    const colors: Color[] = []
+
+    for (
+      let i = 0, r = initialColor.r, g = initialColor.g, b = initialColor.b;
+      i < count;
+      i++, r += incrementR, g += incrementG, b += incrementB
+    ) {
+      const color = Color({ r, g, b })
+      colors.push(color)
+    }
+
+    return colors
+  }
+
   const self: Input = {
     normalizeColor,
-    normalizePalette
+    normalizePalette,
+    normalizeGradient
   }
 
   return Object.freeze(self)

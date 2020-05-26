@@ -20,7 +20,7 @@ export function Color(userInput: LibraryInputForColor = '#ffffff'): Color {
   const input = Input()
   const utils = Utils()
 
-  let state: PrivatePropertyColorState = input.normalizeColor(userInput)
+  let state: PrivatePropertyColorState = input.normalizeColor({ from: userInput })
 
   // ====================================================================================
   // Private Methods
@@ -37,7 +37,7 @@ export function Color(userInput: LibraryInputForColor = '#ffffff'): Color {
   // Public Methods
   // ====================================================================================
   function set(userInput: LibraryInputForColor): PublicPropertyColorState {
-    const newPrivateState = input.normalizeColor(userInput)
+    const newPrivateState = input.normalizeColor({ from: userInput })
 
     setState(newPrivateState)
 
@@ -58,7 +58,7 @@ export function Color(userInput: LibraryInputForColor = '#ffffff'): Color {
   function random(basePalette?: Palette): PublicPropertyColorState {
     const [colorBaseOne, colorBaseTwo] = basePalette
       ? basePalette.get()
-      : [Color('#000'), Color('#fff')]
+      : Palette([Color('#000'), Color('#fff')]).get()
 
     const { r: r1, g: g1, b: b1 } = colorBaseOne.get('rgb').object as Rgb
     const { r: r2, g: g2, b: b2 } = colorBaseTwo.get('rgb').object as Rgb
