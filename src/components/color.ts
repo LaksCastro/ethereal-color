@@ -77,7 +77,7 @@ export function Color(userInput: LibraryInputForColor = '#ffffff'): Color {
 
     const color = Color({ r, g, b })
 
-    set(color.get('rgb').string)
+    set(color.get('rgb').object as Rgb)
 
     return {
       object: color.get('rgb').object as Rgb,
