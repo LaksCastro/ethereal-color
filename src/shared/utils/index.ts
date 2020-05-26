@@ -21,7 +21,7 @@ export function Utils(): Utils {
 
       const yA = y0 + (y1 - y0) * ((xA - x0) / (x1 - x0))
 
-      return yA
+      return Number(yA.toFixed(1))
     }
   }
 
