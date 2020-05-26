@@ -1,42 +1,44 @@
 import {
-  LibraryInputForColor,
   LibraryInputForPalette,
-  PrivatePropertyColorState,
-  PrivatePropertyPaletteState
+  PublicPropertyPaletteState,
+  PublicPropertyPaletteOptions
 } from '../shared/@types'
 
 import { Input } from './input'
 import { Utils } from '../shared/utils'
 
 export type Palette = {
-  get: () => PaletteState
+  get: () => PublicPropertyPaletteState
+  set: (
+    userInput: LibraryInputForPalette,
+    options: PublicPropertyPaletteOptions
+  ) => PublicPropertyPaletteState
 }
 
-// USANDO CUSTOM CONFIG
-Palette({
-  r: [0, 45],
-  g: [10, 50],
-  b: [50, 90]
-})
-
-// USANDO UM OBJECTO TO TIPO COR
-const color = Color('rgb(250, 250, 250)')
-Palette(color)
-
-// USANDO UMA COR
-Palette('#FFF')
-
-export function Palette(userInput: PaletteUserInput = '#454545'): Palette {
+export function Palette(
+  userInput: LibraryInputForPalette,
+  options: PublicPropertyPaletteOptions = { range: 40 }
+): Palette {
   const utils = Utils()
   const input = Input()
 
-  const defaultInput: PaletteInput = { from: 'rgb(127.5, 127.5, 127.5)', range: 40 }
+  let state: PublicPropertyPaletteState = input.normalizePalette({ from: userInput, options })
 
-  const config = Object.assign({}, defaultInput, userInput)
+  function get(): PublicPropertyPaletteState {
+    return state
+  }
 
-  let state: PrivatePropertyPaletteState = input.normalizePalette(config)
+  function set(
+    userInput: LibraryInputForPalette,
+    options: PublicPropertyPaletteOptions = { range: 40 }
+  ): PublicPropertyPaletteState {
+    return (state = input.normalizePalette({ from: userInput, options }))
+  }
 
-  const self = {}
+  const self = {
+    get,
+    set
+  }
 
   return Object.freeze(self)
 }

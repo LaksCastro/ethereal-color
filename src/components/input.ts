@@ -4,16 +4,18 @@ import {
   Hex,
   LibraryInputForColor,
   PrivatePropertyColorState,
-  PrivatePropertyPaletteState,
-  LibraryInputForPalette
+  PublicPropertyPaletteState
 } from '../shared/@types'
 
 import { Utils } from '../shared/utils'
 import { Converter } from './converter'
+import { Color } from './color'
+
+type PaletteInput = { from: Color; options: { range: number } }
 
 export type Input = {
   normalizeColor: (colorInAnyFormat: LibraryInputForColor) => PrivatePropertyColorState
-  normalizePalette: (paletteInAnyFormat: LibraryInputForPalette) => PrivatePropertyPaletteState
+  normalizePalette: (paletteInAnyFormat: PaletteInput) => PublicPropertyPaletteState
 }
 
 export function Input(): Input {
@@ -143,53 +145,30 @@ export function Input(): Input {
     }
   }
 
-  function normalizePalette(
-    paletteInAnyFormat: LibraryInputForPalette
-  ): PrivatePropertyPaletteState {
-    const defaultConfig: PaletteDefaultConfig = { from: 'rgb(127.5, 127.5, 127.5)', range: 40 }
+  function normalizePalette({
+    from,
+    options: { range }
+  }: PaletteInput): PublicPropertyPaletteState {
+    const colorBase = from.get('rgb').object as Rgb
 
-    let { from, range } = Object.assign({}, defaultConfig, userConfig)
-
-    const useCustom = Array.isArray((from as CustomConfig).r)
-
-    let colorOne: PrivatePropertyColorState
-    let colorTwo: PrivatePropertyColorState
-
-    let colorString: LibraryInputForColor
-
-    if (!useCustom) {
-      colorString = from as LibraryInputForColor
-
-      const colorBase = normalizeColor(colorString).object.rgb
-
-      colorOne = normalizeColor({
-        r: getValueInRange({ increment: -range, range: [0, 255], value: colorBase.r }),
-        g: getValueInRange({ increment: -range, range: [0, 255], value: colorBase.g }),
-        b: getValueInRange({ increment: -range, range: [0, 255], value: colorBase.b })
-      })
-
-      colorTwo = normalizeColor({
-        r: getValueInRange({ increment: range, range: [0, 255], value: colorBase.r }),
-        g: getValueInRange({ increment: range, range: [0, 255], value: colorBase.g }),
-        b: getValueInRange({ increment: range, range: [0, 255], value: colorBase.b })
-      })
-    } else {
-      const color = from as CustomConfig
-
-      colorString = `rgb(${color.r[0]}, ${color.g[0]}, ${color.b[0]})`
-
-      colorOne = normalizeColor(colorString)
-
-      colorString = `rgb(${color.r[1]}, ${color.g[1]}, ${color.b[1]})`
-
-      colorTwo = normalizeColor(colorString)
+    const colorOne = {
+      r: getValueInRange({ increment: -range, range: [0, 255], value: colorBase.r }),
+      g: getValueInRange({ increment: -range, range: [0, 255], value: colorBase.g }),
+      b: getValueInRange({ increment: -range, range: [0, 255], value: colorBase.b })
     }
 
-    return [colorOne, colorTwo]
+    const colorTwo = {
+      r: getValueInRange({ increment: range, range: [0, 255], value: colorBase.r }),
+      g: getValueInRange({ increment: range, range: [0, 255], value: colorBase.g }),
+      b: getValueInRange({ increment: range, range: [0, 255], value: colorBase.b })
+    }
+
+    return [Color(colorOne), Color(colorTwo)]
   }
 
   const self: Input = {
-    normalizeColor
+    normalizeColor,
+    normalizePalette
   }
 
   return Object.freeze(self)

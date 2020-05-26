@@ -71,16 +71,11 @@ export type LibraryInputCustomPalette = {
 }
 
 export type PublicPropertyPaletteOptions = {
-  options?: {
-    range: number
-  }
+  range: number
 }
 
-export type LibraryInputForPalette =
-  | (Color & PublicPropertyPaletteOptions)
-  | (LibraryInputForColor & PublicPropertyPaletteOptions)
-  | (PublicPropertyCustomPaletteConfig & PublicPropertyPaletteOptions)
+export type LibraryInputForPalette = Color
 
-export type PrivatePropertyPaletteState = [PrivatePropertyColorState, PrivatePropertyColorState]
+export type LibraryInputForPaletteOptions = { range: number }
 
-export type PublicPropertyPaletteState = [PublicPropertyColorState, PublicPropertyColorState]
+export type PublicPropertyPaletteState = [Color, Color]

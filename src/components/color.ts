@@ -1,18 +1,19 @@
 import { Input } from './input'
 
 import {
-  LibraryInputAnyColorFormat,
+  LibraryInputForColor,
   PrivatePropertyColorState,
   PublicPropertyColorFormat,
-  PublicPropertyColorState
+  PublicPropertyColorState,
+  PublicPropertyColorType
 } from '../shared/@types'
 
 export type Color = {
-  set: (userInput: LibraryInputAnyColorFormat) => PublicPropertyColorState
+  set: (userInput: LibraryInputForColor) => PublicPropertyColorState
   get: (format: PublicPropertyColorFormat) => PublicPropertyColorState
 }
 
-export function Color(userInput: LibraryInputAnyColorFormat): Color {
+export function Color(userInput: LibraryInputForColor): Color {
   const input = Input()
 
   let state: PrivatePropertyColorState = input.normalizeColor(userInput)
@@ -31,7 +32,7 @@ export function Color(userInput: LibraryInputAnyColorFormat): Color {
   // ====================================================================================
   // Public Methods
   // ====================================================================================
-  function set(userInput: LibraryInputAnyColorFormat): PublicPropertyColorState {
+  function set(userInput: LibraryInputForColor): PublicPropertyColorState {
     const newPrivateState = input.normalizeColor(userInput)
 
     setState(newPrivateState)
