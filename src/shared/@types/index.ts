@@ -1,5 +1,8 @@
 // ====================================================================================
 // No context Types
+
+import { Color } from '../../components/color'
+
 // ====================================================================================
 export type Range = [number, number]
 
@@ -31,7 +34,13 @@ export type PublicPropertyColorFormat = 'rgb' | 'hex' | 'hsl'
 
 export type PublicPropertyColorType = Rgb | Hex | Hsl
 
-export type LibraryInputAnyColorFormat = PublicPropertyColorType | string
+export type LibraryInputForColor = PublicPropertyColorType | string
+
+export type PublicPropertyCustomPaletteConfig = {
+  r: [number, number]
+  g: [number, number]
+  b: [number, number]
+}
 
 export type PrivatePropertyColorState = {
   object: {
@@ -61,7 +70,16 @@ export type LibraryInputCustomPalette = {
   b: [number, number]
 }
 
-export type LibraryInputAnyPaletteFormat = LibraryInputAnyColorFormat | LibraryInputCustomPalette
+export type PublicPropertyPaletteOptions = {
+  options?: {
+    range: number
+  }
+}
+
+export type LibraryInputForPalette =
+  | (Color & PublicPropertyPaletteOptions)
+  | (LibraryInputForColor & PublicPropertyPaletteOptions)
+  | (PublicPropertyCustomPaletteConfig & PublicPropertyPaletteOptions)
 
 export type PrivatePropertyPaletteState = [PrivatePropertyColorState, PrivatePropertyColorState]
 
