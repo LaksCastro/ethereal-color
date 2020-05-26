@@ -1,4 +1,5 @@
 import { Color } from '../../src/components/color'
+import { Palette } from '../../src/components/palette'
 import { Rgb, Hex, Hsl } from '../../src/shared/@types'
 import data, { SampleColor } from '../shared/color-swatch'
 
@@ -227,6 +228,95 @@ describe('Color Factory', () => {
         expect(colorInstanceWithHex.get('rgb').object).toEqual(trueFont.rgb)
         expect(colorInstanceWithHex.get('hsl').object).toEqual(trueFont.hsl)
       }
+    })
+  })
+  describe('test feature to generate random colors with (X) specification', () => {
+    it('[X] = "basic randomic color generator"', () => {
+      const colors: Color[] = Array.from({ length: 100 }).map(() => {
+        const color = Color()
+
+        color.random()
+
+        return color
+      })
+
+      const randomColors = colors.filter(color => color.get('rgb').string !== 'rgb(255, 255, 255)')
+
+      expect(randomColors.length).not.toBe(0)
+    })
+    it('[X] = "basic randomic color generator using a palette"', () => {
+      const range = 40
+
+      const rValue = 150
+      const gValue = 50
+      const bValue = 200
+
+      const minR = rValue - range
+      const minG = gValue - range
+      const minB = bValue - range
+
+      const maxR = rValue + range
+      const maxG = gValue + range
+      const maxB = bValue + range
+
+      const palette = Palette(Color(`rgb(${rValue}, ${gValue}, ${bValue})`))
+
+      const colors: Color[] = Array.from({ length: 100 }).map(() => {
+        const color = Color()
+
+        color.random(palette)
+
+        return color
+      })
+
+      const invalidRandomColors = colors.filter(color => {
+        const { r, g, b } = color.get('rgb').object as Rgb
+
+        const redInvalid = r > maxR || r < minR
+        const greenInvalid = g > maxG || g < minG
+        const blueInvalid = b > maxB || b < minB
+
+        return redInvalid || greenInvalid || blueInvalid
+      })
+
+      expect(invalidRandomColors.length).toBe(0)
+    })
+    it('[X] = "basic randomic color generator using a palette with no-default options"', () => {
+      const range = 5
+
+      const rValue = 150
+      const gValue = 50
+      const bValue = 200
+
+      const minR = rValue - range
+      const minG = gValue - range
+      const minB = bValue - range
+
+      const maxR = rValue + range
+      const maxG = gValue + range
+      const maxB = bValue + range
+
+      const palette = Palette(Color(`rgb(${rValue}, ${gValue}, ${bValue})`), { range })
+
+      const colors: Color[] = Array.from({ length: 100 }).map(() => {
+        const color = Color()
+
+        color.random(palette)
+
+        return color
+      })
+
+      const invalidRandomColors = colors.filter(color => {
+        const { r, g, b } = color.get('rgb').object as Rgb
+
+        const redInvalid = r > maxR || r < minR
+        const greenInvalid = g > maxG || g < minG
+        const blueInvalid = b > maxB || b < minB
+
+        return redInvalid || greenInvalid || blueInvalid
+      })
+
+      expect(invalidRandomColors.length).toBe(0)
     })
   })
 })

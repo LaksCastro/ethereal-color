@@ -36,12 +36,6 @@ export type PublicPropertyColorType = Rgb | Hex | Hsl
 
 export type LibraryInputForColor = PublicPropertyColorType | string
 
-export type PublicPropertyCustomPaletteConfig = {
-  r: [number, number]
-  g: [number, number]
-  b: [number, number]
-}
-
 export type PrivatePropertyColorState = {
   object: {
     rgb: Rgb

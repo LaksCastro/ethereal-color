@@ -34,9 +34,20 @@ export function Palette(
     return (state = input.normalizePalette({ from: colorInput, options: options || { range: 40 } }))
   }
 
+  function random(): PublicPropertyPaletteState {
+    const color = Color()
+
+    color.random()
+
+    set(color)
+
+    return get()
+  }
+
   const self = {
     get,
-    set
+    set,
+    random
   }
 
   return Object.freeze(self)
