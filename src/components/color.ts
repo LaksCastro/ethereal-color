@@ -4,8 +4,7 @@ import {
   LibraryInputForColor,
   PrivatePropertyColorState,
   PublicPropertyColorFormat,
-  PublicPropertyColorState,
-  PublicPropertyColorType
+  PublicPropertyColorState
 } from '../shared/@types'
 
 export type Color = {
