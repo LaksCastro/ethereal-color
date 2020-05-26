@@ -22,7 +22,6 @@ export function Input(): Input {
   const utils = Utils()
   const converter = Converter()
 
-  const percentToHsl = utils.interpolate([0, 100], [0, 360])
   const percentToRgb = utils.interpolate([0, 100], [0, 255])
 
   const { getValueInRange } = utils
@@ -89,12 +88,10 @@ export function Input(): Input {
         hsl = converter.rgbToHsl(rgb)
       } else if (isHsl) {
         const [hueValue, saturationValue, brightnessValue] = colorInAnyFormat
-          .replace(/(\()|(\))|(hsl)/g, '')
+          .replace(/(\()|(\))|(hsl)|(%)/g, '')
           .split(',')
 
-        const usePercent = Boolean(hueValue.match(/%/g))
-
-        const h = usePercent ? percentToHsl(Number(hueValue.replace(/%/g, ''))) : Number(hueValue)
+        const h = Number(hueValue)
         const s = Number(saturationValue)
         const l = Number(brightnessValue)
 

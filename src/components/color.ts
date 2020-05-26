@@ -12,7 +12,7 @@ export type Color = {
   get: (format: PublicPropertyColorFormat) => PublicPropertyColorState
 }
 
-export function Color(userInput: LibraryInputForColor): Color {
+export function Color(userInput: LibraryInputForColor = '#ffffff'): Color {
   const input = Input()
 
   let state: PrivatePropertyColorState = input.normalizeColor(userInput)

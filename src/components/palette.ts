@@ -5,34 +5,33 @@ import {
 } from '../shared/@types'
 
 import { Input } from './input'
-import { Utils } from '../shared/utils'
+import { Color } from './color'
 
 export type Palette = {
   get: () => PublicPropertyPaletteState
   set: (
     userInput: LibraryInputForPalette,
-    options: PublicPropertyPaletteOptions
+    options?: PublicPropertyPaletteOptions
   ) => PublicPropertyPaletteState
 }
 
 export function Palette(
-  userInput: LibraryInputForPalette,
+  colorInput: LibraryInputForPalette = Color(),
   options: PublicPropertyPaletteOptions = { range: 40 }
 ): Palette {
-  const utils = Utils()
   const input = Input()
 
-  let state: PublicPropertyPaletteState = input.normalizePalette({ from: userInput, options })
+  let state: PublicPropertyPaletteState = input.normalizePalette({ from: colorInput, options })
 
   function get(): PublicPropertyPaletteState {
     return state
   }
 
   function set(
-    userInput: LibraryInputForPalette,
-    options: PublicPropertyPaletteOptions = { range: 40 }
+    colorInput: LibraryInputForPalette,
+    options?: PublicPropertyPaletteOptions
   ): PublicPropertyPaletteState {
-    return (state = input.normalizePalette({ from: userInput, options }))
+    return (state = input.normalizePalette({ from: colorInput, options: options || { range: 40 } }))
   }
 
   const self = {

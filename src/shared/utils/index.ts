@@ -7,6 +7,7 @@ export type Utils = {
   randomInt: (min: number, max: number) => number
   averageBetween: (smaller: number, bigger: number) => number
   getValueInRange: (config: GetValueInRangeConfig) => number
+  itsBetween: (value: number, range: [number, number]) => boolean
 }
 
 export function Utils(): Utils {
@@ -40,11 +41,17 @@ export function Utils(): Utils {
     return newValue < min ? min : newValue > max ? max : newValue
   }
 
+  function itsBetween(value: number, range: [number, number]): boolean {
+    const [min, max] = range
+    return value >= min && value <= max
+  }
+
   const self: Utils = {
     interpolate,
     randomInt,
     averageBetween,
-    getValueInRange
+    getValueInRange,
+    itsBetween
   }
 
   return Object.freeze(self)
