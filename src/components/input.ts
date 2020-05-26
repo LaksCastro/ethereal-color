@@ -7,7 +7,7 @@ import {
   PublicPropertyPaletteState,
   PublicPropertyGradientOptions,
   PublicPropertyPaletteOptions,
-  PrivatePropertyGradientState,
+  PublicPropertyGradientState,
   LibraryInputForPalette
 } from '../shared/@types'
 
@@ -25,7 +25,7 @@ type GradientInput = { from: Palette; options: PublicPropertyGradientOptions }
 export type Input = {
   normalizeColor: (colorInAnyFormat: ColorInput) => PrivatePropertyColorState
   normalizePalette: (baseColor: PaletteInput) => PublicPropertyPaletteState
-  normalizeGradient: (basePalette: GradientInput) => PrivatePropertyGradientState
+  normalizeGradient: (basePalette: GradientInput) => PublicPropertyGradientState
 }
 
 export function Input(): Input {
@@ -186,7 +186,7 @@ export function Input(): Input {
   function normalizeGradient({
     from: basePalette,
     options: { count, use }
-  }: GradientInput): PrivatePropertyGradientState {
+  }: GradientInput): PublicPropertyGradientState {
     const initialColor = basePalette.get()[0].get('rgb').object as Rgb
     const finalColor = basePalette.get()[1].get('rgb').object as Rgb
 
@@ -194,9 +194,9 @@ export function Input(): Input {
     const difG = finalColor.g - initialColor.g
     const difB = finalColor.b - initialColor.b
 
-    const incrementR = difR / count
-    const incrementG = difG / count
-    const incrementB = difB / count
+    const incrementR = difR / (count - 1)
+    const incrementG = difG / (count - 1)
+    const incrementB = difB / (count - 1)
 
     const colors: Color[] = []
 

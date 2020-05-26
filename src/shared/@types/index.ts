@@ -76,4 +76,4 @@ export type PublicPropertyGradientOptions = {
 
 export type LibraryInputForGradient = Palette
 
-export type PrivatePropertyGradientState = Color[]
+export type PublicPropertyGradientState = Color[]

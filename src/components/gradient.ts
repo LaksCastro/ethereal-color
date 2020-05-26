@@ -4,7 +4,7 @@ import { Input } from './input'
 
 import {
   PublicPropertyGradientOptions,
-  PrivatePropertyGradientState,
+  PublicPropertyGradientState,
   PublicPropertyColorFormat
 } from '../shared/@types'
 
@@ -24,7 +24,7 @@ export function Gradient(
 ): Gradient {
   const input = Input()
 
-  let state: PrivatePropertyGradientState = input.normalizeGradient({
+  let state: PublicPropertyGradientState = input.normalizeGradient({
     from: userInput,
     options
   })
