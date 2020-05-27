@@ -1,5 +1,7 @@
 import { Hsl, Rgb, Hex } from '../shared/@types'
 
+import { Utils } from '../shared/utils'
+
 type ConverterFunction<I, O> = (color: I) => O
 
 export type Converter = {
@@ -10,6 +12,8 @@ export type Converter = {
 }
 
 export function Converter(): Converter {
+  const utils = Utils()
+
   function rgbToHsl({ r, g, b }: Rgb): Hsl {
     const r1 = r / 255
     const g1 = g / 255
@@ -38,9 +42,9 @@ export function Converter(): Converter {
     if (H < 0) H += 360
 
     const result = {
-      h: Math.abs(Number(H.toFixed(2))),
-      l: Math.abs(Number(L.toFixed(2))),
-      s: Math.abs(Number(S.toFixed(2)))
+      h: Math.abs(utils.oneDecimalPlace(H)),
+      l: Math.abs(utils.oneDecimalPlace(L)),
+      s: Math.abs(utils.oneDecimalPlace(S))
     }
 
     return result

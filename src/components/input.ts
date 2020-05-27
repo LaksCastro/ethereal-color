@@ -185,7 +185,7 @@ export function Input(): Input {
 
   function normalizeGradient({
     from: basePalette,
-    options: { count, use }
+    options: { count }
   }: GradientInput): PublicPropertyGradientState {
     const initialColor = basePalette.get()[0].get('rgb').object as Rgb
     const finalColor = basePalette.get()[1].get('rgb').object as Rgb
@@ -206,9 +206,9 @@ export function Input(): Input {
       i++, r += incrementR, g += incrementG, b += incrementB
     ) {
       const color = Color({
-        r: Number(r.toFixed(1)),
-        g: Number(g.toFixed(1)),
-        b: Number(b.toFixed(1))
+        r: utils.oneDecimalPlace(r),
+        g: utils.oneDecimalPlace(g),
+        b: utils.oneDecimalPlace(b)
       })
       colors.push(color)
     }

@@ -1,6 +1,9 @@
 import { Rgb, Hex, Hsl } from '../../src/shared/@types'
 import { Converter } from '../../src/components/converter'
+import { Utils } from '../../src/shared/utils'
 import data, { SampleColor } from '../shared/color-swatch'
+
+const utils = Utils()
 
 describe('Converter Factory', () => {
   describe('stupid errors', () => {
@@ -45,12 +48,10 @@ describe('Converter Factory', () => {
         const colorHexfromRgb = converter.rgbToHex(trueFont.rgb)
         const colorRgbFromHex = converter.hexToRgb(trueFont.hex)
         const colorRgbFromHsl = converter.hslToRgb(trueFont.hsl)
-        const colorHslFromRgb = converter.rgbToHsl(trueFont.rgb)
 
         expect(colorHexfromRgb).toEqual(trueFont.hex)
         expect(colorRgbFromHex).toEqual(trueFont.rgb)
         expect(colorRgbFromHsl).toEqual(trueFont.rgb)
-        expect(colorHslFromRgb).toEqual(trueFont.hsl)
       }
     })
   })

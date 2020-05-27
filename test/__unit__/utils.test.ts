@@ -1,7 +1,5 @@
 import { Utils } from '../../src/shared/utils'
 
-const normalizeFloatNumber = (num: number): number => Number(num.toFixed(1))
-
 describe('Utils Factory', () => {
   describe('stupid errors', () => {
     it('is callable', () => {
@@ -86,7 +84,7 @@ describe('Utils Factory', () => {
         const result = [
           yToXEqualTo261,
           yToXEqualTo854,
-          normalizeFloatNumber(yToXEqualTheAverageValueBetween261and854)
+          utils.oneDecimalPlace(yToXEqualTheAverageValueBetween261and854)
         ]
 
         expect(result).toEqual([12, 169, 90.5])
@@ -118,10 +116,10 @@ describe('Utils Factory', () => {
           const result = [
             yToXEqualToX0,
             yToXEqualToX1,
-            normalizeFloatNumber(yForXEqualToTheAverageValueBetweenX0andX1)
+            utils.oneDecimalPlace(yForXEqualToTheAverageValueBetweenX0andX1)
           ]
 
-          expect(result).toEqual([y0, y1, normalizeFloatNumber(utils.averageBetween(y0, y1))])
+          expect(result).toEqual([y0, y1, utils.oneDecimalPlace(utils.averageBetween(y0, y1))])
         }
       })
       it('[Y] = "using randomic negative intervals"', () => {
@@ -151,10 +149,10 @@ describe('Utils Factory', () => {
           const result = [
             yToXEqualToX0,
             yToXEqualToX1,
-            normalizeFloatNumber(yForXEqualToTheAverageValueBetweenX0andX1)
+            utils.oneDecimalPlace(yForXEqualToTheAverageValueBetweenX0andX1)
           ]
 
-          expect(result).toEqual([y0, y1, normalizeFloatNumber(utils.averageBetween(y0, y1))])
+          expect(result).toEqual([y0, y1, utils.oneDecimalPlace(utils.averageBetween(y0, y1))])
         }
       })
     })

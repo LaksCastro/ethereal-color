@@ -14,12 +14,12 @@ export type Gradient = {
   toStringArray: (format: PublicPropertyColorFormat) => string[]
   toObjectArray: (format: PublicPropertyColorFormat) => object[]
   toColorArray: () => Color[]
-  set: (userInput: Palette, options: PublicPropertyGradientOptions) => void
+  set: (userInput: Palette, options?: PublicPropertyGradientOptions) => void
   random: () => void
 }
 
 export function Gradient(
-  userInput: Palette,
+  userInput: Palette = Palette(Color()),
   options: PublicPropertyGradientOptions = defaultOptions
 ): Gradient {
   const input = Input()

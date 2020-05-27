@@ -56,24 +56,34 @@ export function Color(userInput: LibraryInputForColor = '#ffffff'): Color {
   }
 
   function random(basePalette?: Palette): PublicPropertyColorState {
-    const [colorBaseOne, colorBaseTwo] = basePalette
-      ? basePalette.get()
-      : Palette([Color('#000'), Color('#fff')]).get()
+    const useCustomPalette = Boolean(basePalette)
 
-    const { r: r1, g: g1, b: b1 } = colorBaseOne.get('rgb').object as Rgb
-    const { r: r2, g: g2, b: b2 } = colorBaseTwo.get('rgb').object as Rgb
+    let r: number
+    let b: number
+    let g: number
 
-    const scale: [number, number] = [0, 100]
+    if (useCustomPalette) {
+      const [colorBaseOne, colorBaseTwo] = (basePalette as Palette).get()
 
-    const randomScale = utils.randomInt(...scale)
+      const { r: r1, g: g1, b: b1 } = colorBaseOne.get('rgb').object as Rgb
+      const { r: r2, g: g2, b: b2 } = colorBaseTwo.get('rgb').object as Rgb
 
-    const scaleToRed = utils.interpolate(scale, [r1, r2])
-    const scaleToGreen = utils.interpolate(scale, [g1, g2])
-    const scaleToBlue = utils.interpolate(scale, [b1, b2])
+      const scale: [number, number] = [0, 100]
 
-    const r = scaleToRed(randomScale)
-    const g = scaleToGreen(randomScale)
-    const b = scaleToBlue(randomScale)
+      const randomScale = utils.randomInt(...scale)
+
+      const scaleToRed = utils.interpolate(scale, [r1, r2])
+      const scaleToGreen = utils.interpolate(scale, [g1, g2])
+      const scaleToBlue = utils.interpolate(scale, [b1, b2])
+
+      r = scaleToRed(randomScale)
+      g = scaleToGreen(randomScale)
+      b = scaleToBlue(randomScale)
+    } else {
+      r = utils.randomInt(0, 255)
+      g = utils.randomInt(0, 255)
+      b = utils.randomInt(0, 255)
+    }
 
     const color = Color({ r, g, b })
 
