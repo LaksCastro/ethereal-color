@@ -1,3 +1,8 @@
-const color = () => {}
+import { Color } from './components/color'
+import { Palette } from './components/palette'
+import { Gradient } from './components/gradient'
+import { Converter } from './components/converter'
 
-export default color
+export { Palette, Gradient, Converter }
+
+export default Color

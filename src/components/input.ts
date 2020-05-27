@@ -205,7 +205,11 @@ export function Input(): Input {
       i < count;
       i++, r += incrementR, g += incrementG, b += incrementB
     ) {
-      const color = Color({ r, g, b })
+      const color = Color({
+        r: Number(r.toFixed(1)),
+        g: Number(g.toFixed(1)),
+        b: Number(b.toFixed(1))
+      })
       colors.push(color)
     }
 

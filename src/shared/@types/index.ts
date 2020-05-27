@@ -71,7 +71,6 @@ export type PublicPropertyPaletteOptions = {
 
 export type PublicPropertyGradientOptions = {
   count: number
-  use: 'linear' | 'exponential' | 'square'
 }
 
 export type LibraryInputForGradient = Palette

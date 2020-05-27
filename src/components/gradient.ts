@@ -8,7 +8,7 @@ import {
   PublicPropertyColorFormat
 } from '../shared/@types'
 
-const defaultOptions: PublicPropertyGradientOptions = { count: 5, use: 'exponential' }
+const defaultOptions: PublicPropertyGradientOptions = { count: 5 }
 
 export type Gradient = {
   toStringArray: (format: PublicPropertyColorFormat) => string[]
