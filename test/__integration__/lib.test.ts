@@ -1,4 +1,4 @@
-import Color, { Palette, Gradient, Converter } from '../../src'
+import Color, { Palette, Gradient, Converter } from '../../src/color-manager'
 import { Utils } from '../../src/shared/utils'
 import { Rgb } from '../../src/shared/@types'
 
