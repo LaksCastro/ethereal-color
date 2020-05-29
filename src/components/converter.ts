@@ -30,9 +30,11 @@ export function Converter(): Converter {
       if (L < 0.5) S = (maxColor - minColor) / (maxColor + minColor)
       else S = (maxColor - minColor) / (2.0 - maxColor - minColor)
 
-      if (r1 === maxColor) H = (g1 - b1) / (maxColor - minColor)
-      else if (g1 === maxColor) H = 2.0 + (b1 - r1) / (maxColor - minColor)
-      else H = 4.0 + (r1 - g1) / (maxColor - minColor)
+      if (r1 === maxColor) {
+        H = (g1 - b1) / (maxColor - minColor)
+      } else if (g1 === maxColor) {
+        H = 2.0 + (b1 - r1) / (maxColor - minColor)
+      } else H = 4.0 + (r1 - g1) / (maxColor - minColor)
     }
 
     L = L * 100
@@ -44,7 +46,7 @@ export function Converter(): Converter {
     const result = {
       h: Math.abs(utils.oneDecimalPlace(H)),
       l: Math.abs(utils.oneDecimalPlace(L)),
-      s: Math.abs(utils.oneDecimalPlace(S))
+      s: Math.abs(utils.oneDecimalPlace(S)),
     }
 
     return result
@@ -108,7 +110,7 @@ export function Converter(): Converter {
     return {
       r: Math.abs(r),
       g: Math.abs(g),
-      b: Math.abs(b)
+      b: Math.abs(b),
     }
   }
 
@@ -121,23 +123,32 @@ export function Converter(): Converter {
     return {
       r: componentToHex(r),
       g: componentToHex(g),
-      b: componentToHex(b)
+      b: componentToHex(b),
     }
   }
 
   function hexToRgb({ r, g, b }: Hex): Rgb {
-    let shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i
+    const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i
 
-    const hex = `#${r}${g}${b}`.replace(shorthandRegex, (_, r, g, b) => r + r + g + g + b + b)
+    const hex = `#${r}${g}${b}`.replace(
+      shorthandRegex,
+      (_, r1, g1, b1) => r1 + r1 + g1 + g1 + b1 + b1,
+    )
 
-    const format = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex) || '#FFFFFF'
+    const format =
+      /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex) ||
+      '#FFFFFF'
 
-    if (!format) throw new Error(`Impossible to convert: 'rgb(${r}, ${g}, ${b})' to Hexadecimal`)
+    if (!format) {
+      throw new Error(
+        `Impossible to convert: 'rgb(${r}, ${g}, ${b})' to Hexadecimal`,
+      )
+    }
 
     return {
       r: Math.abs(parseInt(format[1], 16)),
       g: Math.abs(parseInt(format[2], 16)),
-      b: Math.abs(parseInt(format[3], 16))
+      b: Math.abs(parseInt(format[3], 16)),
     }
   }
 
@@ -145,10 +156,8 @@ export function Converter(): Converter {
     rgbToHsl,
     hslToRgb,
     rgbToHex,
-    hexToRgb
+    hexToRgb,
   }
 
   return Object.freeze(self)
 }
-
-export default Converter

@@ -7,7 +7,7 @@ import {
   PrivatePropertyColorState,
   PublicPropertyColorFormat,
   PublicPropertyColorState,
-  Rgb
+  Rgb,
 } from '../shared/@types'
 
 export type Color = {
@@ -16,11 +16,15 @@ export type Color = {
   random: (basePalette?: Palette) => PublicPropertyColorState
 }
 
-export function Color(userInput: LibraryInputForColor = '#ffffff'): Color {
+export function Color(
+  userInput: LibraryInputForColor = '#ffffff',
+): Color {
   const input = Input()
   const utils = Utils()
 
-  let state: PrivatePropertyColorState = input.normalizeColor({ from: userInput })
+  let state: PrivatePropertyColorState = input.normalizeColor({
+    from: userInput,
+  })
 
   // ====================================================================================
   // Private Methods
@@ -29,27 +33,35 @@ export function Color(userInput: LibraryInputForColor = '#ffffff'): Color {
     return state
   }
 
-  function setState(newState: PrivatePropertyColorState): PrivatePropertyColorState {
+  function setState(
+    newState: PrivatePropertyColorState,
+  ): PrivatePropertyColorState {
     return (state = newState)
   }
 
   // ====================================================================================
   // Public Methods
   // ====================================================================================
-  function set(userInput: LibraryInputForColor): PublicPropertyColorState {
-    const newPrivateState = input.normalizeColor({ from: userInput })
+  function set(
+    newUserInput: LibraryInputForColor,
+  ): PublicPropertyColorState {
+    const newPrivateState = input.normalizeColor({
+      from: newUserInput,
+    })
 
     setState(newPrivateState)
 
     return get('rgb')
   }
 
-  function get(format: PublicPropertyColorFormat): PublicPropertyColorState {
+  function get(
+    format: PublicPropertyColorFormat,
+  ): PublicPropertyColorState {
     const privateState = getState()
 
     const publicState = {
       object: privateState.object[format],
-      string: privateState.string[format]
+      string: privateState.string[format],
     }
 
     return publicState
@@ -63,10 +75,15 @@ export function Color(userInput: LibraryInputForColor = '#ffffff'): Color {
     let g: number
 
     if (useCustomPalette) {
-      const [colorBaseOne, colorBaseTwo] = (basePalette as Palette).get()
+      const [
+        colorBaseOne,
+        colorBaseTwo,
+      ] = (basePalette as Palette).get()
 
-      const { r: r1, g: g1, b: b1 } = colorBaseOne.get('rgb').object as Rgb
-      const { r: r2, g: g2, b: b2 } = colorBaseTwo.get('rgb').object as Rgb
+      const { r: r1, g: g1, b: b1 } = colorBaseOne.get('rgb')
+        .object as Rgb
+      const { r: r2, g: g2, b: b2 } = colorBaseTwo.get('rgb')
+        .object as Rgb
 
       const scale: [number, number] = [0, 100]
 
@@ -91,14 +108,14 @@ export function Color(userInput: LibraryInputForColor = '#ffffff'): Color {
 
     return {
       object: color.get('rgb').object as Rgb,
-      string: color.get('rgb').string
+      string: color.get('rgb').string,
     }
   }
 
   const self: Color = {
     set,
     get,
-    random
+    random,
   }
 
   return Object.freeze(self)

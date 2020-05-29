@@ -1,9 +1,16 @@
 import { Range } from '../@types'
 
-type GetValueInRangeConfig = { value: number; range: Range; increment: number }
+type GetValueInRangeConfig = {
+  value: number
+  range: Range
+  increment: number
+}
 
 export type Utils = {
-  interpolate: (xInterval: Range, yInterval: Range) => (xA: number) => number
+  interpolate: (
+    xInterval: Range,
+    yInterval: Range,
+  ) => (xA: number) => number
   randomInt: (min: number, max: number) => number
   averageBetween: (smaller: number, bigger: number) => number
   getValueInRange: (config: GetValueInRangeConfig) => number
@@ -12,7 +19,10 @@ export type Utils = {
 }
 
 export function Utils(): Utils {
-  function interpolate(xInterval: Range, yInterval: Range): (xA: number) => number {
+  function interpolate(
+    xInterval: Range,
+    yInterval: Range,
+  ): (xA: number) => number {
     const [x0, x1] = xInterval
     const [y0, y1] = yInterval
 
@@ -34,7 +44,11 @@ export function Utils(): Utils {
     return (bigger - smaller) / 2 + smaller
   }
 
-  function getValueInRange({ increment, range, value }: GetValueInRangeConfig): number {
+  function getValueInRange({
+    increment,
+    range,
+    value,
+  }: GetValueInRangeConfig): number {
     const [min, max] = range
 
     const newValue = value + increment
@@ -42,13 +56,18 @@ export function Utils(): Utils {
     return newValue < min ? min : newValue > max ? max : newValue
   }
 
-  function itsBetween(value: number, range: [number, number]): boolean {
+  function itsBetween(
+    value: number,
+    range: [number, number],
+  ): boolean {
     const [min, max] = range
     return value >= min && value <= max
   }
 
   function oneDecimalPlace(value: number): number {
-    const isNecessaryToFormat = Boolean(value.toString().match(/\.[0-9][0-9]*/g))
+    const isNecessaryToFormat = Boolean(
+      value.toString().match(/\.[0-9][0-9]*/g),
+    )
 
     if (!isNecessaryToFormat) return value
 
@@ -61,7 +80,7 @@ export function Utils(): Utils {
     averageBetween,
     getValueInRange,
     itsBetween,
-    oneDecimalPlace
+    oneDecimalPlace,
   }
 
   return Object.freeze(self)

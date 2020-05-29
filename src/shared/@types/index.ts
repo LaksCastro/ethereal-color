@@ -59,7 +59,9 @@ export type PublicPropertyColorState = {
 
 export type PublicPropertyPaletteState = [Color, Color]
 
-export type LibraryInputForPalette = Color | PublicPropertyPaletteState
+export type LibraryInputForPalette =
+  | Color
+  | PublicPropertyPaletteState
 
 export type PublicPropertyPaletteOptions = {
   range: number

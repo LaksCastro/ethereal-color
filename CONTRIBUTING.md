@@ -1,17 +1,58 @@
-We're really glad you're reading this, because we need volunteer developers to help this project come to fruition. 👏
+## Contributing ✨
 
-## Instructions
+Thank you for considering contributing to Embla Carousel, contributions are welcome!
 
-These steps will guide you through contributing to this project:
+- [Code style](#code-style)
+- [New features](#new-features)
+- [Bug reports](#bug-reports)
 
-- Fork the repo
-- Clone it and install dependencies
+### Code style
 
-		git clone https://github.com/YOUR-USERNAME/typescript-library-starter
-		npm install
+All code contributions should follow the current `code style`. Embla Carousel is written with `function factories` that expose an object containing a set of public methods. Note that the public method object should be flat and frozen. Below is an example:
 
-Keep in mind that after running `npm install` the git repo is reset. So a good way to cope with this is to have a copy of the folder to push the changes, and the other to try them.
+```typescript
+// Declare parameter types
+type Params = {
+  parameter: number
+}
 
-Make and commit your changes. Make sure the commands npm run build and npm run test:prod are working.
+// Declare public method types
+export type FunctionFactory = {
+  publicMethod: () => number
+}
 
-Finally send a [GitHub Pull Request](https://github.com/alexjoverm/typescript-library-starter/compare?expand=1) with a clear list of what you've done (read more [about pull requests](https://help.github.com/articles/about-pull-requests/)). Make sure all of your commits are atomic (one feature per commit).
+// Declare a function factory
+export function FunctionFactory(params: Params): FunctionFactory {
+  const { parameter } = params
+  const privateVariable = 10
+
+  function publicMethod() {
+    return parameter + privateVariable
+  }
+
+  const self: FunctionFactory = {
+    publicMethod,
+  }
+  return Object.freeze(self)
+}
+```
+
+### New features
+
+For any new features it's important to follow this checklist:
+
+- **`Discuss:`** Open an issue before starting any significant work. Let's discuss to see how the proposed feature fits within Embla Carousels's vision.
+- **`Prettier:`** Make sure your editor adheres to prettier configuration files.
+- **`Code style:`** Follow the current code style as described [here](#code-style).
+- **`Create a Pull Request:`** Please make sure the branch name follows this pattern `feature/branchname-goes-here`.
+
+### Bug reports
+
+All bug reports require a reduced test case. Providing a test case is the best way to get any issue addressed. It helps us all to understand the problem. Without this, your issue **may be closed**. Please follow this checklist:
+
+- **`Test case:`** Create one by forking the following [CodeSandbox](https://codesandbox.io/s/embla-carousel-loop-false-oyols).
+- **`Demonstrate:`** Make sure the test case clearly demonstrates the issue.
+- **`Do not:`** Provide a link to a production site. That's not a test case.
+- **`Create a Pull Request:`** If you want to solve the bug, please make sure the branch name follows this pattern `bug/branchname-goes-here`.
+
+Your code will be used as part of an open source product if merged. By submitting a Pull Request, **you are giving your consent** for your code to be integrated into Embla Carousel as part of an open source product.

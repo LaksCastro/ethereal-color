@@ -1,169 +1,2221 @@
-# TypeScript library starter
+<br />
+<div align="center">
+  <p align="center">
+    <a href="https://davidcetinkaya.github.io/embla-carousel" target="_blank"><img width="70" height="70" src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/embla-logo.svg" alt="Embla Carousel">
+    </a>
+  </p>
 
-[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-[![Greenkeeper badge](https://badges.greenkeeper.io/alexjoverm/typescript-library-starter.svg)](https://greenkeeper.io/)
-[![Travis](https://img.shields.io/travis/alexjoverm/typescript-library-starter.svg)](https://travis-ci.org/alexjoverm/typescript-library-starter)
-[![Coveralls](https://img.shields.io/coveralls/alexjoverm/typescript-library-starter.svg)](https://coveralls.io/github/alexjoverm/typescript-library-starter)
-[![Dev Dependencies](https://david-dm.org/alexjoverm/typescript-library-starter/dev-status.svg)](https://david-dm.org/alexjoverm/typescript-library-starter?type=dev)
-[![Donate](https://img.shields.io/badge/donate-paypal-blue.svg)](https://paypal.me/AJoverMorales)
+  <p align="center">
+    <a href="https://opensource.org/licenses/MIT" target="_blank"><img src="https://img.shields.io/badge/license-MIT-green.svg"></a>
+    <a href="https://www.npmjs.com/package/embla-carousel" target="_blank"><img src="https://img.shields.io/npm/v/embla-carousel.svg"></a>
+    <a href="https://travis-ci.org/davidcetinkaya/embla-carousel" target="_blank"><img src="https://img.shields.io/travis/davidcetinkaya/embla-carousel/master.svg"></a>
+    <a href="https://prettier.io" target="_blank"><img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat"></a>
+    <a href="https://www.npmjs.com/package/embla-carousel" target="_blank"><img src="https://img.shields.io/bundlephobia/minzip/embla-carousel?color=%234c1&label=gzip%20size">
+    </a>
+  </p>
 
-A starter project that makes creating a TypeScript library extremely easy.
+  <strong>
+    <h2 align="center">Embla Carousel</h2>
+  </strong>
 
-![](https://i.imgur.com/opUmHp0.png)
+  <p align="center">
+    Extensible bare bone carousels for the web. Build awesome carousels by extending them with your own CSS and JavaScript. Embla Carousel is dependency free and 100% open source.
+  </p>
 
-### Usage
+  <br>
 
-```bash
-git clone https://github.com/alexjoverm/typescript-library-starter.git YOURFOLDERNAME
-cd YOURFOLDERNAME
+  <p align="center">
+    <strong>
+      <code>&nbsp;<a href="https://davidcetinkaya.github.io/embla-carousel">TRY DEMO</a>&nbsp;</code>
+    </strong>
+  </p>
 
-# Run npm install and write your library name when asked. That's all!
-npm install
+  <br>
+
+  <p align="center">
+    <strong>
+      <a href="#options">options</a>
+      &nbsp; &middot; &nbsp;
+      <a href="#api">api</a>
+      &nbsp; &middot; &nbsp;
+      <a href="#events">events</a>
+    </strong>
+  </p>
+
+  <br>
+
+  <p align="center">
+    <a href="https://github.com/davidcetinkaya/embla-carousel">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/javascript-logo.svg" height="45" />
+    </a>
+    &nbsp;
+    <a href="https://github.com/davidcetinkaya/embla-carousel-react">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/react-logo.svg" height="45" />
+    </a>
+  </p>
+</div>
+<br />
+
+## Installation
+
+NPM
+
+<pre>npm install <a href="https://www.npmjs.com/package/embla-carousel">embla-carousel</a></pre>
+
+<br>
+
+## QuickStart
+
+HTML
+
+```html
+<div class="embla">
+  <div class="embla__container">
+    <div class="embla__slide">
+      Slide 1
+    </div>
+    <div class="embla__slide">
+      Slide 2
+    </div>
+    <div class="embla__slide">
+      Slide 3
+    </div>
+    <div class="embla__slide">
+      Slide 4
+    </div>
+  </div>
+</div>
 ```
 
-**Start coding!** `package.json` and entry files are already set up for you, so don't worry about linking to your main file, typings, etc. Just keep those files with the same name.
+CSS
 
-### Features
+```css
+.embla {
+  overflow: hidden;
+}
 
- - Zero-setup. After running `npm install` things will setup for you :wink:
- - **[RollupJS](https://rollupjs.org/)** for multiple optimized bundles following the [standard convention](http://2ality.com/2017/04/setting-up-multi-platform-packages.html) and [Tree-shaking](https://alexjoverm.github.io/2017/03/06/Tree-shaking-with-Webpack-2-TypeScript-and-Babel/)
- - Tests, coverage and interactive watch mode using **[Jest](http://facebook.github.io/jest/)**
- - **[Prettier](https://github.com/prettier/prettier)** and **[TSLint](https://palantir.github.io/tslint/)** for code formatting and consistency
- - **Docs automatic generation and deployment** to `gh-pages`, using **[TypeDoc](http://typedoc.org/)**
- - Automatic types `(*.d.ts)` file generation
- - **[Travis](https://travis-ci.org)** integration and **[Coveralls](https://coveralls.io/)** report
- - (Optional) **Automatic releases and changelog**, using [Semantic release](https://github.com/semantic-release/semantic-release), [Commitizen](https://github.com/commitizen/cz-cli), [Conventional changelog](https://github.com/conventional-changelog/conventional-changelog) and [Husky](https://github.com/typicode/husky) (for the git hooks)
+.embla__container {
+  display: flex;
+}
 
-### Importing library
+.embla__slide {
+  position: relative; /* Needed if loop: true */
+  flex: 0 0 100%; /* Choose any slide width */
+}
+```
 
-You can import the generated bundle to use the whole library generated by this starter:
+JavaScript
 
 ```javascript
-import myLib from 'mylib'
+import EmblaCarousel from 'embla-carousel'
+
+const emblaNode = document.querySelector('.embla')
+const options = { loop: true }
+const embla = EmblaCarousel(emblaNode, options)
 ```
 
-Additionally, you can import the transpiled modules from `dist/lib` in case you have a modular library:
+<br>
+
+## Options
+
+Configure Embla by passing an options object as the second argument. **Default** values are:
 
 ```javascript
-import something from 'mylib/dist/lib/something'
+const embla = EmblaCarousel(emblaNode, {
+  align: 'center',
+  containerSelector: '*',
+  slidesToScroll: 1,
+  containScroll: false,
+  draggable: true,
+  dragFree: false,
+  loop: false,
+  speed: 10,
+  startIndex: 0,
+  selectedClass: 'is-selected',
+  draggableClass: 'is-draggable',
+  draggingClass: 'is-dragging',
+})
 ```
 
-### NPM scripts
+##### `align`
 
- - `npm t`: Run test suite
- - `npm start`: Run `npm run build` in watch mode
- - `npm run test:watch`: Run test suite in [interactive watch mode](http://facebook.github.io/jest/docs/cli.html#watch)
- - `npm run test:prod`: Run linting and generate coverage
- - `npm run build`: Generate bundles and typings, create docs
- - `npm run lint`: Lints code
- - `npm run commit`: Commit using conventional commit style ([husky](https://github.com/typicode/husky) will tell you to use it if you haven't :wink:)
-
-### Excluding peerDependencies
-
-On library development, one might want to set some peer dependencies, and thus remove those from the final bundle. You can see in [Rollup docs](https://rollupjs.org/#peer-dependencies) how to do that.
-
-Good news: the setup is here for you, you must only include the dependency name in `external` property within `rollup.config.js`. For example, if you want to exclude `lodash`, just write there `external: ['lodash']`.
-
-### Automatic releases
-
-_**Prerequisites**: you need to create/login accounts and add your project to:_
- - [npm](https://www.npmjs.com/)
- - [Travis CI](https://travis-ci.org)
- - [Coveralls](https://coveralls.io)
-
-_**Prerequisite for Windows**: Semantic-release uses
-**[node-gyp](https://github.com/nodejs/node-gyp)** so you will need to
-install
-[Microsoft's windows-build-tools](https://github.com/felixrieseberg/windows-build-tools)
-using this command:_
-
-```bash
-npm install --global --production windows-build-tools
-```
-
-#### Setup steps
-
-Follow the console instructions to install semantic release and run it (answer NO to "Do you want a `.travis.yml` file with semantic-release setup?").
-
-_Note: make sure you've setup `repository.url` in your `package.json` file_
-
-```bash
-npm install -g semantic-release-cli
-semantic-release-cli setup
-# IMPORTANT!! Answer NO to "Do you want a `.travis.yml` file with semantic-release setup?" question. It is already prepared for you :P
-```
-
-From now on, you'll need to use `npm run commit`, which is a convenient way to create conventional commits.
-
-Automatic releases are possible thanks to [semantic release](https://github.com/semantic-release/semantic-release), which publishes your code automatically on [github](https://github.com/) and [npm](https://www.npmjs.com/), plus generates automatically a changelog. This setup is highly influenced by [Kent C. Dodds course on egghead.io](https://egghead.io/courses/how-to-write-an-open-source-javascript-library)
-
-### Git Hooks
-
-There is already set a `precommit` hook for formatting your code with Prettier :nail_care:
-
-By default, there are two disabled git hooks. They're set up when you run the `npm run semantic-release-prepare` script. They make sure:
- - You follow a [conventional commit message](https://github.com/conventional-changelog/conventional-changelog)
- - Your build is not going to fail in [Travis](https://travis-ci.org) (or your CI server), since it's runned locally before `git push`
-
-This makes more sense in combination with [automatic releases](#automatic-releases)
-
-### FAQ
-
-#### `Array.prototype.from`, `Promise`, `Map`... is undefined?
-
-TypeScript or Babel only provides down-emits on syntactical features (`class`, `let`, `async/await`...), but not on functional features (`Array.prototype.find`, `Set`, `Promise`...), . For that, you need Polyfills, such as [`core-js`](https://github.com/zloirock/core-js) or [`babel-polyfill`](https://babeljs.io/docs/usage/polyfill/) (which extends `core-js`).
-
-For a library, `core-js` plays very nicely, since you can import just the polyfills you need:
+<details>
+  <summary>
+    Align the slides relative to the carousel viewport.
+  </summary>
+  <hr>
+  <div>
+    This option aligns the slides relative to the carousel viewport. Instead of using one of the predefined alignments <code>start</code>, <code>center</code> and <code>end</code>, you can provide a number to align the slides. For example, if you pass <code>0.2</code>, slides will be aligned 20% from the viewport start edge. Note that slide alignments will be overrided for slides at the start and end when used together with 
+    <a href="#containscroll">
+      <code>containScroll</code>
+    </a>,
+    that prevents excessive scrolling at the beginning or end.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Type: </strong>
+      <code>string</code> | <code>number</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Allowed values: </strong>
+      <code>start</code>
+      <code>center</code>
+      <code>end</code>
+      <code>number</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Default value: </strong>
+      <code>center</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-align-5kfhw">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-align-5kfhw">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
 
 ```javascript
-import "core-js/fn/array/find"
-import "core-js/fn/string/includes"
-import "core-js/fn/promise"
-...
+const options = { align: 'start' }
+const embla = EmblaCarousel(emblaNode, options)
 ```
 
-#### What is `npm install` doing on first run?
+<hr>
+</details>
 
-It runs the script `tools/init` which sets up everything for you. In short, it:
- - Configures RollupJS for the build, which creates the bundles
- - Configures `package.json` (typings file, main file, etc)
- - Renames main src and test files
+##### `containerSelector`
 
-#### What if I don't want git-hooks, automatic releases or semantic-release?
+<details>
+  <summary>
+    Target the slide container with a query selector.
+  </summary>
+  <hr>
+  <div>
+    This option allows for the use of a custom query selector to match the container that holds the slides. If no value is provided Embla will match any immediate html tag. All immediate children of this container will be treated as slides.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Type: </strong>
+      <code>string</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Allowed values: </strong>
+      <code>any</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Default value: </strong>
+      <code>*</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-containerselector-ntlzb">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-containerselector-ntlzb">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
 
-Then you may want to:
- - Remove `commitmsg`, `postinstall` scripts from `package.json`. That will not use those git hooks to make sure you make a conventional commit
- - Remove `npm run semantic-release` from `.travis.yml`
+```javascript
+const options = { containerSelector: '.my-container-selector' }
+const embla = EmblaCarousel(emblaNode, options)
+```
 
-#### What if I don't want to use coveralls or report my coverage?
+```html
+<div class="embla">
+  <div class="my-container-selector">
+    ...slides
+  </div>
+</div>
+```
 
-Remove `npm run report-coverage` from `.travis.yml`
+<hr>
+</details>
 
-## Resources
+##### `slidesToScroll`
 
-- [Write a library using TypeScript library starter](https://dev.to/alexjoverm/write-a-library-using-typescript-library-starter) by [@alexjoverm](https://github.com/alexjoverm/)
-- [📺 Create a TypeScript Library using typescript-library-starter](https://egghead.io/lessons/typescript-create-a-typescript-library-using-typescript-library-starter) by [@alexjoverm](https://github.com/alexjoverm/)
-- [Introducing TypeScript Library Starter Lite](https://blog.tonysneed.com/2017/09/15/introducing-typescript-library-starter-lite/) by [@tonysneed](https://github.com/tonysneed)
+<details>
+  <summary>
+    Scroll past the given number of slides.
+  </summary>
+  <hr>
+  <div>
+    This option groups slides together. Drag interactions, dot navigation, and previous/next buttons are mapped to group slides into the given number. For example, if the option is set to <code>2</code>, every two slides will be treated as a single slide.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Type: </strong>
+      <code>number</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Allowed values: </strong>
+      <code>any</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Default value: </strong>
+      <code>1</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-slidestoscroll-1g4rk">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-slidestoscroll-1g4rk">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
 
-## Projects using `typescript-library-starter`
+```javascript
+const options = { slidesToScroll: 2 }
+const embla = EmblaCarousel(emblaNode, options)
+```
 
-Here are some projects that use `typescript-library-starter`:
+```css
+.embla__slide {
+  flex: 0 0 50%; /* Show 2 slides in viewport */
+}
+```
 
-- [NOEL - A universal, human-centric, replayable event emitter](https://github.com/lifenautjoe/noel)
-- [droppable - A library to give file dropping super-powers to any HTML element.](https://github.com/lifenautjoe/droppable)
-- [redis-messaging-manager - Pubsub messaging library, using redis and rxjs](https://github.com/tomyitav/redis-messaging-manager)
+<hr>
+</details>
 
-## Credits
+##### `containScroll`
 
-Made with :heart: by [@alexjoverm](https://twitter.com/alexjoverm) and all these wonderful contributors ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
+<details>
+  <summary>
+    Contain slides to the carousel viewport.
+  </summary>
+  <hr>
+  <div>
+    This option clears leading and trailing empty space that causes excessive scrolling. Note that this will override the chosen <a href="#align">alignment</a> for slides at the beginning or the end if necessary, in order to get rid of the empty space.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Type: </strong>
+      <code>boolean</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Allowed values: </strong>
+      <code>true</code>
+      <code>false</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Default value: </strong>
+      <code>false</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-containscroll-tunvy">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-containscroll-tunvy">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore -->
-| [<img src="https://avatars.githubusercontent.com/u/6052309?v=3" width="100px;"/><br /><sub><b>Ciro</b></sub>](https://www.linkedin.com/in/ciro-ivan-agulló-guarinos-42109376)<br />[💻](https://github.com/alexjoverm/typescript-library-starter/commits?author=k1r0s "Code") [🔧](#tool-k1r0s "Tools") | [<img src="https://avatars.githubusercontent.com/u/947523?v=3" width="100px;"/><br /><sub><b>Marius Schulz</b></sub>](https://blog.mariusschulz.com)<br />[📖](https://github.com/alexjoverm/typescript-library-starter/commits?author=mariusschulz "Documentation") | [<img src="https://avatars.githubusercontent.com/u/4152819?v=3" width="100px;"/><br /><sub><b>Alexander Odell</b></sub>](https://github.com/alextrastero)<br />[📖](https://github.com/alexjoverm/typescript-library-starter/commits?author=alextrastero "Documentation") | [<img src="https://avatars1.githubusercontent.com/u/8728882?v=3" width="100px;"/><br /><sub><b>Ryan Ham</b></sub>](https://github.com/superamadeus)<br />[💻](https://github.com/alexjoverm/typescript-library-starter/commits?author=superamadeus "Code") | [<img src="https://avatars1.githubusercontent.com/u/8458838?v=3" width="100px;"/><br /><sub><b>Chi</b></sub>](https://consiiii.me)<br />[💻](https://github.com/alexjoverm/typescript-library-starter/commits?author=ChinW "Code") [🔧](#tool-ChinW "Tools") [📖](https://github.com/alexjoverm/typescript-library-starter/commits?author=ChinW "Documentation") | [<img src="https://avatars2.githubusercontent.com/u/2856501?v=3" width="100px;"/><br /><sub><b>Matt Mazzola</b></sub>](https://github.com/mattmazzola)<br />[💻](https://github.com/alexjoverm/typescript-library-starter/commits?author=mattmazzola "Code") [🔧](#tool-mattmazzola "Tools") | [<img src="https://avatars0.githubusercontent.com/u/2664047?v=3" width="100px;"/><br /><sub><b>Sergii Lischuk</b></sub>](http://leefrost.github.io)<br />[💻](https://github.com/alexjoverm/typescript-library-starter/commits?author=Leefrost "Code") |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| [<img src="https://avatars1.githubusercontent.com/u/618922?v=3" width="100px;"/><br /><sub><b>Steve Lee</b></sub>](http;//opendirective.com)<br />[🔧](#tool-SteveALee "Tools") | [<img src="https://avatars0.githubusercontent.com/u/5127501?v=3" width="100px;"/><br /><sub><b>Flavio Corpa</b></sub>](http://flaviocorpa.com)<br />[💻](https://github.com/alexjoverm/typescript-library-starter/commits?author=kutyel "Code") | [<img src="https://avatars2.githubusercontent.com/u/22561997?v=3" width="100px;"/><br /><sub><b>Dom</b></sub>](https://github.com/foreggs)<br />[🔧](#tool-foreggs "Tools") | [<img src="https://avatars1.githubusercontent.com/u/755?v=4" width="100px;"/><br /><sub><b>Alex Coles</b></sub>](http://alexbcoles.com)<br />[📖](https://github.com/alexjoverm/typescript-library-starter/commits?author=myabc "Documentation") | [<img src="https://avatars2.githubusercontent.com/u/1093738?v=4" width="100px;"/><br /><sub><b>David Khourshid</b></sub>](https://github.com/davidkpiano)<br />[🔧](#tool-davidkpiano "Tools") | [<img src="https://avatars0.githubusercontent.com/u/7225802?v=4" width="100px;"/><br /><sub><b>Aarón García Hervás</b></sub>](https://aarongarciah.com)<br />[📖](https://github.com/alexjoverm/typescript-library-starter/commits?author=aarongarciah "Documentation") | [<img src="https://avatars2.githubusercontent.com/u/13683986?v=4" width="100px;"/><br /><sub><b>Jonathan Hart</b></sub>](https://www.stuajnht.co.uk)<br />[💻](https://github.com/alexjoverm/typescript-library-starter/commits?author=stuajnht "Code") |
-| [<img src="https://avatars0.githubusercontent.com/u/13509204?v=4" width="100px;"/><br /><sub><b>Sanjiv Lobo</b></sub>](https://github.com/Xndr7)<br />[📖](https://github.com/alexjoverm/typescript-library-starter/commits?author=Xndr7 "Documentation") | [<img src="https://avatars3.githubusercontent.com/u/7473800?v=4" width="100px;"/><br /><sub><b>Stefan Aleksovski</b></sub>](https://github.com/sAleksovski)<br />[💻](https://github.com/alexjoverm/typescript-library-starter/commits?author=sAleksovski "Code") | [<img src="https://avatars2.githubusercontent.com/u/8853426?v=4" width="100px;"/><br /><sub><b>dev.peerapong</b></sub>](https://github.com/devpeerapong)<br />[💻](https://github.com/alexjoverm/typescript-library-starter/commits?author=devpeerapong "Code") | [<img src="https://avatars0.githubusercontent.com/u/22260722?v=4" width="100px;"/><br /><sub><b>Aaron Groome</b></sub>](http://twitter.com/Racing5372)<br />[📖](https://github.com/alexjoverm/typescript-library-starter/commits?author=Racing5372 "Documentation") | [<img src="https://avatars3.githubusercontent.com/u/180963?v=4" width="100px;"/><br /><sub><b>Aaron Reisman</b></sub>](https://github.com/lifeiscontent)<br />[💻](https://github.com/alexjoverm/typescript-library-starter/commits?author=lifeiscontent "Code") | [<img src="https://avatars1.githubusercontent.com/u/32557482?v=4" width="100px;"/><br /><sub><b>kid-sk</b></sub>](https://github.com/kid-sk)<br />[📖](https://github.com/alexjoverm/typescript-library-starter/commits?author=kid-sk "Documentation") | [<img src="https://avatars0.githubusercontent.com/u/1503089?v=4" width="100px;"/><br /><sub><b>Andrea Gottardi</b></sub>](http://about.me/andreagot)<br />[📖](https://github.com/alexjoverm/typescript-library-starter/commits?author=AndreaGot "Documentation") |
-| [<img src="https://avatars3.githubusercontent.com/u/1375860?v=4" width="100px;"/><br /><sub><b>Yogendra Sharma</b></sub>](http://TechiesEyes.com)<br />[📖](https://github.com/alexjoverm/typescript-library-starter/commits?author=Yogendra0Sharma "Documentation") | [<img src="https://avatars3.githubusercontent.com/u/7407177?v=4" width="100px;"/><br /><sub><b>Rayan Salhab</b></sub>](http://linkedin.com/in/rayan-salhab/)<br />[💻](https://github.com/alexjoverm/typescript-library-starter/commits?author=cyphercodes "Code") |
-<!-- ALL-CONTRIBUTORS-LIST:END -->
+```javascript
+const options = { containScroll: true }
+const embla = EmblaCarousel(emblaNode, options)
+```
 
-This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind are welcome!
+<hr>
+</details>
+
+##### `draggable`
+
+<details>
+  <summary>
+    Allow drag interactions to scroll the carousel.
+  </summary>
+  <hr>
+  <div>
+    This option enables for scrolling the carousel with mouse and touch interactions. They're are enabled by default. Use this option to turn this feature off if you have good reasons to limit the accessibility of the carousel.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Type: </strong>
+      <code>boolean</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Allowed values: </strong>
+      <code>true</code>
+      <code>false</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Default value: </strong>
+      <code>true</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-draggable-gj9j0">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-draggable-gj9j0">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const options = { draggable: false }
+const embla = EmblaCarousel(emblaNode, options)
+```
+
+<hr>
+</details>
+
+##### `dragFree`
+
+<details>
+  <summary>
+    Enable momentum scrolling for drag interactions.
+  </summary>
+  <hr>
+  <div>
+    This option enables momentum scrolling, where the carousel continues to scroll for a while after finishing the scroll gesture by releasing the mouse/touch input. The speed and duration of the continued scrolling is proportional to how vigorous the scroll gesture was.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Type: </strong>
+      <code>boolean</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Allowed values: </strong>
+      <code>true</code>
+      <code>false</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Default value: </strong>
+      <code>false</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-dragfree-bfqjc">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-dragfree-bfqjc">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const options = { dragFree: true }
+const embla = EmblaCarousel(emblaNode, options)
+```
+
+<hr>
+</details>
+
+##### `loop`
+
+<details>
+  <summary>
+    Enable infinite looping for the carousel.
+  </summary>
+  <hr>
+  <div>
+    This option enables infinite looping. Slides need relative positioning in order for this to work. If the carousel only has one slide it will fall back to non looping behaviour. Note that <a href="#containscroll">
+      <code>containScroll</code>
+    </a> will be ignored if loop is enabled because the empty space is already filled with looping slides.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Type: </strong>
+      <code>boolean</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Allowed values: </strong>
+      <code>true</code>
+      <code>false</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Default value: </strong>
+      <code>false</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-loop-3x6id">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-loop-3x6id">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const options = { loop: true }
+const embla = EmblaCarousel(emblaNode, options)
+```
+
+```css
+.embla__slide {
+  position: relative; /* Needed for loop to work */
+}
+```
+
+<hr>
+</details>
+
+##### `speed`
+
+<details>
+  <summary>
+    Set scroll speed triggered by API navigation.
+  </summary>
+  <hr>
+  <div>
+    This option enables adjustment of the scroll speed when triggered by any of the API methods
+    <a href="#scrollnext">
+      <code>scrollNext</code>
+    </a>,
+    <a href="#scrollprev">
+      <code>scrollPrev</code>
+    </a> and
+    <a href="#scrollTo">
+      <code>scrollTo</code>
+    </a>. Use a higher number for faster scrolling. Drag interactions are not affected by this because the speed in these cases is determined by how vigorous the drag gesture was.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Type: </strong>
+      <code>number</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Allowed values: </strong>
+      <code>any</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Default value: </strong>
+      <code>10</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-speed-omw5i">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-speed-omw5i">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const options = { speed: 15 }
+const embla = EmblaCarousel(emblaNode, options)
+```
+
+<hr>
+</details>
+
+##### `startIndex`
+
+<details>
+  <summary>
+    Select index of the initial scroll snap.
+  </summary>
+  <hr>
+  <div>
+    This option allows the selection of the initial scroll snap position. First scroll snap index starts at <code>0</code>. If slides are mapped to groups with the
+    <a href="#slidestoscroll">
+      <code>slidesToScroll</code>
+    </a> option, some slides share the same scroll snap index. For example, if it's set to <code>2</code> slide one and two will be at index 0, while slide three and four will be at index 1 and so on.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Type: </strong>
+      <code>number</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Allowed values: </strong>
+      <code>any</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Default value: </strong>
+      <code>0</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-startindex-3ur20">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-startindex-3ur20">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const options = { startIndex: 3 }
+const embla = EmblaCarousel(emblaNode, options)
+```
+
+<hr>
+</details>
+
+##### `selectedClass`
+
+<details>
+  <summary>
+    Choose classname applied to the selected slides.
+  </summary>
+  <hr>
+  <div>
+    This option allows for a custom classname that will be applied to the selected slide. In most cases, only one slide will be selected at a time. However, when
+    <a href="#slidestoscroll">
+      <code>slidesToScroll</code>
+    </a> is more than <code>1</code> and/or
+    <a href="#containScroll">
+      <code>containScroll</code>
+    </a> is active, slides are mapped to groups. This means that the selected class will be added to multiple slides at a time.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Type: </strong>
+      <code>string</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Allowed values: </strong>
+      <code>any</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Default value: </strong>
+      <code>is-selected</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-selectedclass-ioysh">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-selectedclass-ioysh">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const options = { selectedClass: 'my-selected-class' }
+const embla = EmblaCarousel(emblaNode, options)
+```
+
+<hr>
+</details>
+
+##### `draggableClass`
+
+<details>
+  <summary>
+    Choose classname applied to the draggable container.
+  </summary>
+  <hr>
+  <div>
+    This option allows for a custom classname that will be applied to the carousel container if the carousel is
+    <a href="#draggable">
+      <code>draggable</code>
+    </a>. Use it to style the carousel accordingly. For example, you can show a grab cursor when a draggable carousel is hovered. If no value is provided it will fall back to <code>is-draggable</code>.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Type: </strong>
+      <code>string</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Allowed values: </strong>
+      <code>any</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Default value: </strong>
+      <code>is-draggable</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-draggableclass-j7r68">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-draggableclass-j7r68">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const options = { draggableClass: 'my-draggable-class' }
+const embla = EmblaCarousel(emblaNode, options)
+```
+
+```css
+.my-draggable-class {
+  cursor: grab;
+}
+```
+
+<hr>
+</details>
+
+##### `draggingClass`
+
+<details>
+  <summary>
+    Choose classname applied to the container when dragging.
+  </summary>
+  <hr>
+  <div>
+    This option allows for a custom classname that will be applied to the carousel container on mousedown or touchstart, if the carousel is
+    <a href="#draggable">
+      <code>draggable</code>
+    </a>. Use it to style the carousel accordingly. For example, you can show a grabbing cursor when a pointer is down. If no value is provided it will fall back to <code>is-dragging</code>.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Type: </strong>
+      <code>string</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Allowed values: </strong>
+      <code>any</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Default value: </strong>
+      <code>is-dragging</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-draggingclass-7u90r">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-draggingclass-7u90r">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const options = { draggingClass: 'my-dragging-class' }
+const embla = EmblaCarousel(emblaNode, options)
+```
+
+```css
+.my-dragging-class {
+  cursor: grabbing;
+}
+```
+
+<hr>
+</details>
+
+<br>
+
+## API
+
+Embla exposes API methods that can be used to control the carousel externally. Example usage:
+
+```javascript
+embla.scrollNext()
+embla.scrollTo(2)
+embla.changeOptions({ loop: true })
+embla.on('select', () => {
+  console.log(`Selected snap index is ${embla.selectedScrollSnap()}.`)
+})
+```
+
+##### `containerNode`
+
+<details>
+  <summary>
+    Get the container node that holds the slides.
+  </summary>
+  <hr>
+  <div>
+    This API method returns the container node that holds the slides. If a custom selector is used by utilising the <a href="#containerselector"><code>containerSelector</code></a> option this will return the matching element, otherwise it will return the first immediate child of the Embla node passed to EmblaCarousel.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Parameters: </strong>
+      <code>none</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Return Type: </strong>
+      <code>Node.ELEMENT_NODE</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-containernode-fq9xw">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-containernode-fq9xw">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const embla = EmblaCarousel(emblaNode, options)
+const emblaContainer = embla.containerNode()
+```
+
+<hr>
+</details>
+
+##### `slideNodes`
+
+<details>
+  <summary>
+    Get the slide nodes inside the container.
+  </summary>
+  <hr>
+  <div>
+    This API method returns an array with the slide nodes inside the carousel container. Use this handy method if you want to manipulate the slide nodes in some way. You can also grab the length of the array to get the slide count.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Parameters: </strong>
+      <code>none</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Return Type: </strong>
+      <code>Node.ELEMENT_NODE[]</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-slidenodes-dsesp">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-slidenodes-dsesp">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const embla = EmblaCarousel(emblaNode, options)
+const emblaSlides = embla.slideNodes()
+```
+
+<hr>
+</details>
+
+##### `scrollNext`
+
+<details>
+  <summary>
+    Scroll to the next snap point if possible.
+  </summary>
+  <hr>
+  <div>
+    This API method scrolls to the next snap point if possible. If the
+    <a href="#loop">
+      <code>loop</code>
+    </a> option is disabled and the carousel is on the last snap point, this method will do nothing. When loop is enabled, it will always be able to scroll to the next snap point. Useful for creating a scroll next button for example.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Parameters: </strong>
+      <code>none</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Return Type: </strong>
+      <code>undefined</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-scrollnext-scrollprev-hutpm">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-scrollnext-scrollprev-hutpm">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const embla = EmblaCarousel(emblaNode, options)
+const nextButton = emblaNode.querySelector('.embla__next')
+
+nextButton.addEventListener('click', embla.scrollNext, false)
+```
+
+```html
+<button class="embla__next" type="button">
+  Scroll Next
+</button>
+```
+
+<hr>
+</details>
+
+##### `scrollPrev`
+
+<details>
+  <summary>
+    Scroll to the previous snap point if possible.
+  </summary>
+  <hr>
+  <div>
+    This API method scrolls to the previous snap point if possible. If the
+    <a href="#loop">
+      <code>loop</code>
+    </a> option is disabled and the carousel is on the first snap point, this method will do nothing. When loop is enabled, it will always be able to scroll to the previous snap point. Useful for creating a scroll previous button for example.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Parameters: </strong>
+      <code>none</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Return Type: </strong>
+      <code>undefined</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-scrollnext-scrollprev-hutpm">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-scrollnext-scrollprev-hutpm">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const embla = EmblaCarousel(emblaNode, options)
+const prevButton = emblaNode.querySelector('.embla__prev')
+
+prevButton.addEventListener('click', embla.scrollPrev, false)
+```
+
+```html
+<button class="embla__prev" type="button">
+  Scroll Previous
+</button>
+```
+
+<hr>
+</details>
+
+##### `scrollTo`
+
+<details>
+  <summary>
+    Scroll to a snap point by its unique index.
+  </summary>
+  <hr>
+  <div>
+    This API method scrolls to the snap point that matches the given index. When the
+    <a href="#loop">
+      <code>loop</code>
+    </a> option is enabled, the carousel will seek the closest way to the target. Useful for creating dot navigation together with the
+    <a href="#scrollsnaplist">
+      <code>scrollSnapList</code>
+    </a> method.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Parameters: </strong>
+      <code>index: number</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Return Type: </strong>
+      <code>undefined</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-scrollto-3igby">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-scrollto-3igby">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const embla = EmblaCarousel(emblaNode, options)
+const rewindButton = emblaNode.querySelector('.embla__rewind')
+
+rewindButton.addEventListener('click', () => embla.scrollTo(0), false)
+```
+
+```html
+<button class="embla__rewind" type="button">
+  Rewind
+</button>
+```
+
+<hr>
+</details>
+
+##### `scrollToProgress`
+
+<details>
+  <summary>
+    Scroll the carousel by to given location.
+  </summary>
+  <hr>
+  <div>
+    This API method allows users to manipulate the current
+    <a href="#scrollprogress">
+      <code>scrollProgress</code>
+    </a> from 0 to 1 by directly setting it. For example, assuming that the carousel is positioned on the first snap point, <code>0.5</code> will scroll the carousel half of its scrollable length. Scroll to target is smooth. The second parameter allows for snapping the carousel to the closest snap point based on the target scroll progress (note that this will alter the desired progress a bit in order to snap it).
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Parameters: </strong>
+      <code>progress: number</code>
+      <code>snap: boolean</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Return Type: </strong>
+      <code>undefined</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="#">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="#">
+      <code>CodeSandbox (to be created)</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const embla = EmblaCarousel(emblaNode, options)
+embla.scrollToProgress(0.5)
+```
+
+<hr>
+</details>
+
+##### `scrollBy`
+
+<details>
+  <summary>
+    Scroll the carousel by the given amount.
+  </summary>
+  <hr>
+  <div>
+    This API method allows users to manipulate the current
+    <a href="#scrollprogress">
+      <code>scrollProgress</code>
+    </a> from 0 to 1 by either adding to it or subtracting from it. For example, assuming that the carousel is positioned on the first snap point, <code>0.5</code> will scroll the carousel half of its scrollable length. Scroll to target is smooth. The second parameter allows for snapping the carousel to the closest snap point based on the target scroll progress (note that this will alter the desired progress a bit in order to snap it).
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Parameters: </strong>
+      <code>progress: number</code>
+      <code>snap: boolean</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Return Type: </strong>
+      <code>undefined</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-scrollby-07cq5">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-scrollby-07cq5">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const embla = EmblaCarousel(emblaNode, options)
+embla.scrollBy(0.5)
+```
+
+<hr>
+</details>
+
+##### `canScrollPrev`
+
+<details>
+  <summary>
+    Check the possiblity to scroll to a previous snap point.
+  </summary>
+  <hr>
+  <div>
+    This API method returns a boolean that indicates if the carousel can scroll to a previous snap point from its current position. Note that if the
+    <a href="#loop">
+      <code>loop</code>
+    </a> option is enabled it will always return true. For example, it can be used to disable or enable a scroll to previous button.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Parameters: </strong>
+      <code>none</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Return Type: </strong>
+      <code>boolean</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-canscrollprev-canscrollnext-4wt5z">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-canscrollprev-canscrollnext-4wt5z">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const embla = EmblaCarousel(emblaNode, options)
+const prevButton = emblaNode.querySelector('.embla__prev')
+
+const togglePrevButtonEnabled = () => {
+  if (embla.canScrollPrev()) {
+    prevButton.removeAttribute('disabled')
+  } else {
+    prevButton.setAttribute('disabled', 'disabled')
+  }
+}
+
+embla.on('init', togglePrevButtonEnabled)
+embla.on('select', togglePrevButtonEnabled)
+```
+
+```html
+<button class="embla__prev" type="button">
+  Scroll Previous
+</button>
+```
+
+<hr>
+</details>
+
+##### `canScrollNext`
+
+<details>
+  <summary>
+    Check the possiblity to scroll to a next snap point.
+  </summary>
+  <hr>
+  <div>
+    This API method returns a boolean that indicates if the carousel can scroll to a next snap point from its current position. Note that if the
+    <a href="#loop">
+      <code>loop</code>
+    </a> option is enabled it will always return true. For example, it can be used to disable or enable a scroll to next button.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Parameters: </strong>
+      <code>none</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Return Type: </strong>
+      <code>boolean</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-canscrollprev-canscrollnext-4wt5z">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-canscrollprev-canscrollnext-4wt5z">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const embla = EmblaCarousel(emblaNode, options)
+const nextButton = emblaNode.querySelector('.embla__next')
+
+const toggleNextButtonEnabled = () => {
+  if (embla.canScrollNext()) {
+    nextButton.removeAttribute('disabled')
+  } else {
+    nextButton.setAttribute('disabled', 'disabled')
+  }
+}
+
+embla.on('init', toggleNextButtonEnabled)
+embla.on('select', toggleNextButtonEnabled)
+```
+
+```html
+<button class="embla__next" type="button">
+  Scroll Next
+</button>
+```
+
+<hr>
+</details>
+
+##### `selectedScrollSnap`
+
+<details>
+  <summary>
+    Get the index of the selected snap point.
+  </summary>
+  <hr>
+  <div>
+    This API method returns the index of the current selected snap point. If the
+    <a href="#slidestoscroll">
+      <code>slidesToScroll</code>
+    </a> option is more than <code>1</code> some slides will be grouped together and share the same index. For example, when it's set to <code>2</code>, every two slides will share the same index. In this case, slide <code>1</code> and <code>2</code> will share index <code>0</code> and slide <code>3</code> and <code>4</code> will share index <code>1</code> and so on.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Parameters: </strong>
+      <code>none</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Return Type: </strong>
+      <code>number</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-selectedscrollsnap-previousscrollsnap-04ux1">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-selectedscrollsnap-previousscrollsnap-04ux1">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const embla = EmblaCarousel(emblaNode, options)
+
+embla.on('select', () => {
+  const currentSnapIndex = embla.selectedScrollSnap()
+  alert(`Selected index has changed to ${currentSnapIndex}.`)
+})
+```
+
+<hr>
+</details>
+
+##### `previousScrollSnap`
+
+<details>
+  <summary>
+    Get the index of the previous snap point.
+  </summary>
+  <hr>
+  <div>
+    This API method returns the index of the previously selected snap point. If the
+    <a href="#slidestoscroll">
+      <code>slidesToScroll</code>
+    </a> option is more than <code>1</code> some slides will be grouped together and share the same index. For example, when it's set to <code>2</code>, every two slides will share the same index. In this case, slide <code>1</code> and <code>2</code> will share index <code>0</code> and slide <code>3</code> and <code>4</code> will share index <code>1</code> and so on.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Parameters: </strong>
+      <code>none</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Return Type: </strong>
+      <code>number</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-selectedscrollsnap-previousscrollsnap-04ux1">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-selectedscrollsnap-previousscrollsnap-04ux1">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const embla = EmblaCarousel(emblaNode, options)
+
+embla.on('select', () => {
+  const previousSnapIndex = embla.previousScrollSnap()
+  alert(`Previously selected index was ${previousSnapIndex}.`)
+})
+```
+
+<hr>
+</details>
+
+##### `scrollSnapList`
+
+<details>
+  <summary>
+    Get an array of all scroll snap points.
+  </summary>
+  <hr>
+  <div>
+    This API method returns an array containing all the carousel snap points. Each snap point comes with its <code>slideNodes</code> and <code>slideIndexes</code>. For example, it's useful for getting the snap point count or creating a dot navigation together with the
+    <a href="#scrollto">
+      <code>scrollTo</code>
+    </a> method.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Parameters: </strong>
+      <code>none</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Return Type: </strong>
+      <code>scrollSnap[]</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-scrollsnaplist-9bnsk">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-scrollsnaplist-9bnsk">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const embla = EmblaCarousel(emblaNode, options)
+const scrollSnaps = embla.scrollSnapList()
+
+const slidesInFirstScrollSnap = scrollSnaps[0].slideNodes
+const indexesInFirstScrollSnap = scrollSnaps[0].slideIndexes
+```
+
+<hr>
+</details>
+
+##### `scrollProgress`
+
+<details>
+  <summary>
+    Check how far the carousel has scrolled.
+  </summary>
+  <hr>
+  <div>
+    This API method returns how far the carousel has scrolled from <code>0</code> at the beginning to <code>1</code> at the end. For example, it's useful for creating a progress bar together with the
+    <a href="#scroll">
+      <code>scroll</code>
+    </a> event. When invoking <code>scrollProgress</code> without the target parameter, the carousel returns the scroll progress of its current location. However, if you want to grab the target scroll progress the target parameter has to be <code>true</code>.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Parameters: </strong>
+      <code>target: boolean</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Return Type: </strong>
+      <code>number</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-scrollprogress-cghc5">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-scrollprogress-cghc5">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const embla = EmblaCarousel(emblaNode, options)
+
+embla.on('scroll', () => {
+  const scrollPercentage = embla.scrollProgress() * 100
+  console.log(`The carousel has scrolled ${scrollPercentage}%.`)
+})
+```
+
+<hr>
+</details>
+
+##### `clickAllowed`
+
+<details>
+  <summary>
+    Check if interaction was a static click.
+  </summary>
+  <hr>
+  <div>
+    This API method returns if the user interaction was a click. For mouse events Embla will return <code>true</code> if a drag interaction in any direction didn't occur before the mouse was released. Touch events also require the carousel to not be in a scrolling state in order to accept the click.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Parameters: </strong>
+      <code>none</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Return Type: </strong>
+      <code>boolean</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-clickallowed-woxr1">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-clickallowed-woxr1">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const embla = EmblaCarousel(emblaNode, options)
+const emblaSlides = embla.slideNodes()
+
+const alertClickedSlide = index => {
+  return () => {
+    if (embla.clickAllowed()) {
+      alert(`Slide with index ${index} was clicked.`)
+    }
+  }
+}
+
+emblaSlides.forEach((slide, index) => {
+  const alertClickedSlideIndex = alertClickedSlide(index)
+  slide.addEventListener('click', alertClickedSlideIndex, false)
+})
+```
+
+<hr>
+</details>
+
+##### `changeOptions`
+
+<details>
+  <summary>
+    Change the carousel options after initialization.
+  </summary>
+  <hr>
+  <div>
+    This API method allows for changing the carousel options after it has been initialized. Useful for changing the carousel setup depending on different screen sizes. Note that this will stop the carousel if it's in motion when change options is called, and initialize the carousel from scratch.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Parameters: </strong>
+      <code>
+        options:
+        <a href="#options">
+          EmblaOptions
+        </a>
+      </code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Return Type: </strong>
+      <code>undefined</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-changeoptions-mybvm">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-changeoptions-mybvm">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const embla = EmblaCarousel(emblaNode, options)
+embla.changeOptions({ loop: true })
+```
+
+<hr>
+</details>
+
+##### `destroy`
+
+<details>
+  <summary>
+    Destroy a carousel instance permanently.
+  </summary>
+  <hr>
+  <div>
+    This API method is a one way operation and destroys a carousel instance. All applied styles to DOM nodes and any event listeners will be removed. Remember to remove any external event listeners if you've used the API to create prev/next and/or dot navigation for the carousel.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Parameters: </strong>
+      <code>none</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Return Type: </strong>
+      <code>undefined</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-destroy-t4ly1">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-destroy-t4ly1">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const embla = EmblaCarousel(emblaNode, options)
+embla.destroy()
+```
+
+<hr>
+</details>
+
+##### `on`
+
+<details>
+  <summary>
+    Subscribe to an Embla specific event with a callback.
+  </summary>
+  <hr>
+  <div>
+    This API method enables the use of event listeners by attaching them to any of the Embla specific
+    <a href="#events">
+      <code>events</code>
+    </a>. For example, it's useful for changing styles whenever a new target snap point has been selected or when the carousel is scrolling. Use it together with the
+    <a href="#off">
+      <code>off</code>
+    </a> method to remove added event listeners without destroying the carousel. However, when the
+    <a href="#destroy">
+      <code>destroy</code>
+    </a> method is invoked, any added event listeners will be destroyed.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Parameters: </strong>
+      <code>event: <a href="#events">EmblaEvent</a></code>
+      <code>callback: function</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Return Type: </strong>
+      <code>undefined</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-on-off-pjgmk">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-on-off-pjgmk">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const embla = EmblaCarousel(emblaNode, options)
+
+const onInitCallback = () => {
+  console.log('The carousel is ready to rock.')
+}
+
+embla.on('init', onInitCallback)
+```
+
+<hr>
+</details>
+
+##### `off`
+
+<details>
+  <summary>
+    Unsubscribe from an Embla specific event.
+  </summary>
+  <hr>
+  <div>
+    This API method enables the removal of event listeners attached to Embla specific
+    <a href="#events">
+      <code>events</code>
+    </a>. It's useful for removing added event listeners without destroying the carousel. Note that you don't have to remove event listeners added using the
+    <a href="#on">
+      <code>on</code>
+    </a> method when invoking
+    <a href="#destroy">
+      <code>destroy</code>
+    </a>, because it will destroy all added event listeners for you.
+  </div>
+  <br>
+  <div>
+    <sup>
+      <strong>Parameters: </strong>
+      <code>event: <a href="#events">EmblaEvent</a></code>
+      <code>callback: function</code>
+    </sup>
+  </div>
+  <div>
+    <sup>
+      <strong>Return Type: </strong>
+      <code>undefined</code>
+    </sup>
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-on-off-pjgmk">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-on-off-pjgmk">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const embla = EmblaCarousel(emblaNode, options)
+
+const logIndex = () => {
+  const selectedIndex = embla.selectedScrollSnap()
+  console.log(`Selected index has changed to ${selectedIndex}.`)
+}
+
+const addLogIndexListener = () => embla.on('select', logIndex)
+const removeLogIndexListener = () => embla.off('select', logIndex)
+```
+
+<hr>
+</details>
+
+<br>
+
+## Events
+
+Embla exposes custom events that can be hooked on to. Example usage:
+
+```javascript
+embla.on('select', () => {
+  console.log(`Selected snap index is ${embla.selectedScrollSnap()}.`)
+})
+embla.on('scroll', () => {
+  console.log(`Scroll progress is ${embla.scrollProgress()}.`)
+})
+```
+
+##### `init`
+
+<details>
+  <summary>
+    Fire a callback when the carousel mounts.
+  </summary>
+  <hr>
+  <div>
+    This event fires the given callback when the carousel has initialised and its
+    <a href="#api">
+      <code>API</code>
+    </a> is ready to use. Note that the init event only fires once upon the first initialisation and won't trigger when invoking
+    <a href="#changeOptions">
+      <code>changeOptions</code>
+    </a> or similar.
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-events-z4ses">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-events-z4ses">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const embla = EmblaCarousel(emblaNode, options)
+
+const onInitCallback = () => {
+  console.log('The carousel is ready to rock.')
+})
+
+embla.on('init', onInitCallback)
+```
+
+<hr>
+</details>
+
+##### `destroy`
+
+<details>
+  <summary>
+    Fire a callback when the carousel is destroyed.
+  </summary>
+  <hr>
+  <div>
+    Under construction...
+  </div>
+  <br>
+  <div>
+    <a href="#">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="#">
+      <code>CodeSandbox (upcoming)</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const embla = EmblaCarousel(emblaNode, options)
+```
+
+<hr>
+</details>
+
+##### `select`
+
+<details>
+  <summary>
+    Fire a callback when selected scroll snap changes.
+  </summary>
+  <hr>
+  <div>
+    Under construction...
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-events-z4ses">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-events-z4ses">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const embla = EmblaCarousel(emblaNode, options)
+```
+
+<hr>
+</details>
+
+##### `scroll`
+
+<details>
+  <summary>
+    Fire a callback when the carousel is scrolling.
+  </summary>
+  <hr>
+  <div>
+    Under construction...
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-scrollprogress-cghc5">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-scrollprogress-cghc5">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const embla = EmblaCarousel(emblaNode, options)
+
+embla.on('scroll', () => {
+  const scrollPercentage = embla.scrollProgress() * 100
+  console.log(`The carousel has scrolled ${scrollPercentage}%.`)
+})
+```
+
+<hr>
+</details>
+
+##### `settle`
+
+<details>
+  <summary>
+    Fire a callback when the carousel has settled.
+  </summary>
+  <hr>
+  <div>
+    Under construction...
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-scrollprogress-cghc5">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-scrollprogress-cghc5">
+      <code>CodeSandbox (upcoming)</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const embla = EmblaCarousel(emblaNode, options)
+
+embla.on('settle', () => {
+  console.log(`The carousel has stopped scrolling.`)
+})
+```
+
+<hr>
+</details>
+
+##### `resize`
+
+<details>
+  <summary>
+    Fire a callback when the carousel has resized.
+  </summary>
+  <hr>
+  <div>
+    Under construction...
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-events-z4ses">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-events-z4ses">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const embla = EmblaCarousel(emblaNode, options)
+```
+
+<hr>
+</details>
+
+##### `dragStart`
+
+<details>
+  <summary>
+    Under construction...
+  </summary>
+  <hr>
+  <div>
+    Under construction...
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-events-z4ses">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-events-z4ses">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const embla = EmblaCarousel(emblaNode, options)
+```
+
+<hr>
+</details>
+
+##### `dragEnd`
+
+<details>
+  <summary>
+    Under construction...
+  </summary>
+  <hr>
+  <div>
+    Under construction...
+  </div>
+  <br>
+  <div>
+    <a href="https://codesandbox.io/s/embla-carousel-events-z4ses">
+      <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" />
+    </a>
+    &nbsp;
+    <a href="https://codesandbox.io/s/embla-carousel-events-z4ses">
+      <code>CodeSandbox</code>
+    </a>
+  </div>
+  <br>
+  <p>
+    <strong>Usage</strong>
+  </p>
+
+```javascript
+const embla = EmblaCarousel(emblaNode, options)
+```
+
+<hr>
+</details>
+
+<br>
+
+## CodeSandbox
+
+<p>Get started instantly with one of the CodeSandboxes below.</p>
+
+<p>
+  <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" /> &nbsp;
+  <a href="https://codesandbox.io/s/embla-carousel-basic-setup-oyols">
+    <code>Basic Setup</code>
+  </a>
+  - With Previous, Next & Dot buttons.
+</p>
+
+<p>
+  <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/codesandbox-logo.svg" height="23" align="top" /> &nbsp;
+  <a href="https://codesandbox.io/s/embla-carousel-autoplay-4yhr2">
+    <code>Autoplay</code>
+  </a>
+  - Example of how to setup Autoplay.
+</p>
+
+<br>
+
+## Browser Support
+
+<p>
+  Embla has been tested in the browsers listed below. Special thanks goes to
+  <a href="https://www.browserstack.com">BrowserStack</a>.
+</p>
+
+<p>
+  <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/ie-logo.svg" height="23" align="top" /> &nbsp; <strong>IE</strong> - 11
+</p>
+
+<p>
+  <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/edge-logo.svg" height="23" align="top" /> &nbsp; <strong>Edge</strong> - Latest 2 versions
+</p>
+
+<p>
+  <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/chrome-logo.svg" height="23" align="top" /> &nbsp; <strong>Chrome</strong> - Latest 2 versions
+</p>
+
+<p>
+  <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/firefox-logo.svg" height="23" align="top" /> &nbsp; <strong>Firefox</strong> - Latest 2 versions
+</p>
+
+<p>
+  <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/safari-logo.svg" height="23" align="top" /> &nbsp; <strong>Safari</strong> - Latest 2 versions
+</p>
+
+<br>
+
+<div align="center">
+  <strong>
+    <h2 align="center">Contributors</h2>
+  </strong>
+  <p align="center">
+    Thank you to all contributors for making Embla Carousel awesome! <a href="https://github.com/davidcetinkaya/embla-carousel/blob/master/CONTRIBUTING.md">Contributions</a> are welcome.
+  </p>
+<p align="center">
+    <a href="https://github.com/nikrowell"><img src="https://avatars2.githubusercontent.com/u/260039?s=122&v=4" title="nikrowell" width="66" height="66" style="max-width:100%;"></a>
+    <a href="https://github.com/michaelrambeau"><img src="https://avatars0.githubusercontent.com/u/5546996?s=122&v=4" title="michaelrambeau" width="66" height="66" style="max-width:100%;"></a>
+    <a href="https://github.com/ehellman"><img src="https://avatars3.githubusercontent.com/u/586152?s=122&v=4" title="ehellman" width="66" height="66" style="max-width:100%;"></a>
+    <a href="https://github.com/afilp"><img src="https://avatars0.githubusercontent.com/u/7850073?s=122&v=4" title="afilp" width="66" height="66" style="max-width:100%;"></a>
+    <a href="https://github.com/mrksmts"><img src="https://avatars1.githubusercontent.com/u/437794?s=122&v=4" title="mrksmts" width="66" height="66" style="max-width:100%;"></a>
+    <a href="https://github.com/SLMNBJ"><img src="https://avatars2.githubusercontent.com/u/30017004?s=122&v=4" title="SLMNBJ" width="66" height="66" style="max-width:100%;"></a>
+    <a href="https://github.com/readeral"><img src="https://avatars0.githubusercontent.com/u/15904136?s=122&v=4" title="readeral" width="66" height="66" style="max-width:100%;"></a>
+    <a href="https://github.com/gunnarx2"><img src="https://avatars2.githubusercontent.com/u/10469652?s=122&v=4" title="gunnarx2" width="66" height="66" style="max-width:100%;"></a>
+    <a href="https://github.com/xiel"><img src="https://avatars0.githubusercontent.com/u/615522?s=122&v=4" title="xiel" width="66" height="66" style="max-width:100%;"></a>
+    <a href="https://github.com/niubsta"><img src="https://avatars0.githubusercontent.com/u/270320?s=122&v=4" title="niubsta" width="66" height="66" style="max-width:100%;"></a>
+    <a href="https://github.com/allen-garvey"><img src="https://avatars1.githubusercontent.com/u/9314727?s=400&v=4" title="allen-garvey" width="66" height="66" style="max-width:100%;"></a>
+  </p>
+</div>
+
+<br>
+
+<h2 align="center">Open Source</h2>
+
+<p align="center">
+  <sup>Copyright © 2019-present, David Cetinkaya.</sup><br>
+  Embla is <a href="https://github.com/davidcetinkaya/embla-carousel/blob/master/LICENSE">MIT licensed</a> 💖
+</p>
+
+<p align="center">
+  <strong>· · ·</strong>
+</p>
+
+<p align="center">
+  <a href="https://www.browserstack.com">
+    <img src="https://rawgit.com/davidcetinkaya/embla-carousel/master/docs/assets/browserstack-logo.svg" height="60" />
+    </a>
+</p>
