@@ -2,13 +2,13 @@ import {
   Hsl,
   Rgb,
   Hex,
-  LibraryInputForColor,
+  InputForColor,
   PrivatePropertyColorState,
-  PublicPropertyPaletteState,
-  PublicPropertyGradientOptions,
-  PublicPropertyPaletteOptions,
-  PublicPropertyGradientState,
-  LibraryInputForPalette,
+  PropPaletteState,
+  PropGradientOptions,
+  PropPaletteOptions,
+  PropGradientState,
+  InputForPalette,
 } from '../shared/@types'
 
 import { Utils } from '../shared/utils'
@@ -16,28 +16,24 @@ import { Converter } from './converter'
 import { Color } from './color'
 import { Palette } from './palette'
 
-type ColorInput = { from: LibraryInputForColor }
+type ColorInput = { from: InputForColor }
 
 type PaletteInput = {
-  from: LibraryInputForPalette
-  options: PublicPropertyPaletteOptions
+  from: InputForPalette
+  options: PropPaletteOptions
 }
 
 type GradientInput = {
   from: Palette
-  options: PublicPropertyGradientOptions
+  options: PropGradientOptions
 }
 
 export type Input = {
   normalizeColor: (
     colorInAnyFormat: ColorInput,
   ) => PrivatePropertyColorState
-  normalizePalette: (
-    baseColor: PaletteInput,
-  ) => PublicPropertyPaletteState
-  normalizeGradient: (
-    basePalette: GradientInput,
-  ) => PublicPropertyGradientState
+  normalizePalette: (baseColor: PaletteInput) => PropPaletteState
+  normalizeGradient: (basePalette: GradientInput) => PropGradientState
 }
 
 export function Input(): Input {
@@ -198,19 +194,19 @@ export function Input(): Input {
   function normalizePalette({
     from: paletteInAnyFormat,
     options: { range },
-  }: PaletteInput): PublicPropertyPaletteState {
+  }: PaletteInput): PropPaletteState {
     const useRange =
       typeof (paletteInAnyFormat as Color).random === 'function'
     const useCustomRange =
-      typeof (paletteInAnyFormat as PublicPropertyPaletteState)
-        .map === 'function'
+      typeof (paletteInAnyFormat as PropPaletteState).map ===
+      'function'
 
     let baseColor: Color
 
     if (useRange) {
       baseColor = paletteInAnyFormat as Color
     } else if (useCustomRange) {
-      return paletteInAnyFormat as PublicPropertyPaletteState
+      return paletteInAnyFormat as PropPaletteState
     } else {
       throw new Error(
         'The Palette param must be a Color or Array of Colors',
@@ -261,7 +257,7 @@ export function Input(): Input {
   function normalizeGradient({
     from: basePalette,
     options: { count },
-  }: GradientInput): PublicPropertyGradientState {
+  }: GradientInput): PropGradientState {
     const initialColor = basePalette.get()[0].get('rgb').object as Rgb
     const finalColor = basePalette.get()[1].get('rgb').object as Rgb
 
@@ -269,9 +265,9 @@ export function Input(): Input {
     const difG = finalColor.g - initialColor.g
     const difB = finalColor.b - initialColor.b
 
-    const incrementR = utils.oneDecimalPlace(difR / (count - 1))
-    const incrementG = utils.oneDecimalPlace(difG / (count - 1))
-    const incrementB = utils.oneDecimalPlace(difB / (count - 1))
+    const incrementR = difR / (count - 1)
+    const incrementG = difG / (count - 1)
+    const incrementB = difB / (count - 1)
 
     const colors: Color[] = []
 

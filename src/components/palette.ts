@@ -1,49 +1,49 @@
 import {
-  PublicPropertyPaletteState,
-  PublicPropertyPaletteOptions,
-  LibraryInputForPalette,
+  PropPaletteState,
+  PropPaletteOptions,
+  InputForPalette,
 } from '../shared/@types'
 
 import { Input } from './input'
 import { Color } from './color'
 
-const defaultOptions: PublicPropertyPaletteOptions = { range: 40 }
+const defaultOptions: PropPaletteOptions = { range: 40 }
 
 export type Palette = {
-  get: () => PublicPropertyPaletteState
+  get: () => PropPaletteState
   set: (
-    userInput: LibraryInputForPalette,
-    options?: PublicPropertyPaletteOptions,
-  ) => PublicPropertyPaletteState
-  random: () => PublicPropertyPaletteState
+    userInput: InputForPalette,
+    options?: PropPaletteOptions,
+  ) => PropPaletteState
+  random: () => PropPaletteState
 }
 
 export function Palette(
-  userInput: LibraryInputForPalette = Color(),
-  options: PublicPropertyPaletteOptions = defaultOptions,
+  userInput: InputForPalette = Color(),
+  options: PropPaletteOptions = defaultOptions,
 ): Palette {
   const input = Input()
 
-  let state: PublicPropertyPaletteState = input.normalizePalette({
+  let state: PropPaletteState = input.normalizePalette({
     from: userInput,
     options,
   })
 
-  function get(): PublicPropertyPaletteState {
+  function get(): PropPaletteState {
     return state
   }
 
   function set(
-    newUserInput: LibraryInputForPalette,
-    newOptions: PublicPropertyPaletteOptions = defaultOptions,
-  ): PublicPropertyPaletteState {
+    newUserInput: InputForPalette,
+    newOptions: PropPaletteOptions = defaultOptions,
+  ): PropPaletteState {
     return (state = input.normalizePalette({
       from: newUserInput,
       options: newOptions,
     }))
   }
 
-  function random(): PublicPropertyPaletteState {
+  function random(): PropPaletteState {
     const color = Color()
 
     color.random()

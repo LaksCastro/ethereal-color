@@ -2,7 +2,6 @@
 // No context Types
 
 import { Color } from '../../components/color'
-import { Palette } from '../../components/palette'
 
 // ====================================================================================
 // No context Types
@@ -29,11 +28,11 @@ export type Hsl = {
   l: number
 }
 
-export type PublicPropertyColorFormat = 'rgb' | 'hex' | 'hsl'
+export type PropColorFormat = 'rgb' | 'hex' | 'hsl'
 
-export type PublicPropertyColorType = Rgb | Hex | Hsl
+export type PropColorType = Rgb | Hex | Hsl
 
-export type LibraryInputForColor = PublicPropertyColorType | string
+export type InputForColor = PropColorType | string
 
 export type PrivatePropertyColorState = {
   object: {
@@ -48,8 +47,8 @@ export type PrivatePropertyColorState = {
   }
 }
 
-export type PublicPropertyColorState = {
-  object: PublicPropertyColorType
+export type PropColorState = {
+  object: PropColorType
   string: string
 }
 
@@ -57,13 +56,11 @@ export type PublicPropertyColorState = {
 // "Palette" Component
 // ====================================================================================
 
-export type PublicPropertyPaletteState = [Color, Color]
+export type PropPaletteState = [Color, Color]
 
-export type LibraryInputForPalette =
-  | Color
-  | PublicPropertyPaletteState
+export type InputForPalette = Color | PropPaletteState
 
-export type PublicPropertyPaletteOptions = {
+export type PropPaletteOptions = {
   range: number
 }
 
@@ -71,10 +68,8 @@ export type PublicPropertyPaletteOptions = {
 // "Gradient" Component
 // ====================================================================================
 
-export type PublicPropertyGradientOptions = {
+export type PropGradientOptions = {
   count: number
 }
 
-export type LibraryInputForGradient = Palette
-
-export type PublicPropertyGradientState = Color[]
+export type PropGradientState = Color[]
