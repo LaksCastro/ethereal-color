@@ -4,7 +4,7 @@
   "description": "Fast, simple, easy library to work with colors: single, palette's, gradient and more. Written in Typescript",
   "scripts": {
     "dev": "parcel public/index.html --out-dir development -p 3000",
-    "build": "parcel build public/index.html --out-dir docs --public-url /ethereal-color"
+    "build": "parcel build public/index.html --out-dir ../docs --public-url /ethereal-color"
   },
   "repository": {
     "type": "git",
