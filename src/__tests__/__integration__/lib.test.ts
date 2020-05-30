@@ -1,4 +1,4 @@
-import EtherealColor from '../../main'
+import EtherealColor from '../../index'
 import { Utils } from '../../shared/utils'
 import { Rgb } from '../../shared/@types'
 

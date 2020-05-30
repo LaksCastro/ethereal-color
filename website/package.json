@@ -1,5 +1,5 @@
 {
-  "name": "ethereal-color",
+  "name": "ethereal-color-website",
   "version": "1.0.0",
   "description": "Fast, simple, easy library to work with colors: single, palette's, gradient and more. Written in Typescript",
   "scripts": {

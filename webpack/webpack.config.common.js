@@ -29,7 +29,7 @@ const CONFIG = {
     extensions: ['.ts', '.tsx', '.js', '.json'],
   },
   optimization: {
-    minimize: true,
+    minimize: false,
   },
   plugins: [],
 }
