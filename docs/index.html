@@ -7,47 +7,91 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Embla - Extensible bare bones carousels for the web, written in TypeScript." />
-  <meta name="author" content="David Cetinkaya - https://github.com/davidcetinkaya" />
-  <meta name="msapplication-TileColor" content="#da532c" />
-  <meta name="theme-color" content="#ffffff" />
+  <meta name="description"
+    content="Fast, simple, easy library to work with colors: single, palette's, gradient and more, written in TypeScript." />
+  <meta name="author" content="Laks Castro - https://github.com/LaksCastro" />
+  <meta name="msapplication-TileColor" content="#CB00CB" />
+  <meta name="theme-color" content="#CB00CB" />
   <title>
-    Embla - Extensible bare bones carousels for the web
+    Ethereal - Working with color has never been so simple and easy
   </title>
 
   <!-- FAVICONS -->
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/AppIcon98x98@2x.png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/AppIcon24x24@2x.png" />
+  <link rel="icon" type="image/png" sizes="80x80" href="assets/AppIcon40x40@2x.png" />
   <link rel="manifest" href="assets/site.webmanifest" />
-  <link rel="mask-icon" href="assets/safari-pinned-tab.svg" color="#1bcacd" />
 
   <!-- OPEN GRAPH -->
-  <meta property="og:site_name" content="Embla - Extensible bare bones carousels for the web" />
-  <meta property="og:title" content="Embla - Extensible bare bones carousels for the web" />
-  <meta property="og:url" content="https://davidcetinkaya.github.io/embla-carousel" />
+  <meta property="og:site_name" content="Ethereal - Create and work with colors simply and easily" />
+  <meta property="og:title" content="Ethereal - Create and work with colors simply and easily" />
+  <meta property="og:url" content="https://lakscastro.github.io/ethereal-color.js" />
   <meta property="og:type" content="website" />
   <meta property="og:description"
-    content="Embla is an extensible bare bones carousel library for the web, written in TypeScript." />
-  <meta property="og:image" content="https://davidcetinkaya.github.io/embla-carousel/assets/facebook.png" />
+    content="Fast, simple, easy library to work with colors: single, palette's, gradient and more. Written in Typescript" />
+  <meta property="og:image" content="https://lakscastro.github.io/ethereal-color.js/assets/Icon.png" />
 
   <!-- TWITTER CARD -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@david_cetinkaya" />
-  <meta name="twitter:creator" content="@david_cetinkaya" />
-  <meta name="twitter:title" content="Embla - Extensible bare bones carousels for the web" />
+  <meta name="twitter:site" content="@LaksCastro" />
+  <meta name="twitter:creator" content="@LaksCastro" />
+  <meta name="twitter:title" content="Ethereal - Working with color has never been so simple and easy" />
   <meta name="twitter:description"
-    content="Embla is an extensible bare bones carousel library for the web, written in TypeScript." />
-  <meta name="twitter:image" content="https://davidcetinkaya.github.io/embla-carousel/assets/twitter.png" />
+    content="Fast, simple, easy library to work with colors: single, palette's, gradient and more. Written in Typescript" />
+  <meta name="twitter:image" content="https://lakscastro.github.io.js/ethereal-color/assets/Icon.png" />
 
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="assets/style.css" />
+  <script src="./index.js"></script>
 </head>
 
 <body>
-  <script type="module">
-    import Color from "../lib/index.js"
-    console.log(Color)
-  </script>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header__container">
+      <div class="header__item-container">
+        <div class="header__item">
+          <a target="_blank" rel="noopener noreferrer external" href="https://github.com/LaksCastro/ethereal-color.js"
+            class="header__item-logo">
+            <img src="./assets/Icon-83.5@2x.png" alt="Ethereal Color Logo" width="35">
+            <h1>Ethereal</h1>
+          </a>
+        </div>
+      </div>
+      <div class="header__item-container">
+        <div class="header__item">
+          <a href="#demo" class="header__item-link">Demo</a>
+        </div>
+        <div class="header__item">
+          <a target="_blank" rel="noopener noreferrer external" href="https://github.com/LaksCastro/ethereal-color.js"
+            class="header__item-link">Github</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__container">
+      <h1 class="hero__title">Ethereal</h1>
+    </div>
+  </section>
+
+  </header>
 </body>
+
+<script type="text/javascript">
+  const { Color, Palette, Gradient } = EtherealColor
+
+  // const gradient = Gradient(Palette([Color("rgb(120,0,255)"), Color("rgb(255,0,120)")]), { count: 20 })
+
+  // gradient.toColorArray().forEach((color) => {
+  //   const str = color.get("rgb").string
+  //   document.body.innerHTML += `<div style="background-color: ${str}; flex: 1;"></div>`
+  // }
+  // )
+
+</script>
 
 </html>

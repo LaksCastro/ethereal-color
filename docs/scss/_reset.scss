@@ -10,6 +10,9 @@ html {
 *::before,
 *::after {
   box-sizing: inherit;
+  outline: none;
+  letter-spacing: 2px;
+  text-decoration: none;
 }
 
 html,
@@ -59,9 +62,7 @@ ul {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Helvetica, Arial, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family: 'Kanit', sans-serif;
 }
 
 hr {

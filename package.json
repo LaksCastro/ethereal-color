@@ -1,6 +1,6 @@
 {
   "name": "ethereal-color",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "author": "Laks Castro",
   "private": false,
   "description": "Fast, simple, easy library to work with colors: single, palette's, gradient and more",
@@ -8,7 +8,16 @@
     "color",
     "generator",
     "gradient",
-    "palette"
+    "palette",
+    "converter",
+    "rgb",
+    "library",
+    "lib",
+    "typescript",
+    "nodejs",
+    "js",
+    "ts",
+    "javascript"
   ],
   "license": "MIT",
   "repository": {
@@ -18,7 +27,7 @@
   "bugs": {
     "url": "https://github.com/LaksCastro/ethereal-color.js/issues"
   },
-  "homepage": "https://github.com/LaksCastro/ethereal-color.js#readme",
+  "homepage": "https://lakscastro.github.io/ethereal-color.js",
   "files": [
     "lib/**/*"
   ],

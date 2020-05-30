@@ -20,7 +20,7 @@ const CONFIG = {
     rules: [
       {
         exclude: /node_modules/,
-        test: /\.tsx?$/,
+        test: /\.ts?$/,
         loaders: [
           { loader: 'babel-loader' },
           { loader: 'awesome-typescript-loader' },
@@ -32,7 +32,7 @@ const CONFIG = {
     extensions: ['.ts', '.tsx', '.js', '.json'],
   },
   optimization: {
-    minimize: false,
+    minimize: true,
   },
   plugins: [],
 }
