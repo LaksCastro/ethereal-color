@@ -4,6 +4,9 @@
   "author": "Laks Castro",
   "private": false,
   "description": "Fast, simple, easy library to work with colors: single, palette's, gradient and more",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "keywords": [
     "color",
     "generator",
