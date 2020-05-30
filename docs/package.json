@@ -1,15 +1,14 @@
 {
-  "name": "vanilla-parcel-boilerplate",
+  "name": "ethereal-color",
   "version": "1.0.0",
-  "description": "Simple workflow starter for building vanilla JS apps",
-  "main": "index.js",
+  "description": "Fast, simple, easy library to work with colors: single, palette's, gradient and more. Written in Typescript",
   "scripts": {
     "dev": "parcel public/index.html --out-dir development -p 3000",
     "build": "parcel build public/index.html --out-dir dist --public-url /ethereal-color"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bradtraversy/vanilla-parcel-boilerplate.git"
+    "url": "https://github.com/LaksCastro/ethereal-color.git"
   },
   "author": "LaksCastro",
   "license": "MIT",
