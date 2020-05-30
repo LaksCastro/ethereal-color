@@ -1,0 +1,17 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  color: lighten($color-london, 5%);
+  line-height: 1.5;
+  font-size: 1.6rem;
+  overflow-x: hidden;
+}
+
+body {
+  a:focus,
+  button:focus {
+    outline: 0;
+  }
+}

@@ -1,0 +1,26 @@
+.intro {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 2rem;
+  padding-top: 4rem;
+}
+
+.intro__container {
+  width: 100%;
+  max-width: 650px;
+}
+
+.intro__text-container {
+  color: rgb(50, 50, 50);
+}
+
+.intro__text {
+  margin-bottom: 1cm;
+  a {
+    color: $color-brand;
+    &:hover {
+      border-bottom: 1px solid $color-brand;
+    }
+  }
+}

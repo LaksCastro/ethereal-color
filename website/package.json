@@ -1,0 +1,26 @@
+{
+  "name": "ethereal-color",
+  "version": "1.0.0",
+  "description": "Fast, simple, easy library to work with colors: single, palette's, gradient and more. Written in Typescript",
+  "scripts": {
+    "dev": "parcel public/index.html --out-dir development -p 3000",
+    "build": "parcel build public/index.html --out-dir docs --public-url /ethereal-color"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LaksCastro/ethereal-color.git"
+  },
+  "author": "LaksCastro",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LaksCastro/ethereal-color/issues"
+  },
+  "homepage": "https://lakscastro.github.io/ethereal-color",
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "@babel/runtime-corejs2": "^7.9.2",
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.26.3"
+  }
+}
