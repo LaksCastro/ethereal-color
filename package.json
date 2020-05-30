@@ -4,9 +4,6 @@
   "author": "Laks Castro",
   "private": false,
   "description": "Fast, simple, easy library to work with colors: single, palette's, gradient and more",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "keywords": [
     "color",
     "generator",
@@ -39,15 +36,9 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "test": "jest --config jestconfig.json",
-    "start": "npm-run-all --parallel docs:watch lib:watch",
-    "lib:watch": "webpack-dev-server --config ./webpack/webpack.config.development",
+    "start": "npm-run-all --parallel",
     "lib:build": "webpack -p --config ./webpack/webpack.config.production",
-    "docs:autoprefixer": "postcss -u autoprefixer -r docs/assets/style.css --nomap",
-    "docs:watch": "node-sass --watch --recursive docs/scss/style.scss -o docs/assets/",
-    "docs:build-css": "node-sass --output-style compressed docs/scss/style.scss -o docs/assets/",
-    "docs:build-js": "webpack -p --config ./webpack/webpack.config.docs",
-    "docs:build": "npm-run-all docs:build-js docs:build-css",
-    "build": "npm-run-all lib:build docs:build",
+    "build": "npm-run-all lib:build",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build",

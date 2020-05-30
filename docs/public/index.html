@@ -10,8 +10,8 @@
   <meta name="description"
     content="Fast, simple, easy library to work with colors: single, palette's, gradient and more, written in TypeScript." />
   <meta name="author" content="Laks Castro - https://github.com/LaksCastro" />
-  <meta name="msapplication-TileColor" content="#CB00CB" />
-  <meta name="theme-color" content="#CB00CB" />
+  <meta name="msapplication-TileColor" content="#202329" />
+  <meta name="theme-color" content="#202329" />
   <title>
     Ethereal - Working with color has never been so simple and easy
   </title>
@@ -42,7 +42,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="assets/style.css" />
-  <script src="./index.js"></script>
+  <script src="../src/index.js"></script>
 </head>
 
 <body>
@@ -87,7 +87,8 @@
       <div class="hero__buttons-container">
         <a href="#demo" class="hero__button hero__button--primary">See Demo</a>
         <a target="_blank" rel="noopener noreferrer external" href="https://github.com/LaksCastro/ethereal-color"
-          class="hero__button hero__button">View on Github</a>
+          class="hero__button hero__button">View on
+          Github</a>
       </div>
     </div>
   </section>
@@ -97,13 +98,16 @@
     <div class="intro__container">
       <p class="intro__text-container">
       <p class="intro__text">
-        Ethereal Color is a library without dependencies to generate colors, create palettes and gradients. Everything
-        here works with simple functions and is 100% free and open source, in addition to supporting intellisense via
+        Ethereal Color is a library without dependencies to generate colors, create palettes and gradients.
+        Everything
+        here works with simple functions and is 100% free and open source, in addition to supporting
+        intellisense via
         Typescript.
       </p>
       <p class="intro__text">
         For <b>documentation</b> and a full list of available features, visit the <a target="_blank"
-          rel="noopener noreferrer external" href="https://github.com/LaksCastro/ethereal-color">Github page.</a>
+          rel="noopener noreferrer external" href="https://github.com/LaksCastro/ethereal-color">Github
+          page.</a>
       </p>
       </p>
     </div>
@@ -112,38 +116,6 @@
   </header>
 </body>
 
-<script type="text/javascript">
-  const { Color, Palette, Gradient } = EtherealColor
-
-  // =========================================
-  // DINAMIC LOGO
-  // =========================================
-
-  function getRandomColor() {
-    const color = Color()
-    color.random()
-    return color
-  }
-
-  function changeDinamicLogoGradient(useRandom = false) {
-    const logoColors = [...document.querySelectorAll(".hero__dinamic-logo div")]
-
-    const colorOne = useRandom ? getRandomColor() : Color("rgb(255,0,120)")
-    const colorTwo = useRandom ? getRandomColor() : Color("rgb(120,0,255)")
-
-    const palette = Palette([colorOne, colorTwo])
-
-    const gradient = Gradient(palette)
-
-    const newColors = gradient.toStringArray("rgb")
-
-    logoColors.forEach((child, i) => child.style.backgroundColor = newColors[i])
-  }
-
-  changeDinamicLogoGradient()
-  document.querySelector(".hero__dinamic-logo").onclick = () => changeDinamicLogoGradient(true)
-
-
-</script>
+<script src="../src/main.js" type="text/javascript"></script>
 
 </html>

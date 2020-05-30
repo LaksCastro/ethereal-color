@@ -2,14 +2,11 @@ const path = require('path')
 
 const SRC_PATH = path.resolve(__dirname, '../src')
 const LIB_PATH = path.resolve(__dirname, '../lib')
-const DOCS_PATH = path.resolve(__dirname, '../docs')
-const SCSS_PATH = path.resolve(DOCS_PATH, 'scss')
-const JS_PATH = DOCS_PATH
 
 const CONFIG = {
   entry: [path.resolve(SRC_PATH, 'index.ts')],
   output: {
-    path: DOCS_PATH,
+    path: LIB_PATH,
     filename: 'index.js',
     library: 'EtherealColor',
     libraryTarget: 'umd',
@@ -39,9 +36,6 @@ const CONFIG = {
 
 module.exports = {
   CONFIG,
-  DOCS_PATH,
   SRC_PATH,
   LIB_PATH,
-  SCSS_PATH,
-  JS_PATH,
 }
