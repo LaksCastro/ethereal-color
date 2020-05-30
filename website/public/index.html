@@ -42,9 +42,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../src/scss/style.scss" />
-
-  <script type="text/javascript" src="https://unpkg.com/ethereal-color@0.0.2/lib/index.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/ripplet.js@0.2.0/umd/ripplet-declarative.min.js"></script>
 </head>
 
 <body>
@@ -84,12 +82,12 @@
         <div></div>
       </div>
       <h1 class="hero__title">ETHEREAL</h1>
-      <p class="hero__description">Fast, simple, easy library to work with colors: single, palette's, gradient and
+      <p class="hero__description">Fast, simple, easy library to work with colors: single, palettes, gradients and
         more. Written in Typescript.</p>
       <div class="hero__buttons-container">
-        <a href="#demo" class="hero__button hero__button--primary">See Demo</a>
+        <a href="#demo" class="hero__button hero__button--primary" data-ripplet>See Demo</a>
         <a target="_blank" rel="noopener noreferrer external" href="https://github.com/LaksCastro/ethereal-color"
-          class="hero__button hero__button">View on
+          class="hero__button hero__button" data-ripplet>View on
           Github</a>
       </div>
     </div>
@@ -115,9 +113,21 @@
     </div>
   </main>
 
+  <!-- DEMO #1 -->
+  <section id="demo" class="demo__wrapper">
+    <div class="demo__container">
+      <header class="demo__header">
+        <h1 class="demo__title">Simple randomic gradients!</h1>
+        <button class="demo__button demo__button-demo-1" data-ripplet>Surprise me, human</button>
+      </header>
+    </div>
+    <div class="demo__content">
+      <div class="demo-1"></div>
+    </div>
+  </section>
+
   </header>
 </body>
-
-<script src="../src/index.ts" type="text/javascript"></script>
+<script src="../src/index.js" type="text/javascript"></script>
 
 </html>

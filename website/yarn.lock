@@ -2219,6 +2219,11 @@ etag@~1.8.1:
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
 
+ethereal-color@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/ethereal-color/-/ethereal-color-0.0.2.tgz#4884113d440c962d48ac69ef3ee9d97d6aab1ed3"
+  integrity sha512-6jrnPTA6X2y5ZnRRkE6cbFsDqVPj3oB9Li4emWcgDt9FI1XcOsz5gY/soHkSLuxLaauk1j5SmwYQaUY6Hlx5sw==
+
 events@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/events/-/events-3.1.0.tgz#84279af1b34cb75aa88bf5ff291f6d0bd9b31a59"
@@ -4513,6 +4518,11 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
   dependencies:
     hash-base "^3.0.0"
     inherits "^2.0.1"
+
+ripplet.js@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/ripplet.js/-/ripplet.js-0.2.0.tgz#47e6832cb6c7dc0771e2e0b4c9e4cf931b85e8fa"
+  integrity sha512-nLBDbyPLFBekzDPvX7zxWiAcj0T6hIWU/L7PAti1DWX7OJ2QohgSrS+WUgJYaNUCO2/Gh8YiwsX1ETkwM8CNig==
 
 safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, safe-buffer@^5.1.2, safe-buffer@^5.2.0, safe-buffer@~5.2.0:
   version "5.2.1"

@@ -4,6 +4,7 @@ html {
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  counter-reset: demo-title;
 }
 
 *,
@@ -13,6 +14,18 @@ html {
   outline: none;
   letter-spacing: 2px;
   text-decoration: none;
+  scroll-behavior: smooth;
+  border: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  -webkit-user-drag: none;
 }
 
 html,
