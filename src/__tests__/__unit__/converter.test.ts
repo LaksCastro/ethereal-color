@@ -1,9 +1,6 @@
-import { Rgb, Hex, Hsl } from '../../shared/@types'
+import { Rgb, Hex, Hsl } from '../../components/color'
 import { Converter } from '../../components/converter'
-import { Utils } from '../../shared/utils'
 import data, { SampleColor } from '../shared/color-swatch'
-
-const utils = Utils()
 
 describe('Converter Factory', () => {
   describe('stupid errors', () => {

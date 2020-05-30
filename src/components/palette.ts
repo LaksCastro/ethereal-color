@@ -1,13 +1,15 @@
-import {
-  PropPaletteState,
-  PropPaletteOptions,
-  InputForPalette,
-} from '../shared/@types'
-
 import { Input } from './input'
 import { Color } from './color'
 
 const defaultOptions: PropPaletteOptions = { range: 40 }
+
+export type PropPaletteState = [Color, Color]
+
+export type InputForPalette = Color | PropPaletteState
+
+export type PropPaletteOptions = {
+  range: number
+}
 
 export type Palette = {
   get: () => PropPaletteState

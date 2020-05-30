@@ -1,8 +1,7 @@
 import { Color } from '../../components/color'
 import { Palette } from '../../components/palette'
 import { Gradient } from '../../components/gradient'
-
-import { Utils } from '../../shared/utils'
+import { Utils } from '../../components/utils'
 
 const utils = Utils()
 

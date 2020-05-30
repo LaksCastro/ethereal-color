@@ -1,10 +1,10 @@
-import { Range } from '../@types'
-
 type GetValueInRangeConfig = {
   value: number
   range: Range
   increment: number
 }
+
+export type Range = [number, number]
 
 export type Utils = {
   interpolate: (

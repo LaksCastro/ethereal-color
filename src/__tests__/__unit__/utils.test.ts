@@ -1,4 +1,4 @@
-import { Utils } from '../../shared/utils'
+import { Utils } from '../../components/utils'
 
 describe('Utils Factory', () => {
   describe('stupid errors', () => {

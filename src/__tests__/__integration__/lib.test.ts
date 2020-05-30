@@ -1,6 +1,6 @@
 import EtherealColor from '../../index'
-import { Utils } from '../../shared/utils'
-import { Rgb } from '../../shared/@types'
+import { Utils } from '../../components/utils'
+import { Rgb } from '../../components/color'
 
 const { Color, Palette, Gradient, Converter } = EtherealColor
 

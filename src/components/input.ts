@@ -4,14 +4,17 @@ import {
   Hex,
   InputForColor,
   PrivatePropertyColorState,
-  PropPaletteState,
-  PropGradientOptions,
-  PropPaletteOptions,
-  PropGradientState,
-  InputForPalette,
-} from '../shared/@types'
+} from './color'
 
-import { Utils } from '../shared/utils'
+import {
+  PropPaletteState,
+  PropPaletteOptions,
+  InputForPalette,
+} from './palette'
+
+import { PropGradientOptions, PropGradientState } from './gradient'
+
+import { Utils } from './utils'
 import { Converter } from './converter'
 import { Color } from './color'
 import { Palette } from './palette'

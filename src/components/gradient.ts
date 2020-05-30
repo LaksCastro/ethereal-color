@@ -2,13 +2,15 @@ import { Palette } from './palette'
 import { Color } from './color'
 import { Input } from './input'
 
-import {
-  PropGradientOptions,
-  PropGradientState,
-  PropColorFormat,
-} from '../shared/@types'
+import { PropColorFormat } from './color'
 
 const defaultOptions: PropGradientOptions = { count: 5 }
+
+export type PropGradientOptions = {
+  count: number
+}
+
+export type PropGradientState = Color[]
 
 export type Gradient = {
   toStringArray: (format: PropColorFormat) => string[]

@@ -1,6 +1,5 @@
-import { Color } from '../../components/color'
+import { Color, Rgb } from '../../components/color'
 import { Palette } from '../../components/palette'
-import { Rgb } from '../../shared/@types'
 
 describe('Color Factory', () => {
   describe('stupid errors', () => {

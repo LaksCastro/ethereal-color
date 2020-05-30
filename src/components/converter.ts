@@ -1,6 +1,5 @@
-import { Hsl, Rgb, Hex } from '../shared/@types'
-
-import { Utils } from '../shared/utils'
+import { Hsl, Rgb, Hex } from '../components/color'
+import { Utils } from '../components/utils'
 
 type ConverterFunction<I, O> = (color: I) => O
 
