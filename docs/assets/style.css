@@ -195,12 +195,12 @@ body button:focus {
 
 .hero {
   width: 100%;
-  min-height: 450px;
   background: #282c34;
   position: relative;
   display: flex;
   justify-content: center;
-  padding-top: 8rem; }
+  padding-top: 8rem;
+  margin-bottom: 5%; }
   .hero::after {
     content: '';
     position: absolute;
@@ -214,8 +214,59 @@ body button:focus {
 
 .hero__container {
   width: 100%;
-  max-width: 850px; }
+  max-width: 650px;
+  padding: 1rem 2rem; }
 
 .hero__title {
   color: #9500fe;
-  font-size: 3vw; }
+  font-size: 2.5em;
+  font-weight: bolder; }
+
+.hero__description {
+  color: gainsboro;
+  padding: 1rem 0; }
+
+.hero__buttons-container {
+  display: flex;
+  padding: 1rem 0;
+  width: 100%;
+  margin-top: 2rem; }
+
+.hero__button {
+  border-radius: 4px;
+  padding: 1.5rem 3rem;
+  color: #9500fe;
+  font-size: 1em;
+  transition: all 0.2s ease-in-out; }
+  .hero__button:hover {
+    color: #fff;
+    background: rgba(149, 0, 254, 0.1); }
+
+.hero__button--primary {
+  background: #9500fe;
+  color: #282c34;
+  margin-right: 10px; }
+  .hero__button--primary:hover {
+    background: #bf65ff;
+    color: #282c34; }
+
+.intro {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 2rem;
+  padding-top: 4rem; }
+
+.intro__container {
+  width: 100%;
+  max-width: 650px; }
+
+.intro__text-container {
+  color: #323232; }
+
+.intro__text {
+  margin-bottom: 1cm; }
+  .intro__text a {
+    color: #9500fe; }
+    .intro__text a:hover {
+      border-bottom: 1px solid #9500fe; }
