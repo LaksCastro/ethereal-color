@@ -74,6 +74,13 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero__container">
+      <div class="hero__dinamic-logo">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
       <h1 class="hero__title">ETHEREAL</h1>
       <p class="hero__description">Fast, simple, easy library to work with colors: single, palette's, gradient and
         more. Written in Typescript.</p>
@@ -90,8 +97,9 @@
     <div class="intro__container">
       <p class="intro__text-container">
       <p class="intro__text">
-        Ethereal Color is a library to generate colors, create palette's, and generate gradients. All
-        works with simples functions and it is 100% free and open-source.
+        Ethereal Color is a library without dependencies to generate colors, create palettes and gradients. Everything
+        here works with simple functions and is 100% free and open source, in addition to supporting intellisense via
+        Typescript.
       </p>
       <p class="intro__text">
         For <b>documentation</b> and a full list of available features, visit the <a target="_blank"
@@ -107,13 +115,34 @@
 <script type="text/javascript">
   const { Color, Palette, Gradient } = EtherealColor
 
-  // const gradient = Gradient(Palette([Color("rgb(120,0,255)"), Color("rgb(255,0,120)")]), { count: 20 })
+  // =========================================
+  // DINAMIC LOGO
+  // =========================================
 
-  // gradient.toColorArray().forEach((color) => {
-  //   const str = color.get("rgb").string
-  //   document.body.innerHTML += `<div style="background-color: ${str}; flex: 1;"></div>`
-  // }
-  // )
+  function getRandomColor() {
+    const color = Color()
+    color.random()
+    return color
+  }
+
+  function changeDinamicLogoGradient(useRandom = false) {
+    const logoColors = [...document.querySelectorAll(".hero__dinamic-logo div")]
+
+    const colorOne = useRandom ? getRandomColor() : Color("rgb(255,0,120)")
+    const colorTwo = useRandom ? getRandomColor() : Color("rgb(120,0,255)")
+
+    const palette = Palette([colorOne, colorTwo])
+
+    const gradient = Gradient(palette)
+
+    const newColors = gradient.toStringArray("rgb")
+
+    logoColors.forEach((child, i) => child.style.backgroundColor = newColors[i])
+  }
+
+  changeDinamicLogoGradient()
+  document.querySelector(".hero__dinamic-logo").onclick = () => changeDinamicLogoGradient(true)
+
 
 </script>
 
