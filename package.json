@@ -25,12 +25,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LaksCastro/ethereal-color.js"
+    "url": "https://github.com/LaksCastro/ethereal-color.git"
   },
   "bugs": {
-    "url": "https://github.com/LaksCastro/ethereal-color.js/issues"
+    "url": "https://github.com/LaksCastro/ethereal-color/issues"
   },
-  "homepage": "https://lakscastro.github.io/ethereal-color.js",
+  "homepage": "https://lakscastro.github.io/ethereal-color",
   "files": [
     "lib/**/*"
   ],

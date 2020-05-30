@@ -1,6 +1,8 @@
-import Color, { Palette, Gradient, Converter } from '../..'
+import EtherealColor from '../../main'
 import { Utils } from '../../shared/utils'
 import { Rgb } from '../../shared/@types'
+
+const { Color, Palette, Gradient, Converter } = EtherealColor
 
 const utils = Utils()
 
