@@ -179,9 +179,9 @@ const color = Color();
 color.random(palette);
 
 color.get("rgb").string; // rgb(X, Y, Z)
-// X >= 120 && X <= 130
-// Y >= 100 && Y <= 180
-// Z >= 160 && Z <= 200
+// 120 <= X <= 130
+// 100 <= Y <= 180
+// 160 <= Z <= 200
 ```
 
 <br>
