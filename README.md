@@ -117,7 +117,7 @@ For all examples below, RGB will be used, but you can also use the Hexadecimal o
 ## Color Function
 ### 1. Create a new Color object  
 ```js
-// Way 1 - Using defaut color: #fff
+// Way 1 - Using defaut color: rgb(255, 255, 255)
 const color = Color();
 
 console.log(color.get("rgb").string); // rgb(255, 255, 255)
