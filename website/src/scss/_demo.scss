@@ -5,7 +5,7 @@
   flex-direction: column;
 
   padding: 3rem 0;
-  margin-bottom: 8rem;
+  margin-bottom: 2rem;
 }
 
 .demo__container {
@@ -13,18 +13,16 @@
   max-width: 750px;
 }
 
-.demo__header {
-  display: flex;
+.demo__explanation {
   width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
+  padding: 1rem 3rem;
 }
 
 .demo__title {
   color: $color-brand;
   font-weight: bolder;
   font-size: 1.4em;
+  padding: 3rem 0;
   &::before {
     counter-increment: demo-title;
     content: counter(demo-title) '. ';
@@ -38,6 +36,7 @@
   background: $color-brand;
   color: #f5f5f5;
   transition: all 0.2s ease-in-out;
+  max-width: 300px;
 
   &:hover {
     background: lighten($color-brand, 10%);

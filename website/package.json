@@ -24,7 +24,7 @@
     "sass": "^1.26.3"
   },
   "dependencies": {
-    "ethereal-color": "^0.0.2",
+    "ethereal-color": "^0.0.4",
     "ripplet.js": "^0.2.0"
   }
 }

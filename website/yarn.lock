@@ -2219,10 +2219,10 @@ etag@~1.8.1:
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
 
-ethereal-color@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/ethereal-color/-/ethereal-color-0.0.2.tgz#4884113d440c962d48ac69ef3ee9d97d6aab1ed3"
-  integrity sha512-6jrnPTA6X2y5ZnRRkE6cbFsDqVPj3oB9Li4emWcgDt9FI1XcOsz5gY/soHkSLuxLaauk1j5SmwYQaUY6Hlx5sw==
+ethereal-color@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/ethereal-color/-/ethereal-color-0.0.4.tgz#8224e305f05bb2809a2b8381df939c54b45c185f"
+  integrity sha512-JsASnWVIxJASmlHXGh/ykF7GZ8LyBLrt0sPgQaC+QIT9+Ab7GBsq5q51Zlr+Pr+nmlQj0K31W04jBXv/biE7/Q==
 
 events@^3.0.0:
   version "3.1.0"

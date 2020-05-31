@@ -33,6 +33,9 @@ export default function Hero() {
   }
 
   changeDinamicLogoGradient()
+  document.querySelector('.header__item-logo').onclick = () =>
+    changeDinamicLogoGradient(true)
+
   document.querySelector('.hero__dinamic-logo').onclick = () =>
     changeDinamicLogoGradient(true)
 }
