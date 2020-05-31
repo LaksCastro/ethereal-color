@@ -78,6 +78,8 @@ import EtherealColor from "ethereal-color";
 // CommomJS
 const EtherealColor = require("ethereal-color");
 
+const { Color, Palette, Gradient, Converter } = EtherealColor;
+
 // ...Now it's up to you, enjoy this API
 ```
 
