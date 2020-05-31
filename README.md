@@ -134,9 +134,9 @@ color.get("rgb").string; // rgb(255, 255, 255)
 ### 1. Color API Type (ColorAPI)
 ```ts
 {
-  get: (format: 'rgb' | 'hex' | 'hsl') => { string: ColorString, object: ColorType  },
-  set: (newColor: ColorObject | ColorString) => void,
-  random: (palette?: PaletteAPI) => void
+  get: (format: 'rgb' | 'hex' | 'hsl') => { string: string, object: Rgb | Hex | Hsl  };
+  set: (newColor: ColorObject | ColorString) => void;
+  random: (palette?: PaletteAPI) => void;
 }
 ```
 
@@ -215,12 +215,12 @@ const palette = Palette(Color("rgb(255, 255, 255)"));
 // End: rgb(255, 255, 255)
 ```
 
-### 1. Palette API Type
+### 1. Palette API Type (PaletteAPI)
 ```ts
 {
-  get: () => [ColorAPI, ColorAPI],
-  set: (color: ColorAPI | [ColorAPI, ColorAPI], options?: { range: number }) => void
-  random: () => void
+  get: () => [ColorAPI, ColorAPI];
+  set: (color: ColorAPI | [ColorAPI, ColorAPI], options?: { range: number }) => void;
+  random: () => void;
 }
 ```
 
@@ -283,7 +283,6 @@ palette.random();
 
 ## Gradient Function
 
-
 ### Default return
 If you don't send anything to the Gradient function, it will return a gradient from a white palette
 ```js
@@ -297,7 +296,18 @@ const gradient = Gradient(Palette());
 // [rgb(215, 215, 215), ..., rgb(255, 255, 255)]
 ```
 
-### Create a Gradient object
+### 1. Gradient Object Type (GradientAPI)
+```ts
+{
+  toStringArray: (format: 'rgb' | 'hex' | 'hsl') => string[];
+  toObjectArray: (format: 'rgb' | 'hex' | 'hsl') => Rgb[] | Hex[] | Hsl[];
+  toColorArray: () => ColorAPI[];
+  set: (palette: PaletteAPI) => void;
+  random: () => void;
+}
+```
+
+### 2. Create a Gradient object
 A Gradient object is used to represent a sequence of colors, which sequence consists of a starting color and an ending color
 ```js
 // 1. Init start and end colors:
