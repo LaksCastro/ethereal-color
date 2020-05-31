@@ -131,6 +131,15 @@ const color = Color();
 color.get("rgb").string; // rgb(255, 255, 255)
 ```
 
+### 1. Color Object Type
+```js
+{
+  get: (format: 'rgb' | 'hex' | 'hsl') => { string: ColorString, object: ColorObject },
+  set: (newColor: ColorObject | ColorString) => void,
+  random: (palette?: PaletteObject) => void
+}
+```
+
 ### 1. Create a Color object  
 A Color object is used to represent a separate color, a single color within that infinity of colors that exist
 ```js
