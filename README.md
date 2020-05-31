@@ -94,7 +94,7 @@ const EtherealColor = require("ethereal-color");
 </body>
 
 <script>
-    const { Color, Converter, Gradient, Palette } = EtherealColor
+    const { Color, Converter, Gradient, Palette } = EtherealColor;
   
     // ...Now it's up to you, enjoy this API
 </script>
