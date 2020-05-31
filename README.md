@@ -131,15 +131,9 @@ console.log(color.get("rgb").string); // rgb(255, 0, 0)
 console.log(color.get("rgb").object); // { r: 255, g: 0, b: 0 }
 
 
-// Way 3 - Using custom color object: Red, for example
-const color = Color("rgb(255, 0, 0)");
+// Way 3 - Using custom color object: Blue, for example
+const color = Color({ r: 0, g: 0, b: 255 });
 
-console.log(color.get("rgb").string); // rgb(255, 0, 0)
-console.log(color.get("rgb").object); // { r: 255, g: 0, b: 0 }
-
-
-
-console.log(color.get("rgb")); // rgb(255, 255, 255)
-console.log(color.get("hex")); // #ffffff
-console.log(color.get("hsl")); // hsl(0, 0%, 100%)
+console.log(color.get("rgb").string); // rgb(0, 0, 255)
+console.log(color.get("rgb").object); // { r: 0, g: 0, b: 255 }
 ```
