@@ -106,75 +106,33 @@ const EtherealColor = require("ethereal-color");
 </html>
 ```
 
-Enjoy [clicking here](https://lakscastro.github.io/lofi-player/)
+## Important
+For all examples below, RGB will be used, but you can also use the Hexadecimal or HSL color format  
+| Color Format | Color Key |
+|--------------|-----------|
+| RGB          | rgb       |
+| Hexadecimal  | hex       |
+| HSL          | hsl       |
 
-# What is it?
+## Color Function
+### 1. Create a new Color object  
+```js
+// Way - 1 - Using defaut color: #fff
+const color = Color();
 
-Its a simple and minimalist Player with Lofi music style, builded with HTML, CSS and JavaScript, using Youtube Data API v3 for fetch Playlist videos count, Youtube Iframe API to render music as background. Parcel is a choosed Module Bundler because he is very simple, perfect for this project.
+console.log(color.get("rgb")); // rgb(255, 255, 255)
+console.log(color.get("hex")); // #ffffff
+console.log(color.get("hsl")); // hsl(0, 0%, 100%)
 
-# How to clone project
 
-> _Note, dont forget to create a .env file with your Google API Credentials
-> in [Google Developers Console](https://console.developers.google.com/apis/dashboard) and active the Youtube Data API v3 in API Libraries._
+// Way - 2 - Using custom color: Red, for example
+const color = Color("rgb(255, 0, 0)");
+// or...
+const color = Color("#ff0000");
+// or
 
-- To clone this repo
 
+console.log(color.get("rgb")); // rgb(255, 255, 255)
+console.log(color.get("hex")); // #ffffff
+console.log(color.get("hsl")); // hsl(0, 0%, 100%)
 ```
-git clone https://github.com/LaksCastro/lofi-player.git
-```
-
-- To change path
-
-```
-cd lofi-player
-```
-
-- To install dependencies
-
-```
-yarn install
-npm install
-```
-
-- To run development server
-
-```
-yarn dev
-npm run dev
-```
-
-- To create static files
-
-```
-yarn pre-build
-npm run pre-build
-```
-
-- To deploy to github pages
-
-```
-yarn build
-npm run build
-```
-
-# 8BitDash
-
-All these amazing gifs and images that are used as a background are from [this project](http://www.8bitdash.com/) and [its repository](https://github.com/andumorie/8bitdash.github.io/) and they have a store in which sell [these gifs](https://8bitdash.threadless.com/).
-
-# Creators
-
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/mannoeu">
-        <img src="https://avatars0.githubusercontent.com/u/53797821?s=460&v=4" width="100px;" alt=""/><br />
-       <sub><b>Emmanuel</b></sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/LaksCastro">
-        <img src="https://avatars2.githubusercontent.com/u/51419598?s=400&v=4" width="100px;" alt=""/><br />
-       <sub><b>Laks Castro</b></sub>
-      </a>
-    </td>
- </table>
