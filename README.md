@@ -115,7 +115,9 @@ For all examples below, RGB will be used, but you can also use the Hexadecimal o
 | HSL          | hsl       | `{ h: number, s: number, l: number }` | hsl(H, S%, L%) |
 
 ## Color Function
-### 1. Create a new Color object  
+A Color object is used to represent a separate color, a single color within that infinity of colors that exist
+
+### 1. Create a Color object  
 ```js
 // Way 1 - Using defaut color: rgb(255, 255, 255)
 const color = Color();
@@ -139,7 +141,9 @@ console.log(color.get("rgb").object); // { r: 0, g: 0, b: 255 }
 ```
 
 ## Palette Function
-### 1. Create a new Palette object  
+A Palette object is used to reference a range of colors, that is, where a certain range begins, and where it ends
+
+### 1. Create a Palette object  
 ```js
 // Way 1 - Using defaut range: 40
 const color = Color("rgb(150, 150, 150)");
