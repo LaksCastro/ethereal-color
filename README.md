@@ -135,7 +135,7 @@ color.get("rgb").string; // rgb(255, 255, 255)
 ```ts
 {
   get: (format: 'rgb' | 'hex' | 'hsl') => { string: string, object: Rgb | Hex | Hsl  };
-  set: (newColor: ColorObject | ColorString) => void;
+  set: (newColor: Rgb | Hex | Hsl | ColorString) => void;
   random: (palette?: PaletteAPI) => void;
 }
 ```
