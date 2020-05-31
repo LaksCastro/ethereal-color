@@ -427,9 +427,14 @@ color.get("rgb"); // rgb(255, 255, 255)
 color.get("hsl"); // hsl(0, 0%, 100%)
 ```
 
+<br>
+<br>
+<br>
+<br>
+
 <h3 align="center">
   Open Source
 </h3>
 <p align="center">Thanks for all, @davidcetinkaya</p>
-<p align="center">Copyright © 2020-present, Laks Castro.</p>
+<p align="center"><sub>Copyright © 2020-present, Laks Castro.</sub></p>
 <p align="center">Ethereal Color is MIT licensed 💖</p>
