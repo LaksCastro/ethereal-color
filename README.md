@@ -126,7 +126,6 @@ defaultColor.get("rgb").string; // rgb(255, 255, 255)
 
 ### 1. Create a Color object  
 A Color object is used to represent a separate color, a single color within that infinity of colors that exist
-
 ```js
 // Way 1 - Using default color: rgb(255, 255, 255)
 const color = Color();
@@ -183,22 +182,25 @@ color.get("rgb").string; // rgb(X, Y, Z)
 // Z >= 160 && Z <= 200
 ```
 
-
-### Some frequently asked questions
-
-#### 1. Can I work using different color formats?
-Yes, it is totally possible, although there may be some minor incompatibilities, for example: every hex color can be represented in the RGB, but not every RGB color can be represented in the hex format
-```js
-const color = Color("rgb(150, 140, 160)");
-
-color.get("hex").string; // #968ca0
-color.get("hsl").string; // hsl(270, 10%, 59%)
-```
-
 <br>
 
 ## Palette Function
 A Palette object is used to reference a range of colors, that is, where a certain range begins, and where it ends
+
+### Default return
+If you try to create a palette without sending anything as a parameter, a palette will be created using white as the base
+```js
+// this...
+const palette = Palette();
+
+// ...is the same thing as this:
+const palette = Palette(Color("rgb(255, 255, 255)"));
+// ...then:
+// Start: rgb(215, 215, 215)
+// End: rgb(255, 255, 255)
+```
+
+
 
 ### 1. Create a Palette object  
 ```js
@@ -227,8 +229,23 @@ const palette = Palette([startColor, endColor]);
 // End: rgb(230, 230, 230)
 ```
 
+<br>
 
+## Some frequently asked questions
 
+### 1. Can I work using different color formats?
+Yes, it is totally possible, although there may be some minor incompatibilities, for example: every hex color can be represented in the RGB, but not every RGB color can be represented in the hex format
+```js
+const color = Color("rgb(150, 140, 160)");
+
+color.get("hex").string; // #968ca0
+color.get("hsl").string; // hsl(270, 10%, 59%)
+
+color.set("#ffffff");
+
+color.get("rgb"); // rgb(255, 255, 255)
+color.get("hsl"); // hsl(0, 0%, 100%)
+```
 
 
 
