@@ -224,7 +224,7 @@ const palette = Palette(Color("rgb(255, 255, 255)"));
 }
 ```
 
-### 1. Create a Palette object  
+### 2. Create a Palette object  
 A Palette object is used to reference a range of colors, that is, where a certain range begins, and where it ends
 ```js
 // Way 1 - Using defaut range: 40
@@ -252,7 +252,7 @@ const palette = Palette([startColor, endColor]);
 // End: rgb(230, 230, 230)
 ```
 
-### 2. Change the value of the palette at run time
+### 3. Change the value of the palette at run time
 ```js
 const color = Color("rgb(120, 150, 150)");
 
@@ -267,7 +267,7 @@ palette.set(otherColor, { range: 10 });
 // End: rgb(30, 50, 20)
 ```
 
-### 3. Generate a random palette
+### 4. Generate a random palette
 ```js
 const palette = Palette(); // default color: white - rgb(255, 255, 255)
 // Start: rgb(215, 215, 215)
