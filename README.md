@@ -28,6 +28,9 @@
   <a href="#table-of-contents">Table of contents</a>
 </p>
 
+<br>
+<br>
+
 <p>
   <img src="./website/assets/pt-br.png" alt="Portuguese" height="16">
   <a href="https://github.com/LaksCastro/ethereal-color/blob/master/README-ptbr.md">Ler em português</a>
