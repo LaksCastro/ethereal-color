@@ -137,3 +137,28 @@ const color = Color({ r: 0, g: 0, b: 255 });
 console.log(color.get("rgb").string); // rgb(0, 0, 255)
 console.log(color.get("rgb").object); // { r: 0, g: 0, b: 255 }
 ```
+
+## Palette Function
+### 1. Create a new Palette object  
+```js
+// Way 1 - Using defaut range: 40
+const color = Color("rgb(150, 150, 150)"); // can be any color
+
+const palette = Palette(color, { range: 40 /* 40 is default */ });
+// Start: rgb (110, 110, 110)
+// End: rgb (190, 190, 190)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
