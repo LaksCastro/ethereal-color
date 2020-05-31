@@ -23,12 +23,6 @@
 </h4>
 
 <br>
-
-<p align="center">
-  <a href="#table-of-contents">Table of contents</a>
-</p>
-
-<br>
 <br>
 
 <p>
