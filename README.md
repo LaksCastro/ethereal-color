@@ -45,10 +45,15 @@ yarn add ethereal-color
 <script type="text/javascript" src="https://unpkg.com/ethereal-color@0.0.5/lib/index.js"></script>
 ```
 
+## Quickstart
 
-Quickstart
-```
+### 1. Package
+```js
+// ES6
+import EtherealColor from "ethereal-color";
 
+// CommomJS
+const EtherealColor = require("ethereal-color");
 ```
 
 Enjoy [clicking here](https://lakscastro.github.io/lofi-player/)
