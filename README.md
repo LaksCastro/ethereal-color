@@ -141,7 +141,7 @@ color.get("rgb").string; // rgb(255, 255, 255)
 ```
 
 ### 2. Create a Color API  
-A Color object is used to represent a separate color, a single color within that infinity of colors that exist
+A Color API is used to represent a separate color, a single color within that infinity of colors that exist
 ```js
 // Way 1 - Using default color: rgb(255, 255, 255)
 const color = Color();
@@ -225,7 +225,7 @@ const palette = Palette(Color());
 ```
 
 ### 2. Create a Palette API  
-A Palette object is used to reference a range of colors, that is, where a certain range begins, and where it ends
+A Palette API is used to reference a range of colors, that is, where a certain range begins, and where it ends
 ```js
 // Way 1 - Using defaut range: 40
 const color = Color("rgb(150, 150, 150)");
@@ -296,7 +296,7 @@ const gradient = Gradient(Palette());
 // [rgb(215, 215, 215), ..., rgb(255, 255, 255)]
 ```
 
-### 1. Gradient Object Type (GradientAPI)
+### 1. Gradient API Type (GradientAPI)
 ```ts
 {
   toStringArray: (format: 'rgb' | 'hex' | 'hsl') => string[];
@@ -335,6 +335,22 @@ const gradient = Gradient(palette, { count: 20 }); // Custom precision: 20
 gradient.toStringArray("rgb"); // ["rgb(255, 0, 0)", ..., rgb(0, 0, 255)]
 gradient.toObjectArray("rgb"); // [{ r: 255, 0, 0 }, ..., { r: 0, g: 0, b: 255 }]
 gradient.toColorArray("rgb"); // [ColorAPI, ..., ColorAPI]
+```
+
+### 3. Change the value of the Gradient at run time
+```js
+// Init a gradient API with default precision 5...
+const gradient = Gradient();
+
+// ...then
+gradient.toStringArray("rgb"); // ["rgb(215, 215, 215)", ..., "rgb(255, 255, 255)"]
+
+// Now, create a simple palette...
+const palette = Palette([Color("rgb(100, 100, 100"), Color("rgb(200, 200, 200)"))]);
+
+// ...and use set() to change gradient value (optionally, you can set other options too)
+gradient.set(palette, { count: 50 });
+gradient.toStringArray(); // ["rgb(100, 100, 100)", ..., "rgb(200, 200, 200)"]
 ```
 
 <br>
