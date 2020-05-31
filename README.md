@@ -332,9 +332,9 @@ gradient.toColorArray("rgb"); // [ColorAPI, ..., ColorAPI]
 const gradient = Gradient(palette, { count: 20 }); // Custom precision: 20
 
 // Note: All arrays will have the specified size, in this case, this size will be 20
-gradient.toStringArray("rgb"); // ["rgb(255, 0, 0)", ..., rgb(0, 0, 255)].length === 20
-gradient.toObjectArray("rgb"); // [{ r: 255, 0, 0 }, ..., { r: 0, g: 0, b: 255 }].length === 20
-gradient.toColorArray("rgb"); // [ColorAPI, ..., ColorAPI].length === 20
+gradient.toStringArray("rgb"); // ["rgb(255, 0, 0)", ..., rgb(0, 0, 255)]
+gradient.toObjectArray("rgb"); // [{ r: 255, 0, 0 }, ..., { r: 0, g: 0, b: 255 }]
+gradient.toColorArray("rgb"); // [ColorAPI, ..., ColorAPI]
 ```
 
 <br>
