@@ -128,7 +128,7 @@ defaultColor.get("rgb").string; // rgb(255, 255, 255)
 A Color object is used to represent a separate color, a single color within that infinity of colors that exist
 
 ```js
-// Way 1 - Using defaut color: rgb(255, 255, 255)
+// Way 1 - Using default color: rgb(255, 255, 255)
 const color = Color();
 
 color.get("rgb").string; // rgb(255, 255, 255)
