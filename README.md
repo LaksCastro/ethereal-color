@@ -57,6 +57,7 @@ const EtherealColor = require("ethereal-color");
 ```
 
 ### 2. CDN
+`~/index.html`
 ```html
 <!DOCTYPE html>
 <html lang="en">
