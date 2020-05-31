@@ -29,7 +29,7 @@
 
 ## Installation
 
-### Package
+### 1. Package
 Npm
 ```
 npm i ethereal-color
@@ -40,7 +40,10 @@ Yarn
 yarn add ethereal-color
 ```
 
-### CDN
+### 2. CDN
+```
+<script type="text/javascript" src="https://unpkg.com/ethereal-color@0.0.5/lib/index.js"></script>
+```
 
 
 Quickstart
