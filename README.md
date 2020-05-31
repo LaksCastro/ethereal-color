@@ -115,29 +115,72 @@ For all examples below, RGB will be used, but you can also use the Hexadecimal o
 | HSL          | hsl       | `{ h: number, s: number, l: number }` | hsl(H, S%, L%) |
 
 ## Color Function
-A Color object is used to represent a separate color, a single color within that infinity of colors that exist
+
+### Default return
+If you call the Color function without sending any arguments, white will be returned
+```js
+const defaultColor = Color();
+
+defaultColor.get("rgb").string; // rgb(255, 255, 255)
+```
 
 ### 1. Create a Color object  
+A Color object is used to represent a separate color, a single color within that infinity of colors that exist
+
 ```js
 // Way 1 - Using defaut color: rgb(255, 255, 255)
 const color = Color();
 
-console.log(color.get("rgb").string); // rgb(255, 255, 255)
-console.log(color.get("rgb").object); // { r: 255, g: 255, b: 255 }
+color.get("rgb").string; // rgb(255, 255, 255)
+color.get("rgb").object; // { r: 255, g: 255, b: 255 }
 
 
 // Way 2 - Using custom color: Red, for example
 const color = Color("rgb(255, 0, 0)");
 
-console.log(color.get("rgb").string); // rgb(255, 0, 0)
-console.log(color.get("rgb").object); // { r: 255, g: 0, b: 0 }
+color.get("rgb").string; // rgb(255, 0, 0)
+color.get("rgb").object; // { r: 255, g: 0, b: 0 }
 
 
 // Way 3 - Using custom color object: Blue, for example
 const color = Color({ r: 0, g: 0, b: 255 });
 
-console.log(color.get("rgb").string); // rgb(0, 0, 255)
-console.log(color.get("rgb").object); // { r: 0, g: 0, b: 255 }
+color.get("rgb").string; // rgb(0, 0, 255)
+color.get("rgb").object; // { r: 0, g: 0, b: 255 }
+```
+
+### 2. Change the color of an object at run time
+```js
+const color = Color();
+
+color.get("rgb").string; // rgb(255, 255, 255)
+
+color.set("rgb(150, 150, 150)");
+
+color.get("rgb").string; // rgb(255, 255, 255)
+```
+
+### 3. Generate a random color
+```js
+// Way 1 - A totally random color
+const color = Color();
+color.random();
+
+color.get("rgb").string; // rgb(??, ??, ??)
+
+
+// Way 2 - Within the range of a palette
+const palette = Palette([Color("rgb(120, 100, 160)"), Color("rgb(130, 180, 200)")]);
+// Start: rgb(120, 100, 160)
+// End: rgb(130, 180, 200)
+
+const color = Color();
+color.random(palette);
+
+color.get("rgb").string; // rgb(X, Y, Z)
+// X >= 120 && X <= 130
+// Y >= 100 && X <= 180
+// Z >= 160 && Z <= 200
 ```
 
 ## Palette Function
