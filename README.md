@@ -27,11 +27,6 @@
 <br>
 <br>
 
-<p>
-  <img src="./website/assets/pt-br.png" alt="Portuguese" height="16">
-  <a href="https://github.com/LaksCastro/ethereal-color/blob/master/README-ptbr.md">Ler em português</a>
-</p>
-
 ## Try demo
 Visite library [web page clicking here](https://lakscastro.github.io/ethereal-color)  
 Or, visit a [demo project clicking here](https://github.com/LaksCastro/endless-gradients)
