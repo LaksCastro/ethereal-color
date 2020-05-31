@@ -229,6 +229,21 @@ const palette = Palette([startColor, endColor]);
 // End: rgb(230, 230, 230)
 ```
 
+### 2. Change the value of the palette at run time
+```js
+const color = Color("rgb(120, 150, 150)");
+
+const palette = Palette(color);
+// Start: rgb(80, 110, 110)
+// End: rgb(160, 190, 190)
+
+const otherColor = Color("rgb(20, 40, 10)");
+
+palette.set(otherColor, { range: 10 });
+// Start: rgb(10, 30, 0)
+// End: rgb(30, 50, 20)
+```
+
 <br>
 
 ## Some frequently asked questions
