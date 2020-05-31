@@ -13,6 +13,7 @@
 </p>
 
 <p align="center">
+  <h1></h1>
   <b>
     <a href="https://lakscastro.github.io/ethereal-color">
       <code>Try Demo</code>
@@ -26,7 +27,7 @@
 
 <p>
   <img src="./website/assets/pt-br.png" alt="Portuguese" height="16">
-  <a href="https://github.com/LaksCastro/lofi-player/blob/master/README-ptbr.md">Ler em português</a>
+  <a href="https://github.com/LaksCastro/ethereal-color/blob/master/README-ptbr.md">Ler em português</a>
 </p>
 
 # Live On
