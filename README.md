@@ -9,6 +9,11 @@
       <code>Try Demo</code>
     </a>
   </b>
+  <b>
+    <a href="https://lakscastro.github.io/ethereal-color">
+      <code>Sample Project</code>
+    </a>
+  </b>
 </h4>
 <p align="center">Fast, simple, easy library to work with colors: single, palettes, gradients and more. Written in Typescript</p>
 <p align="center">
