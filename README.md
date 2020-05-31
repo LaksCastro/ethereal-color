@@ -115,11 +115,11 @@ const { Color, Palette, Gradient, Converter } = EtherealColor;
 
 ## Color Types
 For all examples below, RGB will be used, but you can also use the Hexadecimal or HSL color format  
-| Color Format | Color Key | Color Object                          | Color String     | Color Type |
-|--------------|-----------|---------------------------------------|------------------|------------|
-| RGB          | rgb       | `{ r: number, g: number, b: number }` | `rgb(R, G, B)`   | `Rgb`      |
-| Hexadecimal  | hex       | `{ r: string, g: string, b: string }` | `#rrggbb`        | `Hex`      |
-| HSL          | hsl       | `{ h: number, s: number, l: number }` | `hsl(H, S%, L%)` | `Hsl`      |
+| Color Format | Color Key | Color Object Type                            | Color String     |
+|--------------|-----------|----------------------------------------------|------------------|
+| RGB          | rgb       | `Rgb`: `{ r: number, g: number, b: number }` | `rgb(R, G, B)`   |
+| Hexadecimal  | hex       | `Hex`: `{ r: string, g: string, b: string }` | `#rrggbb`        |
+| HSL          | hsl       | `Hsl`: `{ h: number, s: number, l: number }` | `hsl(H, S%, L%)` |
 
 ## Color Function
 
@@ -134,7 +134,7 @@ color.get("rgb").string; // rgb(255, 255, 255)
 ### 1. Color API Type (ColorAPI)
 ```ts
 {
-  get: (format: 'rgb' | 'hex' | 'hsl') => { string: ColorString, object: ColorObject },
+  get: (format: 'rgb' | 'hex' | 'hsl') => { string: ColorString, object: ColorType  },
   set: (newColor: ColorObject | ColorString) => void,
   random: (palette?: PaletteAPI) => void
 }
