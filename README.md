@@ -108,28 +108,35 @@ const EtherealColor = require("ethereal-color");
 
 ## Important
 For all examples below, RGB will be used, but you can also use the Hexadecimal or HSL color format  
-| Color Format | Color Key |
-|--------------|-----------|
-| RGB          | rgb       |
-| Hexadecimal  | hex       |
-| HSL          | hsl       |
+| Color Format | Color Key | Color Object                        |
+|--------------|-----------|-------------------------------------|
+| RGB          | rgb       | `{ r: number, g: number, b: number }` |
+| Hexadecimal  | hex       | `{ r: string, g: string, b: string }` |
+| HSL          | hsl       | `{ h: number, s: number, l: number }` |
 
 ## Color Function
 ### 1. Create a new Color object  
 ```js
-// Way - 1 - Using defaut color: #fff
+// Way 1 - Using defaut color: #fff
 const color = Color();
 
-console.log(color.get("rgb")); // rgb(255, 255, 255)
-console.log(color.get("hex")); // #ffffff
-console.log(color.get("hsl")); // hsl(0, 0%, 100%)
+console.log(color.get("rgb").string); // rgb(255, 255, 255)
+console.log(color.get("rgb").object); // { r: 255, g: 255, b: 255 }
 
 
-// Way - 2 - Using custom color: Red, for example
+// Way 2 - Using custom color: Red, for example
 const color = Color("rgb(255, 0, 0)");
-// or...
-const color = Color("#ff0000");
-// or
+
+console.log(color.get("rgb").string); // rgb(255, 0, 0)
+console.log(color.get("rgb").object); // { r: 255, g: 0, b: 0 }
+
+
+// Way 3 - Using custom color object: Red, for example
+const color = Color("rgb(255, 0, 0)");
+
+console.log(color.get("rgb").string); // rgb(255, 0, 0)
+console.log(color.get("rgb").object); // { r: 255, g: 0, b: 0 }
+
 
 
 console.log(color.get("rgb")); // rgb(255, 255, 255)
