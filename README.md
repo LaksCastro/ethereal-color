@@ -5,9 +5,9 @@
 <h1 align="center">Ethereal Color</h1>
 <p align="center">Fast, simple, easy library to work with colors: single, palette's, gradient and more. Written in Typescript</p>
 <p align="center">
-  <img  src="https://img.shields.io/badge/application-music_player-blue" alt="Application Type" />
-  <img  src="https://img.shields.io/badge/language-javascript-yellow" alt="Repo Main Language" />
-  <img  src="https://img.shields.io/badge/bundler-parcel-blueviolet" alt="Module Bundler" />
+  <img  src="https://img.shields.io/badge/application-library" alt="Application Type" />
+  <img  src="https://img.shields.io/badge/wiritten-typescript-blue" alt="Repo Main Language" />
+  <img  src="https://img.shields.io/badge/tests-passing-green" alt="Tests" />
   <img  src="https://img.shields.io/badge/api-youtube_iframe_google-success" alt="Repo API" />
   <img  src="https://img.shields.io/badge/type-project-green" alt="Repo Type" />
 </p>
