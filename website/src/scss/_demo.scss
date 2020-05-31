@@ -10,24 +10,29 @@
 
 .demo__container {
   width: 100%;
-  max-width: 750px;
+  max-width: 650px;
 }
 
 .demo__explanation {
   width: 100%;
-  padding: 1rem 3rem;
+  padding: 3rem;
 }
 
 .demo__title {
   color: $color-brand;
   font-weight: bolder;
   font-size: 1.4em;
-  padding: 3rem 0;
   &::before {
     counter-increment: demo-title;
     content: counter(demo-title) '. ';
     color: $color-brand;
   }
+}
+
+.demo__text {
+  color: rgb(100, 100, 100);
+
+  padding: 3rem 0;
 }
 
 .demo__button {

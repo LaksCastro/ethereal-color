@@ -35,10 +35,10 @@ export default function Demo3() {
   })
 
   function renderGradient() {
-    const basePalette1 = Palette(Color('rgb(0,255,0)'), {
+    const basePalette1 = Palette(Color('#fff'), {
       range: 150,
     })
-    const basePalette2 = Palette(Color('rgb(0,0,255)'), {
+    const basePalette2 = Palette(Color('#000'), {
       range: 150,
     })
 
@@ -48,7 +48,11 @@ export default function Demo3() {
     const color2 = Color()
     color2.random(basePalette2)
 
-    const palette = Palette([color1, color2])
+    const palette = Palette(
+      new Date().getMilliseconds() % 2 === 0
+        ? [color1, color2]
+        : [color2, color1],
+    )
 
     const gradients = Gradient(palette, {
       count: count,
