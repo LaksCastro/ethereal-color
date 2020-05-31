@@ -157,7 +157,7 @@ color.get("rgb").string; // rgb(255, 255, 255)
 
 color.set("rgb(150, 150, 150)");
 
-color.get("rgb").string; // rgb(255, 255, 255)
+color.get("rgb").string; // rgb(150, 150, 150)
 ```
 
 ### 3. Generate a random color
@@ -179,7 +179,7 @@ color.random(palette);
 
 color.get("rgb").string; // rgb(X, Y, Z)
 // X >= 120 && X <= 130
-// Y >= 100 && X <= 180
+// Y >= 100 && Y <= 180
 // Z >= 160 && Z <= 200
 ```
 
