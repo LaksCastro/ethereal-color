@@ -110,11 +110,11 @@ const { Color, Palette, Gradient, Converter } = EtherealColor;
 
 ## Color Types
 For all examples below, RGB will be used, but you can also use the Hexadecimal or HSL color format  
-| Color Format | Color Key | Color Object                          | Color String   |
-|--------------|-----------|---------------------------------------|----------------|
-| RGB          | rgb       | `{ r: number, g: number, b: number }` | rgb(R, G, B)   |
-| Hexadecimal  | hex       | `{ r: string, g: string, b: string }` | #rrggbb        |
-| HSL          | hsl       | `{ h: number, s: number, l: number }` | hsl(H, S%, L%) |
+| Color Format | Color Key | Color Object                          | Color String     |
+|--------------|-----------|---------------------------------------|------------------|
+| RGB          | rgb       | `{ r: number, g: number, b: number }` | `rgb(R, G, B)`   |
+| Hexadecimal  | hex       | `{ r: string, g: string, b: string }` | `#rrggbb`        |
+| HSL          | hsl       | `{ h: number, s: number, l: number }` | `hsl(H, S%, L%)` |
 
 ## Color Function
 
