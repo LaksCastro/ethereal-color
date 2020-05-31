@@ -14,7 +14,7 @@
 <p align="center">
   <img  src="https://img.shields.io/badge/license-MIT-success" alt="License" />
   <img  src="https://img.shields.io/badge/application-library-orange" alt="Application Type" />
-  <img  src="https://img.shields.io/badge/wiritten-typescript-blue" alt="Repo Main Language" />
+  <img  src="https://img.shields.io/badge/written-typescript-blue" alt="Repo Main Language" />
   <img  src="https://img.shields.io/badge/tests-passing-green" alt="Tests" />
   <img  src="https://img.shields.io/badge/code_style-prettier-ff69b4" alt="Repo Type" />
 </p>
