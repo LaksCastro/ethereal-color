@@ -48,12 +48,33 @@ yarn add ethereal-color
 ## Quickstart
 
 ### 1. Package
+`~/index.html`
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etheral Color Quickstart with Package</title>
+</head>
+
+<body>
+</body>
+
+<script src="./app.js"></script>
+
+</html>
+```
+`~/app.js`
 ```js
 // ES6
 import EtherealColor from "ethereal-color";
 
 // CommomJS
 const EtherealColor = require("ethereal-color");
+
+// ...Now it's up to you, enjoy this API
 ```
 
 ### 2. CDN
