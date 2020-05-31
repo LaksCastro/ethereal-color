@@ -12,18 +12,20 @@
   <img  src="https://img.shields.io/badge/type-project-green" alt="Repo Type" />
 </p>
 
-<p align="center">
-  <h1>
-    <b>
-      <a href="https://lakscastro.github.io/ethereal-color">
-        <code>Try Demo</code>
-      </a>
-    </b>
-  </h1>
-</p>
+<br>
+
+<h4 align="center">
+  <b>
+    <a href="https://lakscastro.github.io/ethereal-color">
+      <code>Try Demo</code>
+    </a>
+  </b>
+</h4>
+
+<br>
 
 <p align="center">
-  <img src="./docs/lofi-player.gif" width="350">
+  <a href="#table-of-contents">Table of contents</a>
 </p>
 
 <p>
