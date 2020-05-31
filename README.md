@@ -220,7 +220,7 @@ const palette = Palette(Color());
 {
   get: () => [ColorAPI, ColorAPI];
   set: (color: ColorAPI | [ColorAPI, ColorAPI], options?: { range: number }) => void;
-  random: () => void;
+  random: (options?: { range: number }) => void;
 }
 ```
 
