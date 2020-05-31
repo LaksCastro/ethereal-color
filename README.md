@@ -10,7 +10,7 @@
     </a>
   </b>
   <b>
-    <a href="https://lakscastro.github.io/ethereal-color">
+    <a href="https://github.com/LaksCastro/endless-gradients">
       <code>Sample Project</code>
     </a>
   </b>
