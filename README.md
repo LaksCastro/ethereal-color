@@ -188,11 +188,11 @@ color.get("rgb").string; // rgb(X, Y, Z)
 
 #### 1. Can I work using different color formats?
 Yes, it is totally possible, although there may be some minor incompatibilities, for example: every hex color can be represented in the RGB, but not every RGB color can be represented in the hex format
-```
+```js
 const color = Color("rgb(150, 140, 160)");
 
 color.get("hex").string; // #968ca0
-color.get("hsl").string; //	hsl(270, 10%, 59%)
+color.get("hsl").string; // hsl(270, 10%, 59%)
 ```
 
 ## Palette Function
