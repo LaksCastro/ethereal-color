@@ -131,16 +131,16 @@ const color = Color();
 color.get("rgb").string; // rgb(255, 255, 255)
 ```
 
-### 1. Color Object Type (ColorObject)
+### 1. Color API Type (ColorAPI)
 ```ts
 {
   get: (format: 'rgb' | 'hex' | 'hsl') => ({ string: ColorString, object: ColorObject }),
   set: (newColor: ColorObject | ColorString) => void,
-  random: (palette?: PaletteObject) => void
+  random: (palette?: PaletteAPI) => void
 }
 ```
 
-### 1. Create a Color object  
+### 2. Create a Color object  
 A Color object is used to represent a separate color, a single color within that infinity of colors that exist
 ```js
 // Way 1 - Using default color: rgb(255, 255, 255)
@@ -164,7 +164,7 @@ color.get("rgb").string; // rgb(0, 0, 255)
 color.get("rgb").object; // { r: 0, g: 0, b: 255 }
 ```
 
-### 2. Change the color of an object at run time
+### 3. Change the color of an object at run time
 ```js
 const color = Color();
 
@@ -175,7 +175,7 @@ color.set("rgb(150, 150, 150)");
 color.get("rgb").string; // rgb(150, 150, 150)
 ```
 
-### 3. Generate a random color
+### 4. Generate a random color
 ```js
 // Way 1 - A totally random color
 const color = Color();
@@ -213,6 +213,15 @@ const palette = Palette(Color("rgb(255, 255, 255)"));
 // ...then:
 // Start: rgb(215, 215, 215)
 // End: rgb(255, 255, 255)
+```
+
+### 1. Palette API Type
+```ts
+{
+  get: () => [ColorAPI, ColorAPI],
+  set: (color: ColorAPI | [ColorAPI, ColorAPI], options?: { range: number }) => void
+  random: () => void
+}
 ```
 
 ### 1. Create a Palette object  
