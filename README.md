@@ -142,11 +142,28 @@ console.log(color.get("rgb").object); // { r: 0, g: 0, b: 255 }
 ### 1. Create a new Palette object  
 ```js
 // Way 1 - Using defaut range: 40
-const color = Color("rgb(150, 150, 150)"); // can be any color
+const color = Color("rgb(150, 150, 150)");
 
-const palette = Palette(color, { range: 40 /* 40 is default */ });
-// Start: rgb (110, 110, 110)
-// End: rgb (190, 190, 190)
+const palette = Palette(color);
+// Start: rgb(110, 110, 110)
+// End: rgb(190, 190, 190)
+
+
+// Way 2 - Using custom range: 100
+const color = Color("rgb(150, 150, 150)");
+
+const palette = Palette(color, { range: 100 /* need to specify */ });
+// Start: rgb(50, 50, 50)
+// End: rgb(250, 250, 250)
+
+
+// Way 3 - Create a custom palette
+const startColor = Color("rgb(65, 65, 0)");
+const endColor = Color("rgb(230, 230, 230)");
+
+const palette = Palette([startColor, endColor]);
+// Start: rgb(65, 65, 0)
+// End: rgb(230, 230, 230)
 ```
 
 
