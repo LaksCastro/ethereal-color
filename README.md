@@ -282,7 +282,24 @@ const gradient = Gradient(Palette());
 ### Create a Gradient object
 A Gradient object is used to represent a sequence of colors, which sequence consists of a starting color and an ending color
 ```js
-const
+// 1. Init start and end colors:
+const startColor = Color("rgb(255, 0, 0)");
+const endColor = Color("rgb(0, 0, 255)");
+
+// 2. Init palette:
+const palette = Palette([startColor, endColor]);
+
+// 3. Now, the gradients:
+
+// Way 1 - Create a default gradient:
+const gradient = Gradient(palette);
+gradient.toStringArray("rgb"); // ["rgb(255, 0, 0)", ..., rgb(0, 0, 255)]
+gradient.toObjectArray("rgb"); // [{ r: 255, 0, 0 }, ..., { r: 0, g: 0, b: 255 }]
+gradient.toColorArray("rgb"); // [ColorObject, ..., ColorObject]
+
+
+// Done! a gradient with precision 5 was created
+const gradient = Gradient(palette);
 ```
 
 <br>
