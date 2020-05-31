@@ -245,7 +245,7 @@ palette.set(otherColor, { range: 10 });
 ```
 
 ### 3. Generate a random palette
-```
+```js
 const palette = Palette(); // default color: white - rgb(255, 255, 255)
 // Start: rgb(215, 215, 215)
 // End: rgb(255, 255, 255)
