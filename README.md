@@ -187,7 +187,6 @@ color.get("rgb").string; // rgb(X, Y, Z)
 <br>
 
 ## Palette Function
-A Palette object is used to reference a range of colors, that is, where a certain range begins, and where it ends
 
 ### Default return
 If you try to create a palette without sending anything as a parameter, a palette will be created using white as the base
@@ -202,9 +201,8 @@ const palette = Palette(Color("rgb(255, 255, 255)"));
 // End: rgb(255, 255, 255)
 ```
 
-
-
 ### 1. Create a Palette object  
+A Palette object is used to reference a range of colors, that is, where a certain range begins, and where it ends
 ```js
 // Way 1 - Using defaut range: 40
 const color = Color("rgb(150, 150, 150)");
@@ -246,8 +244,47 @@ palette.set(otherColor, { range: 10 });
 // End: rgb(30, 50, 20)
 ```
 
+### 3. Generate a random palette
+```
+const palette = Palette(); // default color: white - rgb(255, 255, 255)
+// Start: rgb(215, 215, 215)
+// End: rgb(255, 255, 255)
+
+// Now...
+palette.random();
+// Start: rgb(??, ??, ??)
+// End: rgb(??, ??, ??)
+```
+
 <br>
 
+## Gradient Function
+
+
+### Default return
+If you don't send anything to the Gradient function, it will return a gradient from a white palette
+```js
+// ...this
+const gradient = Gradient();
+// [rgb(215, 215, 215)]
+
+// ...is the same thing as this:
+const gradient = Gradient(Palette());
+// ...then:
+// [rgb(215, 215, 215), ..., rgb(255, 255, 255)]
+```
+
+### Create a Gradient object
+A Gradient object is used to represent a sequence of colors, which sequence consists of a starting color and an ending color
+```js
+const
+```
+
+<br>
+
+### Converter Function
+
+<br>
 ## Some frequently asked questions
 
 ### 1. Can I work using different color formats?
