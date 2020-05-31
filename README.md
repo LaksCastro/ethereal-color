@@ -13,12 +13,13 @@
 </p>
 
 <p align="center">
-  <h1></h1>
-  <b>
-    <a href="https://lakscastro.github.io/ethereal-color">
-      <code>Try Demo</code>
-    </a>
-  </b>
+  <h1>
+    <b>
+      <a href="https://lakscastro.github.io/ethereal-color">
+        <code>Try Demo</code>
+      </a>
+    </b>
+  </h1>
 </p>
 
 <p align="center">
