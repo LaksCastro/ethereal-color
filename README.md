@@ -134,7 +134,7 @@ color.get("rgb").string; // rgb(255, 255, 255)
 ### 1. Color API Type (ColorAPI)
 ```ts
 {
-  get: (format: 'rgb' | 'hex' | 'hsl') => ({ string: ColorString, object: ColorObject }),
+  get: (format: 'rgb' | 'hex' | 'hsl') => { string: ColorString, object: ColorObject },
   set: (newColor: ColorObject | ColorString) => void,
   random: (palette?: PaletteAPI) => void
 }
