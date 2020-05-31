@@ -291,7 +291,7 @@ const
 > _Note: [keep this table](#color-types) in mind when using this function:_
 
 #### Converter Object
-The convert object is a separate object, that is, it works as if it were a static class, and can help you convert different color formats without having to create another object. The library uses this object under the hood to work with the different core formats.
+The Convert object is a separate object, that is, it works as if it were a static class and can help you convert different color formats without having to create another object. The library uses this object under the hood to work with the different color formats.
 ```js
 // New converter object
 const converter = Converter();
