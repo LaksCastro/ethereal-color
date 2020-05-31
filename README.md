@@ -195,6 +195,8 @@ color.get("hex").string; // #968ca0
 color.get("hsl").string; // hsl(270, 10%, 59%)
 ```
 
+<br>
+
 ## Palette Function
 A Palette object is used to reference a range of colors, that is, where a certain range begins, and where it ends
 
