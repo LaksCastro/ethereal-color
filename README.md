@@ -121,9 +121,9 @@ For all examples below, RGB will be used, but you can also use the Hexadecimal o
 ### Default return
 If you call the Color function without sending any arguments, white will be returned
 ```js
-const defaultColor = Color();
+const color = Color();
 
-defaultColor.get("rgb").string; // rgb(255, 255, 255)
+color.get("rgb").string; // rgb(255, 255, 255)
 ```
 
 ### 1. Create a Color object  
