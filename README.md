@@ -6,7 +6,7 @@
 <h4 align="center">
   <b>
     <a href="https://lakscastro.github.io/ethereal-color">
-      <code>Try Demo</code>
+      <code>Library Website</code>
     </a>
   </b>
   <b>
