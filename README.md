@@ -93,7 +93,7 @@ const { Color, Palette, Gradient, Converter } = EtherealColor;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ethereal Color Quickstart with CDN</title>
-    <script type="text/javascript" src="https://unpkg.com/ethereal-color@0.0.4/lib/index.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/ethereal-color@0.0.5/lib/index.js"></script>
 </head>
 
 <body>
