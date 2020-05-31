@@ -209,7 +209,7 @@ If you try to create a palette without sending anything as a parameter, a palett
 const palette = Palette();
 
 // ...is the same thing as this:
-const palette = Palette(Color("rgb(255, 255, 255)"));
+const palette = Palette(Color());
 // ...then:
 // Start: rgb(215, 215, 215)
 // End: rgb(255, 255, 255)
