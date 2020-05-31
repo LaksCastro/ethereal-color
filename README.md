@@ -108,11 +108,11 @@ const EtherealColor = require("ethereal-color");
 
 ## Important
 For all examples below, RGB will be used, but you can also use the Hexadecimal or HSL color format  
-| Color Format | Color Key | Color Object                        |
-|--------------|-----------|-------------------------------------|
-| RGB          | rgb       | `{ r: number, g: number, b: number }` |
-| Hexadecimal  | hex       | `{ r: string, g: string, b: string }` |
-| HSL          | hsl       | `{ h: number, s: number, l: number }` |
+| Color Format | Color Key | Color Object                          | Color String   |
+|--------------|-----------|---------------------------------------|----------------|
+| RGB          | rgb       | `{ r: number, g: number, b: number }` | rgb(R, G, B)   |
+| Hexadecimal  | hex       | `{ r: string, g: string, b: string }` | #RRGGBB        |
+| HSL          | hsl       | `{ h: number, s: number, l: number }` | hsl(H, S%, L%) |
 
 ## Color Function
 ### 1. Create a new Color object  
