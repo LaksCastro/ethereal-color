@@ -440,7 +440,7 @@ color.get("hsl"); // hsl(0, 0%, 100%)
   <br>
   <sub>Copyright © 2020-present, Laks Castro.</sub>
 </p>
-<p align="center">Ethereal Color [is MIT licensed 💖](https://github.com/LaksCastro/ethereal-color/LICENSE.md)</p>
+<p align="center">Ethereal Color <a href="https://github.com/LaksCastro/ethereal-color/LICENSE.md">is MIT licensed 💖]</a></p>
 <p align="center">
   <img src="/website/assets/GooglePlayStore.png" width="35" />
 </p>
