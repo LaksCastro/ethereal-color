@@ -17,7 +17,7 @@ export type Gradient = {
   toObjectArray: (format: PropColorFormat) => object[]
   toColorArray: () => Color[]
   set: (userInput: Palette, options?: PropGradientOptions) => void
-  random: () => void
+  random: (options?: PropGradientOptions) => void
 }
 
 export function Gradient(
@@ -47,20 +47,20 @@ export function Gradient(
     newUserInput: Palette,
     newOptions: PropGradientOptions = defaultOptions,
   ): void {
-    state = input.normalizeGradient({
+    const newState = input.normalizeGradient({
       from: newUserInput,
       options: newOptions,
     })
+
+    state = newState
   }
 
-  function random() {
-    const color = Color()
+  function random(newOptions?: PropGradientOptions): void {
+    const palette = Palette()
 
-    color.random()
+    palette.random()
 
-    const palette = Palette(color)
-
-    set(palette)
+    set(palette, newOptions)
   }
 
   const self: Gradient = {

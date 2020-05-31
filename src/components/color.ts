@@ -43,9 +43,9 @@ export type PropColorState = {
 }
 
 export type Color = {
-  set: (userInput: InputForColor) => PropColorState
+  set: (userInput: InputForColor) => void
   get: (format: PropColorFormat) => PropColorState
-  random: (basePalette?: Palette) => PropColorState
+  random: (basePalette?: Palette) => void
 }
 
 export function Color(userInput: InputForColor = '#ffffff'): Color {
@@ -72,14 +72,12 @@ export function Color(userInput: InputForColor = '#ffffff'): Color {
   // ====================================================================================
   // Public Methods
   // ====================================================================================
-  function set(newUserInput: InputForColor): PropColorState {
+  function set(newUserInput: InputForColor): void {
     const newPrivateState = input.normalizeColor({
       from: newUserInput,
     })
 
     setState(newPrivateState)
-
-    return get('rgb')
   }
 
   function get(format: PropColorFormat): PropColorState {
@@ -93,7 +91,7 @@ export function Color(userInput: InputForColor = '#ffffff'): Color {
     return publicState
   }
 
-  function random(basePalette?: Palette): PropColorState {
+  function random(basePalette?: Palette): void {
     const useCustomPalette = Boolean(basePalette)
 
     let r: number
@@ -131,11 +129,6 @@ export function Color(userInput: InputForColor = '#ffffff'): Color {
     const color = Color({ r, g, b })
 
     set(color.get('rgb').object as Rgb)
-
-    return {
-      object: color.get('rgb').object as Rgb,
-      string: color.get('rgb').string,
-    }
   }
 
   const self: Color = {

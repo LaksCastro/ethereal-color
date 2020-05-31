@@ -1,5 +1,8 @@
 import { Input } from './input'
 import { Color } from './color'
+import { Utils } from './utils'
+
+const utils = Utils()
 
 const defaultOptions: PropPaletteOptions = { range: 40 }
 
@@ -16,8 +19,8 @@ export type Palette = {
   set: (
     userInput: InputForPalette,
     options?: PropPaletteOptions,
-  ) => PropPaletteState
-  random: () => PropPaletteState
+  ) => void
+  random: () => void
 }
 
 export function Palette(
@@ -38,21 +41,25 @@ export function Palette(
   function set(
     newUserInput: InputForPalette,
     newOptions: PropPaletteOptions = defaultOptions,
-  ): PropPaletteState {
-    return (state = input.normalizePalette({
+  ): void {
+    const newState = input.normalizePalette({
       from: newUserInput,
       options: newOptions,
-    }))
+    })
+
+    state = newState
   }
 
-  function random(): PropPaletteState {
+  function random(
+    newOptions: PropPaletteOptions = {
+      range: utils.randomInt(40, 255),
+    },
+  ): void {
     const color = Color()
 
     color.random()
 
-    set(color)
-
-    return get()
+    set(color, newOptions)
   }
 
   const self: Palette = {
