@@ -73,8 +73,8 @@ const EtherealColor = require("ethereal-color");
 
 <script>
     const { Color, Converter, Gradient, Palette } = EtherealColor
-
-    // You can do anything with this functions
+  
+    // ...Now it's up to you, enjoy this API
 </script>
 
 </html>
