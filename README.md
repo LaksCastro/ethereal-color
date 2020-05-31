@@ -274,7 +274,8 @@ const palette = Palette(); // default color: white - rgb(255, 255, 255)
 // End: rgb(255, 255, 255)
 
 // Now...
-palette.random();
+// Optionally you can send the options for the random palette
+palette.random({ range: 90 });
 // Start: rgb(??, ??, ??)
 // End: rgb(??, ??, ??)
 ```
@@ -303,7 +304,7 @@ const gradient = Gradient(Palette());
   toObjectArray: (format: 'rgb' | 'hex' | 'hsl') => Rgb[] | Hex[] | Hsl[];
   toColorArray: () => ColorAPI[];
   set: (palette: PaletteAPI) => void;
-  random: () => void;
+  random: (options?: { count: number }) => void;
 }
 ```
 
@@ -351,6 +352,16 @@ const palette = Palette([Color("rgb(100, 100, 100"), Color("rgb(200, 200, 200)")
 // ...and use set() to change gradient value (optionally, you can set other options too)
 gradient.set(palette, { count: 50 });
 gradient.toStringArray(); // ["rgb(100, 100, 100)", ..., "rgb(200, 200, 200)"]
+```
+
+### 4. Generate a random gradient
+```js
+const gradient = Gradient();
+
+// Optionally you can send the options for the random gradient
+gradient.random({ count: 50 });
+
+gradient.toStringArray(); // ["rgb(??, ??, ??)", ..., "rgb(??, ??, ??)"]
 ```
 
 <br>
