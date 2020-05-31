@@ -292,25 +292,43 @@ const
 
 #### Converter Object
 The convert object is a separate object, that is, it works as if it were a static class, and can help you convert different color formats without having to create another object. The library uses this object under the hood to work with the different core formats.
-```
+```js
 // New converter object
 const converter = Converter();
 ```
 
 #### How to use
-1. `hexToRgb()`
+##### 1. `hexToRgb()`
 `Description:` Function that receives an object in the "hex" format and returns an object in the "rgb" format
 `Type:` (color: Hex) => Rgb
-
 ```js
-converter.hexToRgb(HEX_FORMAT);
+const output = converter.hexToRgb({ r: "ff", g: "ff", b: "ff" });
+// output = { r: 255, g: 255, b: 255 }
 ```
 
-2. hslToRgb()
+##### 2. `hslToRgb()`
+`Description:` Function that receives an object in the "hsl" format and returns an object in the "rgb" format
+`Type:` (color: Hsl) => Rgb
+```js
+const output = converter.hslToRgb({ h: 0, s: 0, l: 100 });
+// output = { r: 255, g: 255, b: 255 }
+```
 
-3. rgbToHex()
+##### 3. `rgbToHex()`
+`Description:` Function that receives an object in the "rgb" format and returns an object in the "hex" format
+`Type:` (color: Rgb) => Hex
+```js
+const output = converter.rgbToHex({ r: 255, g: 255, b: 255 });
+// output = { r: "ff", g: "ff", b: "ff" }
+```
 
-4. rgbToHsl()
+##### 4. `rgbToHsl()`
+`Description:` Function that receives an object in the "hex" format and returns an object in the "rgb" format
+`Type:` (color: Rgb) => Hsl
+```js
+const output = converter.rgbToHsl({ r: 255, g: 255, b: 255 });
+// output = { h: 0, s: 0, l: 100 }
+```
 
 <br>
 
