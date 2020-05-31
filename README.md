@@ -140,7 +140,7 @@ color.get("rgb").string; // rgb(255, 255, 255)
 }
 ```
 
-### 2. Create a Color object  
+### 2. Create a Color API  
 A Color object is used to represent a separate color, a single color within that infinity of colors that exist
 ```js
 // Way 1 - Using default color: rgb(255, 255, 255)
@@ -224,7 +224,7 @@ const palette = Palette(Color("rgb(255, 255, 255)"));
 }
 ```
 
-### 2. Create a Palette object  
+### 2. Create a Palette API  
 A Palette object is used to reference a range of colors, that is, where a certain range begins, and where it ends
 ```js
 // Way 1 - Using defaut range: 40
@@ -307,7 +307,7 @@ const gradient = Gradient(Palette());
 }
 ```
 
-### 2. Create a Gradient object
+### 2. Create a Gradient API
 A Gradient object is used to represent a sequence of colors, which sequence consists of a starting color and an ending color
 ```js
 // 1. Init start and end colors:
@@ -320,14 +320,16 @@ const palette = Palette([startColor, endColor]);
 // 3. Now, the gradients:
 
 // Way 1 - Create a default gradient:
-const gradient = Gradient(palette);
-gradient.toStringArray("rgb"); // ["rgb(255, 0, 0)", ..., rgb(0, 0, 255)]
-gradient.toObjectArray("rgb"); // [{ r: 255, 0, 0 }, ..., { r: 0, g: 0, b: 255 }]
-gradient.toColorArray("rgb"); // [ColorObject, ..., ColorObject]
+const gradient = Gradient(palette); // Precision by default: 5
+gradient.toStringArray("rgb"); // ["rgb(255, 0, 0)", ..., rgb(0, 0, 255)].length === 5
+gradient.toObjectArray("rgb"); // [{ r: 255, 0, 0 }, ..., { r: 0, g: 0, b: 255 }].length === 5
+gradient.toColorArray("rgb"); // [ColorAPI, ..., ColorAPI].length === 5
 
-
-// Done! a gradient with precision 5 was created
-const gradient = Gradient(palette);
+// Way 2 - Create with custom precision
+const gradient = Gradient(palette, { count: 20 }); // Custom precision: 20
+gradient.toStringArray("rgb"); // ["rgb(255, 0, 0)", ..., rgb(0, 0, 255)].length === 20
+gradient.toObjectArray("rgb"); // [{ r: 255, 0, 0 }, ..., { r: 0, g: 0, b: 255 }].length === 20
+gradient.toColorArray("rgb"); // [ColorAPI, ..., ColorAPI].length === 20
 ```
 
 <br>
