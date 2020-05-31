@@ -3,8 +3,6 @@
 </p>
 <p align="center">⭐⭐⭐⭐⭐</p>
 <h1 align="center">Ethereal Color</h1>
-<p align="center">Fast, simple, easy library to work with colors: single, palette's, gradient and more. Written in Typescript</p>
-
 <h4 align="center">
   <b>
     <a href="https://lakscastro.github.io/ethereal-color">
@@ -12,7 +10,7 @@
     </a>
   </b>
 </h4>
-
+<p align="center">Fast, simple, easy library to work with colors: single, palette's, gradient and more. Written in Typescript</p>
 <p align="center">
   <img  src="https://img.shields.io/badge/license-MIT-success" alt="License" />
   <img  src="https://img.shields.io/badge/application-library-orange" alt="Application Type" />
