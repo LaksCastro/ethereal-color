@@ -27,6 +27,12 @@
   <a href="https://github.com/LaksCastro/ethereal-color/blob/master/README-ptbr.md">Ler em português</a>
 </p>
 
+## Visit the web page
+[Click here](https://lakscastro.github.io/ethereal-color)
+
+## Visit a demo project
+[Click here](https://github.com/LaksCastro/endless-gradients)
+
 ## Installation
 
 ### 1. Package
