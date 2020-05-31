@@ -131,8 +131,8 @@ const color = Color();
 color.get("rgb").string; // rgb(255, 255, 255)
 ```
 
-### 1. Color Object Type
-```js
+### 1. Color Object Type (ColorObject)
+```ts
 {
   get: (format: 'rgb' | 'hex' | 'hsl') => ({ string: ColorString, object: ColorObject }),
   set: (newColor: ColorObject | ColorString) => void,
