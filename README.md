@@ -41,7 +41,7 @@ yarn add ethereal-color
 ```
 
 ### 2. CDN
-```
+```html
 <script type="text/javascript" src="https://unpkg.com/ethereal-color@0.0.5/lib/index.js"></script>
 ```
 
