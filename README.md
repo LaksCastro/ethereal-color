@@ -56,6 +56,30 @@ import EtherealColor from "ethereal-color";
 const EtherealColor = require("ethereal-color");
 ```
 
+### 2. CDN
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etheral Color Quickstart with CDN</title>
+    <script type="text/javascript" src="https://unpkg.com/ethereal-color@0.0.4/lib/index.js"></script>
+</head>
+
+<body>
+</body>
+
+<script>
+    const { Color, Converter, Gradient, Palette } = EtherealColor
+
+    // You can do anything with this functions
+</script>
+
+</html>
+```
+
 Enjoy [clicking here](https://lakscastro.github.io/lofi-player/)
 
 # What is it?
