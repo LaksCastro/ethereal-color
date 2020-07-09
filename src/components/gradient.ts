@@ -39,7 +39,7 @@ export function Gradient(
     return state.map(color => color.get(format).object)
   }
 
-  function toColorArray() {
+  function toColorArray(): PropGradientState {
     return state
   }
 
